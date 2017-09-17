@@ -2,6 +2,15 @@
 <html>
 <head>
     
+<!-- Google Analytics -->
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'true', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+<!-- End Google Analytics -->
+
 
     
 
@@ -10,6 +19,8 @@
 
 
     <meta charset="utf-8">
+    
+    <meta name="google-site-verification" content="true">
     
     
     
@@ -31,7 +42,7 @@
 <meta property="og:image" content="http://kaell.top/2017/07/31/openlayers-canvas-typhoon/goal.png">
 <meta property="og:image" content="http://kaell.top/2017/07/31/openlayers-canvas-typhoon/canvasSymbol.png">
 <meta property="og:image" content="http://kaell.top/2017/07/31/openlayers-canvas-typhoon/canvasLayer.png">
-<meta property="og:updated_time" content="2017-08-02T03:04:07.758Z">
+<meta property="og:updated_time" content="2017-09-17T12:42:23.858Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="openlayers 从台风风圈绘制到canvas样式和图层的应用">
 <meta name="twitter:description" content="本文中所使用的数据来源于温州台风网，通过F12抓取，你可以在我的GitHub上查看数据和本文源代码 &amp;nbsp;&amp;nbsp;台风的风圈是一种不常见但算的上规则的图形，在上面的网站可以看到最终效果，简单的解剖下其实就是四个1/4圆">
@@ -47,7 +58,7 @@
 <body>
     <div id="loading" class="active"></div>
 
-    <aside id="menu" class="hide" >
+    <aside id="menu"  >
   <div class="inner flex-row-vertical">
     <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
         <i class="icon icon-lg icon-close"></i>
@@ -59,7 +70,7 @@
         </a>
         <hgroup class="introduce">
           <h5 class="nickname">Cyrus</h5>
-          <a href="mailto:290741907@qq.com" title="290741907@qq.com" class="mail">290741907@qq.com</a>
+          <a href="mailto:zzcyrus@outlook.com" title="zzcyrus@outlook.com" class="mail">zzcyrus@outlook.com</a>
         </hgroup>
       </div>
     </div>
@@ -180,6 +191,7 @@
             </figure>
 <p>从数据结构上也可以看出来：<br><figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> radius_quad = &#123;</div><div class="line">    <span class="string">"ne"</span>: <span class="number">250</span>, <span class="comment">//单位为KM</span></div><div class="line">    <span class="string">"se"</span>: <span class="number">250</span>,</div><div class="line">    <span class="string">"sw"</span>: <span class="number">180</span>,</div><div class="line">    <span class="string">"nw"</span>: <span class="number">150</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>在某个固定经纬度点上，以此点为圆心组合成了一个所谓的风圈形状，四个方向分别代表每个1/4圆的半径。刚开始是为了实现这种效果进行了研究，后来发现openlayers对于这种效果的支持还挺有意思，记录下来已做分享。</p>
+<a id="more"></a>
 <h1 id="通过自定义geometry的实现"><a href="#通过自定义geometry的实现" class="headerlink" title="通过自定义geometry的实现"></a>通过自定义geometry的实现</h1><p>&nbsp;&nbsp;最原始的思路也是最容易切入的点，就是去看openlayers中怎么实现圆形的画法，在ol中，有<code>createRegularPolygon</code>这个类，原理就是给定一些参数，用点去填充我们想要的形状，当填进去点达到一定密集度，自然就能得到一个近似的圆。<br>&nbsp;&nbsp;通过这个思路我们可以计算台风风圈的每个1/4圆的坐标，用点去占位，最终实现绘制出想要的图形。</p>
 <p>具体代码可以去看某大牛的博客，这里只给出一个传送门，写的很详细了：<br><a href="http://blog.csdn.net/gisshixisheng/article/details/76397068" target="_blank" rel="external">点我乘坐飞机</a> <strong>这个算法还有些不完善，就是在每个1/4圆结束时候少计算了一个点，导致看着有点不对劲</strong></p>
 <p><strong>特点:</strong> 这种方式画出来的图形是一个图层中的一个feature，好处自然不用多说，基本上feature支持的功能都能满足！</p>
@@ -218,7 +230,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2017-08-02T03:04:07.758Z" itemprop="dateUpdated">2017-08-02 11:04:07</time>
+    最后更新时间：<time datetime="2017-09-17T12:42:23.858Z" itemprop="dateUpdated">2017-09-17 20:42:23</time>
 </span><br>
 
 
@@ -261,7 +273,8 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://kaell.top/2017/07/31/openlayers-canvas-typhoon/&title=《openlayers 从台风风圈绘制到canvas样式和图层的应用》 — Cyrus's Blog&source=" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://kaell.top/2017/07/31/openlayers-canvas-typhoon/&title=《openlayers 从台风风圈绘制到canvas样式和图层的应用》 — Cyrus's Blog&source=本文中所使用的数据来源于温州台风网，通过F12抓取，你可以在我的GitHub上查看数据和本文源代码
+&nbsp;&nbsp;台风的风圈是一种不常见但算的上..." data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
@@ -296,7 +309,14 @@
     </div>
 
     
-<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/09/17/basemap/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Leaflet多种基础图层加载</h4>
+      </a>
+    </div>
   
 
   
@@ -398,7 +418,8 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://kaell.top/2017/07/31/openlayers-canvas-typhoon/&title=《openlayers 从台风风圈绘制到canvas样式和图层的应用》 — Cyrus's Blog&source=" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://kaell.top/2017/07/31/openlayers-canvas-typhoon/&title=《openlayers 从台风风圈绘制到canvas样式和图层的应用》 — Cyrus's Blog&source=本文中所使用的数据来源于温州台风网，通过F12抓取，你可以在我的GitHub上查看数据和本文源代码
+&nbsp;&nbsp;台风的风圈是一种不常见但算的上..." data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>

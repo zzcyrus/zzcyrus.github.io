@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+<!-- Google Analytics -->
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'true', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+<!-- End Google Analytics -->
+
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    <meta name="google-site-verification" content="true">
+    
+    
+    
+    <title>Leaflet多种基础图层加载 | Cyrus&#39;s Blog | 迷阵</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="FE,GIS,Leaflet">
+    <meta name="description" content="&amp;nbsp;&amp;nbsp;最近项目中有移动端的开发需求，自然就用到了最轻量级的gis组件——Leaflet，100多k的体积，五脏俱全，丰富的第三方插件，虽然开发者数量上不及大哥级产品Arcigs，但也基本够用，对于esri的自家系统支持好，svg和canvas两种渲染方式，让数据量大的要素图层渲染也不是那么吃力。 &amp;nbsp;&amp;nbsp;这里把自己对于Leaflet的一些探索研究记录一下，一方面便">
+<meta name="keywords" content="FE,GIS,Leaflet">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Leaflet多种基础图层加载">
+<meta property="og:url" content="http://kaell.top/2017/09/17/basemap/index.html">
+<meta property="og:site_name" content="Cyrus&#39;s Blog">
+<meta property="og:description" content="&amp;nbsp;&amp;nbsp;最近项目中有移动端的开发需求，自然就用到了最轻量级的gis组件——Leaflet，100多k的体积，五脏俱全，丰富的第三方插件，虽然开发者数量上不及大哥级产品Arcigs，但也基本够用，对于esri的自家系统支持好，svg和canvas两种渲染方式，让数据量大的要素图层渲染也不是那么吃力。 &amp;nbsp;&amp;nbsp;这里把自己对于Leaflet的一些探索研究记录一下，一方面便">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-09-17T12:42:35.156Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Leaflet多种基础图层加载">
+<meta name="twitter:description" content="&amp;nbsp;&amp;nbsp;最近项目中有移动端的开发需求，自然就用到了最轻量级的gis组件——Leaflet，100多k的体积，五脏俱全，丰富的第三方插件，虽然开发者数量上不及大哥级产品Arcigs，但也基本够用，对于esri的自家系统支持好，svg和canvas两种渲染方式，让数据量大的要素图层渲染也不是那么吃力。 &amp;nbsp;&amp;nbsp;这里把自己对于Leaflet的一些探索研究记录一下，一方面便">
+    
+        <link rel="alternate" type="application/atom+xml" title="Cyrus&#39;s Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu"  >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Cyrus</h5>
+          <a href="mailto:zzcyrus@outlook.com" title="zzcyrus@outlook.com" class="mail">zzcyrus@outlook.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/zzcyrus" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Leaflet多种基础图层加载</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Leaflet多种基础图层加载</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-09-17T05:46:08.000Z" itemprop="datePublished" class="page-time">
+  2017-09-17
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#基础图层的加载"><span class="post-toc-number">1.</span> <span class="post-toc-text">基础图层的加载</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-basemap"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Leaflet多种基础图层加载</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-09-17 13:46:08" datetime="2017-09-17T05:46:08.000Z"  itemprop="datePublished">2017-09-17</time>
+
+            
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>&nbsp;&nbsp;最近项目中有移动端的开发需求，自然就用到了最轻量级的gis组件——Leaflet，100多k的体积，五脏俱全，丰富的第三方插件，虽然开发者数量上不及大哥级产品Arcigs，但也基本够用，对于esri的自家系统支持好，svg和canvas两种渲染方式，让数据量大的要素图层渲染也不是那么吃力。</p>
+<p>&nbsp;&nbsp;这里把自己对于Leaflet的一些探索研究记录一下，一方面便于自己后期回顾，另一方面也希望和大家一起探讨学习。</p>
+<a id="more"></a>
+<p><a href="https://github.com/zzcyrus/Leaflet-demos" target="_blank" rel="external">Leaflet系列地址</a><br><a href="https://github.com/zzcyrus/Leaflet-demos/blob/master/0.basemap/basemap.html" target="_blank" rel="external">本文demo地址</a></p>
+<h1 id="基础图层的加载"><a href="#基础图层的加载" class="headerlink" title="基础图层的加载"></a>基础图层的加载</h1><p>基础图层的加载都是通过<code>L.tileLayer</code>的方式，所以加载的难点不在于api的使用，是一些常用的基础瓦片的收集，这里给出一些常用的地址</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"></div><div class="line">mapRadios: [</div><div class="line">    &#123;</div><div class="line">        <span class="attr">label</span>: <span class="string">'高德地图'</span>,</div><div class="line">        <span class="attr">value</span>: <span class="string">'1'</span>,</div><div class="line">        <span class="attr">url</span>: <span class="string">'http://webrd01.is.autonavi.com/appmaptile?lang=zh_cn&amp;size=1&amp;scale=1&amp;style=8&amp;x=&#123;x&#125;&amp;y=&#123;y&#125;&amp;z=&#123;z&#125;'</span></div><div class="line">    &#125;, &#123;</div><div class="line">        <span class="attr">label</span>: <span class="string">'Esri地图'</span>,</div><div class="line">        <span class="attr">value</span>: <span class="string">'2'</span>,</div><div class="line">        <span class="attr">url</span>: <span class="string">'http://map.geoq.cn/ArcGIS/rest/services/ChinaOnlineCommunity/MapServer/tile/&#123;z&#125;/&#123;y&#125;/&#123;x&#125;'</span></div><div class="line">    &#125;, &#123;</div><div class="line">        <span class="attr">label</span>: <span class="string">'天地图道路'</span>,</div><div class="line">        <span class="attr">value</span>: <span class="string">'3'</span>,</div><div class="line">        <span class="attr">url</span>: <span class="string">'http://t0.tianditu.cn/DataServer?T=vec_w&amp;X=&#123;x&#125;&amp;Y=&#123;y&#125;&amp;L=&#123;z&#125;'</span></div><div class="line">    &#125;, &#123;</div><div class="line">        <span class="attr">label</span>: <span class="string">'天地图标注'</span>,</div><div class="line">        <span class="attr">value</span>: <span class="string">'4'</span>,</div><div class="line">        <span class="attr">url</span>: <span class="string">'http://t5.tianditu.cn/DataServer?T=cva_w&amp;X=&#123;x&#125;&amp;Y=&#123;y&#125;&amp;L=&#123;z&#125;'</span></div><div class="line">    &#125;, &#123;</div><div class="line">        <span class="attr">label</span>: <span class="string">'天地图影像'</span>,</div><div class="line">        <span class="attr">value</span>: <span class="string">'5'</span>,</div><div class="line">        <span class="attr">url</span>: <span class="string">'http://t1.tianditu.cn/img_w/wmts?service=wmts&amp;request=GetTile&amp;version=1.0.0&amp;LAYER=img&amp;tileMatrixSet=w&amp;TileMatrix=&#123;z&#125;&amp;TileRow=&#123;y&#125;&amp;TileCol=&#123;x&#125;&amp;style=default&amp;format=tiles'</span></div><div class="line">    &#125;, &#123;</div><div class="line">        <span class="attr">label</span>: <span class="string">'谷歌地形'</span>,</div><div class="line">        <span class="attr">value</span>: <span class="string">'6'</span>,</div><div class="line">        <span class="attr">url</span>: <span class="string">'http://mt3.google.cn/vt/lyrs=t@131&amp;hl=zh-CN&amp;gl=cn&amp;x=&#123;x&#125;&amp;y=&#123;y&#125;&amp;z=&#123;z&#125;&amp;s=Ga'</span></div><div class="line">    &#125;, &#123;</div><div class="line">        <span class="attr">label</span>: <span class="string">'谷歌影像'</span>,</div><div class="line">        <span class="attr">value</span>: <span class="string">'7'</span>,</div><div class="line">        <span class="attr">url</span>: <span class="string">'http://mt3.google.cn/vt/lyrs=s&amp;hl=zh-CN&amp;gl=cn&amp;x=&#123;x&#125;&amp;y=&#123;y&#125;&amp;z=&#123;z&#125;'</span></div><div class="line">    &#125;, &#123;</div><div class="line">        <span class="attr">label</span>: <span class="string">'谷歌标注'</span>,</div><div class="line">        <span class="attr">value</span>: <span class="string">'8'</span>,</div><div class="line">        <span class="attr">url</span>: <span class="string">'http://mt2.google.cn/vt/lyrs=m@167000000&amp;hl=zh-CN&amp;gl=cn&amp;x=&#123;x&#125;&amp;y=&#123;y&#125;&amp;z=&#123;z&#125;'</span></div><div class="line">    &#125;</div><div class="line">]</div></pre></td></tr></table></figure>
+<p>更多的瓦片地址可以在demo中找到，具体的使用效果也可以移步<a href="https://github.com/zzcyrus/Leaflet-demos/blob/master/0.basemap/basemap.html" target="_blank" rel="external">demo</a></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-09-17T12:42:35.156Z" itemprop="dateUpdated">2017-09-17 20:42:35</time>
+</span><br>
+
+
+        
+    </div>
+    <footer>
+        <a href="http://kaell.top">
+            <img src="/img/avatar.jpg" alt="Cyrus">
+            Cyrus
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/FE/">FE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/GIS/">GIS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Leaflet/">Leaflet</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://kaell.top/2017/09/17/basemap/&title=《Leaflet多种基础图层加载》 — Cyrus's Blog&pic=http://kaell.top/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://kaell.top/2017/09/17/basemap/&title=《Leaflet多种基础图层加载》 — Cyrus's Blog&source=&nbsp;&nbsp;最近项目中有移动端的开发需求，自然就用到了最轻量级的gis组件——Leaflet，100多k的体积，五脏俱全，丰富的第三方插件，虽..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://kaell.top/2017/09/17/basemap/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Leaflet多种基础图层加载》 — Cyrus's Blog&url=http://kaell.top/2017/09/17/basemap/&via=http://kaell.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://kaell.top/2017/09/17/basemap/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/09/17/plugins/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Leaflet常用的一些插件</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/07/31/openlayers-canvas-typhoon/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">openlayers 从台风风圈绘制到canvas样式和图层的应用</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Cyrus &copy; 2016 - 2017</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://kaell.top/2017/09/17/basemap/&title=《Leaflet多种基础图层加载》 — Cyrus's Blog&pic=http://kaell.top/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://kaell.top/2017/09/17/basemap/&title=《Leaflet多种基础图层加载》 — Cyrus's Blog&source=&nbsp;&nbsp;最近项目中有移动端的开发需求，自然就用到了最轻量级的gis组件——Leaflet，100多k的体积，五脏俱全，丰富的第三方插件，虽..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://kaell.top/2017/09/17/basemap/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Leaflet多种基础图层加载》 — Cyrus's Blog&url=http://kaell.top/2017/09/17/basemap/&via=http://kaell.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://kaell.top/2017/09/17/basemap/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAK4AAACuCAAAAACKZ2kyAAABvUlEQVR42u3aQY7CMBAEQP7/afaKtIJ0e9YmK5VPUYC4wsHy9PjxiMfzZby783r/93eS3/7ZwMXFHXOfH0cycfL85PqzARcX9zy3nSZfpNrnX9hwcXFvyU3ufN7ErL0SLi7uf+EmI3kZXFzce3Lbydaik6O1Gi4u7oCbp5T7rrfku7i4uEvcZzmSJ0w+vZgdFxf3CLdth+TTtwti3tzFxcX9FrdtkyRx6lrYGqU4uLi4m7l5GNGWLvOIBBcX9zy3PZ41OajRllK4uLgnufkGpT1OsbaVuZgXFxf3ILdtnSaF0FrJdBGd4OLiHuTmkcSkoTI56vF23cXFxd3MXWuythugHHdR/ODi4m7j5qXOZJGaL2q4uLjf4uat1nzTkzRR6oYNLi7ul7jt4Ym2ydq2cqNwBBcXdxt38tD5hin6+3BxcY9z23h00mRdXChxcXE3c9cC03nAmhdXuLi457nz0iWHJuFp26TBxcXdx22PROQlULsgRi+Di4t7kJuHHWtr5CRkwcXFvT83iTXb1ysKIVxc3BtzJ5Ho6Ju4uLgHuWshadJKSRbE4s/CxcU9wm2Xknz6JARJtkq4uLgHuT/QpnGw9ma44wAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

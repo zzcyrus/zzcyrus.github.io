@@ -2,9 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://kaell.top/2017/09/17/basemap/</loc>
+    
+    <lastmod>2017-09-17T12:42:35.156Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://kaell.top/2017/09/17/plugins/</loc>
+    
+    <lastmod>2017-09-17T12:42:30.525Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://kaell.top/2017/07/31/openlayers-canvas-typhoon/</loc>
     
-    <lastmod>2017-08-02T03:04:07.758Z</lastmod>
+    <lastmod>2017-09-17T12:42:23.858Z</lastmod>
     
   </url>
   
