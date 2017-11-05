@@ -10,5 +10,5 @@ Disallow: /fonts/
 Disallow: /vendors/
 Disallow: /fancybox/
 
-Sitemap: http://kaell.top/sitemap.xml
-Sitemap: http://kaell.top/baidusitemap.xml
+Sitemap: http://kael.top/sitemap.xml
+Sitemap: http://kael.top/baidusitemap.xml

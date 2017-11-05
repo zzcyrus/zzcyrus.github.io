@@ -4,29 +4,30 @@
 
     
   <url>
-    <loc>http://kaell.top/2017/09/17/basemap/</loc>
-    <lastmod>2017-09-17T12:42:35.156Z</lastmod>
+    <loc>http://kael.top/2017/06/23/vue-dialog-nested/</loc>
+    <lastmod>2017-11-05T12:20:17.728Z</lastmod>
     <data>
         <display>
-        <title>Leaflet多种基础图层加载</title>
-        <pubTime>2017-09-17T05:46:08.000Z</pubTime>
+        <title>element dialog组件嵌套问题的临时方案</title>
+        <pubTime>2017-06-23T14:09:55.000Z</pubTime>
         
         <tag>FE</tag>
          
-        <tag>GIS</tag>
-         
-        <tag>Leaflet</tag>
+        <tag>Vue</tag>
          
          
            
+             
+              <breadCrumb title="前端" url="http://kael.top/categories/%E5%89%8D%E7%AB%AF/"/>
+          
         </display>
     </data>
     </url>
 
     
   <url>
-    <loc>http://kaell.top/2017/09/17/plugins/</loc>
-    <lastmod>2017-09-17T12:42:30.525Z</lastmod>
+    <loc>http://kael.top/2017/09/17/plugins/</loc>
+    <lastmod>2017-11-05T12:20:05.538Z</lastmod>
     <data>
         <display>
         <title>Leaflet常用的一些插件</title>
@@ -40,14 +41,17 @@
          
          
            
+             
+              <breadCrumb title="Leaflet" url="http://kael.top/categories/Leaflet/"/>
+          
         </display>
     </data>
     </url>
 
     
   <url>
-    <loc>http://kaell.top/2017/07/31/openlayers-canvas-typhoon/</loc>
-    <lastmod>2017-09-17T12:42:23.858Z</lastmod>
+    <loc>http://kael.top/2017/07/31/openlayers-canvas-typhoon/</loc>
+    <lastmod>2017-11-05T12:20:01.021Z</lastmod>
     <data>
         <display>
         <title>openlayers 从台风风圈绘制到canvas样式和图层的应用</title>
@@ -61,29 +65,37 @@
          
          
            
+             
+              <breadCrumb title="OpenLayers" url="http://kael.top/categories/OpenLayers/"/>
+          
         </display>
     </data>
     </url>
 
     
-    
-    
   <url>
-    <loc>http://kaell.top/2017/06/23/vue-dialog-nested/</loc>
-    <lastmod>2017-07-23T14:30:49.685Z</lastmod>
+    <loc>http://kael.top/2017/09/17/basemap/</loc>
+    <lastmod>2017-11-05T12:19:51.499Z</lastmod>
     <data>
         <display>
-        <title>element dialog组件嵌套问题的临时方案</title>
-        <pubTime>2017-06-23T14:09:55.000Z</pubTime>
+        <title>Leaflet多种基础图层加载</title>
+        <pubTime>2017-09-17T05:46:08.000Z</pubTime>
         
         <tag>FE</tag>
          
-        <tag>Vue</tag>
+        <tag>GIS</tag>
+         
+        <tag>Leaflet</tag>
          
          
            
+             
+              <breadCrumb title="Leaflet" url="http://kael.top/categories/Leaflet/"/>
+          
         </display>
     </data>
     </url>
 
+    
+    
 </urlset>

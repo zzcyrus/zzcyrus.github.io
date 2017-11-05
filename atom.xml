@@ -4,9 +4,9 @@
   <subtitle>迷阵</subtitle>
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://kaell.top/"/>
-  <updated>2017-09-17T12:42:30.525Z</updated>
-  <id>http://kaell.top/</id>
+  <link href="http://kael.top/"/>
+  <updated>2017-11-05T12:20:05.538Z</updated>
+  <id>http://kael.top/</id>
   
   <author>
     <name>Cyrus</name>
@@ -17,10 +17,10 @@
   
   <entry>
     <title>Leaflet常用的一些插件</title>
-    <link href="http://kaell.top/2017/09/17/plugins/"/>
-    <id>http://kaell.top/2017/09/17/plugins/</id>
+    <link href="http://kael.top/2017/09/17/plugins/"/>
+    <id>http://kael.top/2017/09/17/plugins/</id>
     <published>2017-09-17T05:48:15.000Z</published>
-    <updated>2017-09-17T12:42:30.525Z</updated>
+    <updated>2017-11-05T12:20:05.538Z</updated>
     
     <content type="html"><![CDATA[<p>Leaflet中常用的gis功能可以满足一般使用，有些特殊需求，官方也有<a href="http://leafletjs.com/plugins.html" target="_blank" rel="external">插件系统</a>，本文会挑选一些常用的，经过测试可用的插件单独放出来使用方法和一些注意事项，希望能够帮助到同僚们。</p>
 <a id="more"></a>
@@ -55,21 +55,23 @@
     
     </summary>
     
+      <category term="Leaflet" scheme="http://kael.top/categories/Leaflet/"/>
     
-      <category term="FE" scheme="http://kaell.top/tags/FE/"/>
     
-      <category term="GIS" scheme="http://kaell.top/tags/GIS/"/>
+      <category term="FE" scheme="http://kael.top/tags/FE/"/>
     
-      <category term="Leaflet" scheme="http://kaell.top/tags/Leaflet/"/>
+      <category term="GIS" scheme="http://kael.top/tags/GIS/"/>
+    
+      <category term="Leaflet" scheme="http://kael.top/tags/Leaflet/"/>
     
   </entry>
   
   <entry>
     <title>Leaflet多种基础图层加载</title>
-    <link href="http://kaell.top/2017/09/17/basemap/"/>
-    <id>http://kaell.top/2017/09/17/basemap/</id>
+    <link href="http://kael.top/2017/09/17/basemap/"/>
+    <id>http://kael.top/2017/09/17/basemap/</id>
     <published>2017-09-17T05:46:08.000Z</published>
-    <updated>2017-09-17T12:42:35.156Z</updated>
+    <updated>2017-11-05T12:19:51.499Z</updated>
     
     <content type="html"><![CDATA[<p>&nbsp;&nbsp;最近项目中有移动端的开发需求，自然就用到了最轻量级的gis组件——Leaflet，100多k的体积，五脏俱全，丰富的第三方插件，虽然开发者数量上不及大哥级产品Arcigs，但也基本够用，对于esri的自家系统支持好，svg和canvas两种渲染方式，让数据量大的要素图层渲染也不是那么吃力。</p>
 <p>&nbsp;&nbsp;这里把自己对于Leaflet的一些探索研究记录一下，一方面便于自己后期回顾，另一方面也希望和大家一起探讨学习。</p>
@@ -87,21 +89,23 @@
     
     </summary>
     
+      <category term="Leaflet" scheme="http://kael.top/categories/Leaflet/"/>
     
-      <category term="FE" scheme="http://kaell.top/tags/FE/"/>
     
-      <category term="GIS" scheme="http://kaell.top/tags/GIS/"/>
+      <category term="FE" scheme="http://kael.top/tags/FE/"/>
     
-      <category term="Leaflet" scheme="http://kaell.top/tags/Leaflet/"/>
+      <category term="GIS" scheme="http://kael.top/tags/GIS/"/>
+    
+      <category term="Leaflet" scheme="http://kael.top/tags/Leaflet/"/>
     
   </entry>
   
   <entry>
     <title>openlayers 从台风风圈绘制到canvas样式和图层的应用</title>
-    <link href="http://kaell.top/2017/07/31/openlayers-canvas-typhoon/"/>
-    <id>http://kaell.top/2017/07/31/openlayers-canvas-typhoon/</id>
+    <link href="http://kael.top/2017/07/31/openlayers-canvas-typhoon/"/>
+    <id>http://kael.top/2017/07/31/openlayers-canvas-typhoon/</id>
     <published>2017-07-31T14:31:02.000Z</published>
-    <updated>2017-09-17T12:42:23.858Z</updated>
+    <updated>2017-11-05T12:20:01.021Z</updated>
     
     <content type="html"><![CDATA[<p>本文中所使用的数据来源于<a href="http://www.wztf121.com/typhoon.html" target="_blank" rel="external">温州台风网</a>，通过F12抓取，你可以在我的<a href="https://github.com/zzcyrus/openlayers-demos" target="_blank" rel="external">GitHub</a>上查看数据和本文源代码</p>
 <p>&nbsp;&nbsp;台风的风圈是一种不常见但算的上规则的图形，在上面的网站可以看到最终效果，简单的解剖下其实就是四个1/4圆</p>
@@ -164,21 +168,23 @@
     
     </summary>
     
+      <category term="OpenLayers" scheme="http://kael.top/categories/OpenLayers/"/>
     
-      <category term="FE" scheme="http://kaell.top/tags/FE/"/>
     
-      <category term="GIS" scheme="http://kaell.top/tags/GIS/"/>
+      <category term="FE" scheme="http://kael.top/tags/FE/"/>
     
-      <category term="OpenLayers" scheme="http://kaell.top/tags/OpenLayers/"/>
+      <category term="GIS" scheme="http://kael.top/tags/GIS/"/>
+    
+      <category term="OpenLayers" scheme="http://kael.top/tags/OpenLayers/"/>
     
   </entry>
   
   <entry>
     <title>element dialog组件嵌套问题的临时方案</title>
-    <link href="http://kaell.top/2017/06/23/vue-dialog-nested/"/>
-    <id>http://kaell.top/2017/06/23/vue-dialog-nested/</id>
+    <link href="http://kael.top/2017/06/23/vue-dialog-nested/"/>
+    <id>http://kael.top/2017/06/23/vue-dialog-nested/</id>
     <published>2017-06-23T14:09:55.000Z</published>
-    <updated>2017-07-23T14:30:49.685Z</updated>
+    <updated>2017-11-05T12:20:17.728Z</updated>
     
     <content type="html"><![CDATA[<p>&emsp;&emsp;最近用 Vue+element 开发项目时，在dialog组件上嵌套使用dialog组件或是MessageBox这类弹框组件，发现会出现遮罩层重合之类的问题，导致很多人只能选择关闭遮罩层。GitHub上就此问题也出现过类似讨论。有几种解决方案：</p>
 <a id="more"></a> 
@@ -203,10 +209,12 @@
     
     </summary>
     
+      <category term="前端" scheme="http://kael.top/categories/%E5%89%8D%E7%AB%AF/"/>
     
-      <category term="FE" scheme="http://kaell.top/tags/FE/"/>
     
-      <category term="Vue" scheme="http://kaell.top/tags/Vue/"/>
+      <category term="FE" scheme="http://kael.top/tags/FE/"/>
+    
+      <category term="Vue" scheme="http://kael.top/tags/Vue/"/>
     
   </entry>
   

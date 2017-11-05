@@ -35,11 +35,11 @@ ga('send', 'pageview');
 <meta name="keywords" content="FE,GIS,Leaflet">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Leaflet多种基础图层加载">
-<meta property="og:url" content="http://kaell.top/2017/09/17/basemap/index.html">
+<meta property="og:url" content="http://kael.top/2017/09/17/basemap/index.html">
 <meta property="og:site_name" content="Cyrus&#39;s Blog">
 <meta property="og:description" content="&amp;nbsp;&amp;nbsp;最近项目中有移动端的开发需求，自然就用到了最轻量级的gis组件——Leaflet，100多k的体积，五脏俱全，丰富的第三方插件，虽然开发者数量上不及大哥级产品Arcigs，但也基本够用，对于esri的自家系统支持好，svg和canvas两种渲染方式，让数据量大的要素图层渲染也不是那么吃力。 &amp;nbsp;&amp;nbsp;这里把自己对于Leaflet的一些探索研究记录一下，一方面便">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-09-17T12:42:35.156Z">
+<meta property="og:updated_time" content="2017-11-05T12:19:51.499Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Leaflet多种基础图层加载">
 <meta name="twitter:description" content="&amp;nbsp;&amp;nbsp;最近项目中有移动端的开发需求，自然就用到了最轻量级的gis组件——Leaflet，100多k的体积，五脏俱全，丰富的第三方插件，虽然开发者数量上不及大哥级产品Arcigs，但也基本够用，对于esri的自家系统支持好，svg和canvas两种渲染方式，让数据量大的要素图层渲染也不是那么吃力。 &amp;nbsp;&amp;nbsp;这里把自己对于Leaflet的一些探索研究记录一下，一方面便">
@@ -49,6 +49,10 @@ ga('send', 'pageview');
     <link rel="shortcut icon" href="/favicon.ico">
     <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
     <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
 </head>
 
 <body>
@@ -66,7 +70,7 @@ ga('send', 'pageview');
         </a>
         <hgroup class="introduce">
           <h5 class="nickname">Cyrus</h5>
-          <a href="mailto:zzcyrus@outlook.com" title="zzcyrus@outlook.com" class="mail">zzcyrus@outlook.com</a>
+          <a href="mailto:zzcyrus@qq.com" title="zzcyrus@qq.com" class="mail">zzcyrus@qq.com</a>
         </hgroup>
       </div>
     </div>
@@ -88,9 +92,9 @@ ga('send', 'pageview');
             </li>
         
             <li class="waves-block waves-effect">
-              <a href="/tags"  >
-                <i class="icon icon-lg icon-tags"></i>
-                Tags
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
               </a>
             </li>
         
@@ -142,6 +146,8 @@ ga('send', 'pageview');
 </time>
 
 
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Leaflet/">Leaflet</a></li></ul>
+
             
         </h5>
     </div>
@@ -170,6 +176,8 @@ ga('send', 'pageview');
             <time class="post-time" title="2017-09-17 13:46:08" datetime="2017-09-17T05:46:08.000Z"  itemprop="datePublished">2017-09-17</time>
 
             
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Leaflet/">Leaflet</a></li></ul>
+
 
 
             
@@ -190,14 +198,14 @@ ga('send', 'pageview');
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2017-09-17T12:42:35.156Z" itemprop="dateUpdated">2017-09-17 20:42:35</time>
+    最后更新时间：<time datetime="2017-11-05T12:19:51.499Z" itemprop="dateUpdated">2017-11-05 20:19:51</time>
 </span><br>
 
 
         
     </div>
     <footer>
-        <a href="http://kaell.top">
+        <a href="http://kael.top">
             <img src="/img/avatar.jpg" alt="Cyrus">
             Cyrus
         </a>
@@ -223,7 +231,7 @@ ga('send', 'pageview');
 <div class="page-share" id="pageShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://kaell.top/2017/09/17/basemap/&title=《Leaflet多种基础图层加载》 — Cyrus's Blog&pic=http://kaell.top/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://kael.top/2017/09/17/basemap/&title=《Leaflet多种基础图层加载》 — Cyrus's Blog&pic=http://kael.top/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -233,22 +241,22 @@ ga('send', 'pageview');
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://kaell.top/2017/09/17/basemap/&title=《Leaflet多种基础图层加载》 — Cyrus's Blog&source=&nbsp;&nbsp;最近项目中有移动端的开发需求，自然就用到了最轻量级的gis组件——Leaflet，100多k的体积，五脏俱全，丰富的第三方插件，虽..." data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://kael.top/2017/09/17/basemap/&title=《Leaflet多种基础图层加载》 — Cyrus's Blog&source=&nbsp;&nbsp;最近项目中有移动端的开发需求，自然就用到了最轻量级的gis组件——Leaflet，100多k的体积，五脏俱全，丰富的第三方插件，虽..." data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
       <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://kaell.top/2017/09/17/basemap/" data-title=" Facebook">
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://kael.top/2017/09/17/basemap/" data-title=" Facebook">
           <i class="icon icon-facebook"></i>
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Leaflet多种基础图层加载》 — Cyrus's Blog&url=http://kaell.top/2017/09/17/basemap/&via=http://kaell.top" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Leaflet多种基础图层加载》 — Cyrus's Blog&url=http://kael.top/2017/09/17/basemap/&via=http://kael.top" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
       <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://kaell.top/2017/09/17/basemap/" data-title=" Google+">
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://kael.top/2017/09/17/basemap/" data-title=" Google+">
           <i class="icon icon-google-plus"></i>
         </a>
       </li>
@@ -291,9 +299,6 @@ ga('send', 'pageview');
 
 
     
-
-
-
 
 
 
@@ -367,7 +372,7 @@ ga('send', 'pageview');
 <div class="global-share" id="globalShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://kaell.top/2017/09/17/basemap/&title=《Leaflet多种基础图层加载》 — Cyrus's Blog&pic=http://kaell.top/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://kael.top/2017/09/17/basemap/&title=《Leaflet多种基础图层加载》 — Cyrus's Blog&pic=http://kael.top/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -377,22 +382,22 @@ ga('send', 'pageview');
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://kaell.top/2017/09/17/basemap/&title=《Leaflet多种基础图层加载》 — Cyrus's Blog&source=&nbsp;&nbsp;最近项目中有移动端的开发需求，自然就用到了最轻量级的gis组件——Leaflet，100多k的体积，五脏俱全，丰富的第三方插件，虽..." data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://kael.top/2017/09/17/basemap/&title=《Leaflet多种基础图层加载》 — Cyrus's Blog&source=&nbsp;&nbsp;最近项目中有移动端的开发需求，自然就用到了最轻量级的gis组件——Leaflet，100多k的体积，五脏俱全，丰富的第三方插件，虽..." data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
       <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://kaell.top/2017/09/17/basemap/" data-title=" Facebook">
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://kael.top/2017/09/17/basemap/" data-title=" Facebook">
           <i class="icon icon-facebook"></i>
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Leaflet多种基础图层加载》 — Cyrus's Blog&url=http://kaell.top/2017/09/17/basemap/&via=http://kaell.top" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Leaflet多种基础图层加载》 — Cyrus's Blog&url=http://kael.top/2017/09/17/basemap/&via=http://kael.top" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
       <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://kaell.top/2017/09/17/basemap/" data-title=" Google+">
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://kael.top/2017/09/17/basemap/" data-title=" Google+">
           <i class="icon icon-google-plus"></i>
         </a>
       </li>
@@ -403,7 +408,7 @@ ga('send', 'pageview');
 <div class="page-modal wx-share" id="wxShare">
     <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
-    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAK4AAACuCAAAAACKZ2kyAAABvUlEQVR42u3aQY7CMBAEQP7/afaKtIJ0e9YmK5VPUYC4wsHy9PjxiMfzZby783r/93eS3/7ZwMXFHXOfH0cycfL85PqzARcX9zy3nSZfpNrnX9hwcXFvyU3ufN7ErL0SLi7uf+EmI3kZXFzce3Lbydaik6O1Gi4u7oCbp5T7rrfku7i4uEvcZzmSJ0w+vZgdFxf3CLdth+TTtwti3tzFxcX9FrdtkyRx6lrYGqU4uLi4m7l5GNGWLvOIBBcX9zy3PZ41OajRllK4uLgnufkGpT1OsbaVuZgXFxf3ILdtnSaF0FrJdBGd4OLiHuTmkcSkoTI56vF23cXFxd3MXWuythugHHdR/ODi4m7j5qXOZJGaL2q4uLjf4uat1nzTkzRR6oYNLi7ul7jt4Ym2ydq2cqNwBBcXdxt38tD5hin6+3BxcY9z23h00mRdXChxcXE3c9cC03nAmhdXuLi457nz0iWHJuFp26TBxcXdx22PROQlULsgRi+Di4t7kJuHHWtr5CRkwcXFvT83iTXb1ysKIVxc3BtzJ5Ho6Ju4uLgHuWshadJKSRbE4s/CxcU9wm2Xknz6JARJtkq4uLgHuT/QpnGw9ma44wAAAABJRU5ErkJggg==" alt="微信分享二维码">
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAK4AAACuCAAAAACKZ2kyAAABxElEQVR42u3aS27DMAwFwNz/0inQVQo06iMpKy4wWhn+jrwgKFKPRzye3+P1+HWsn3p3//rZ0cDFxR1zn8sxefV6Sutf8PZZXFzcg9zkdVXKevLJ78DFxb0/9x0xSXfW78HFxf2/3CQMre/MAyUuLu4duL2kpJriJBPbtlbDxcUdcHsF073Hl9d3cXFxN3UlqsGlF9QKX8TFxT3CrRY1eoFvXUApt21wcXEPcntFjby0kYe/P87g4uJezK0GkbxUmrRmy8UXXFzcI9xJw6O6kWt9plnfxcXFvYCbb6TIU5/8bdUwh4uLe57bO06mkTdZC/tEcHFxL+Pmhc7qJPOrvfYMLi7uGe5ki1UypV7yhIuLewdudUlTTXrygumoloOLi7uVW90wMVkO5b8JFxf3s9w80emlR/OUCBcX9yS3mmTsLaRWmzG4uLgnudUP9NKa6sDFxT3JfRZHngztSpt+XMXFxT3CnUS+ZFNFsjSatGBxcXGv4+bBa28Bpbe4wsXFPcmtBppeSNqwPsPFxb0ld94iHS2xcHFxb8bdVUDpLZZwcXHPc/MP90qoSViMfiUuLu4R7q6CabVQkt9/SX0XFxf39/EFVdXnHqDlDZ4AAAAASUVORK5CYII=" alt="微信分享二维码">
 </div>
 
 

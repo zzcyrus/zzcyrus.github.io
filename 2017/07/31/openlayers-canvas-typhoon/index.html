@@ -35,24 +35,28 @@ ga('send', 'pageview');
 <meta name="keywords" content="FE,GIS,OpenLayers">
 <meta property="og:type" content="article">
 <meta property="og:title" content="openlayers 从台风风圈绘制到canvas样式和图层的应用">
-<meta property="og:url" content="http://kaell.top/2017/07/31/openlayers-canvas-typhoon/index.html">
+<meta property="og:url" content="http://kael.top/2017/07/31/openlayers-canvas-typhoon/index.html">
 <meta property="og:site_name" content="Cyrus&#39;s Blog">
 <meta property="og:description" content="本文中所使用的数据来源于温州台风网，通过F12抓取，你可以在我的GitHub上查看数据和本文源代码 &amp;nbsp;&amp;nbsp;台风的风圈是一种不常见但算的上规则的图形，在上面的网站可以看到最终效果，简单的解剖下其实就是四个1/4圆">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://kaell.top/2017/07/31/openlayers-canvas-typhoon/goal.png">
-<meta property="og:image" content="http://kaell.top/2017/07/31/openlayers-canvas-typhoon/canvasSymbol.png">
-<meta property="og:image" content="http://kaell.top/2017/07/31/openlayers-canvas-typhoon/canvasLayer.png">
-<meta property="og:updated_time" content="2017-09-17T12:42:23.858Z">
+<meta property="og:image" content="http://kael.top/2017/07/31/openlayers-canvas-typhoon/goal.png">
+<meta property="og:image" content="http://kael.top/2017/07/31/openlayers-canvas-typhoon/canvasSymbol.png">
+<meta property="og:image" content="http://kael.top/2017/07/31/openlayers-canvas-typhoon/canvasLayer.png">
+<meta property="og:updated_time" content="2017-11-05T12:20:01.021Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="openlayers 从台风风圈绘制到canvas样式和图层的应用">
 <meta name="twitter:description" content="本文中所使用的数据来源于温州台风网，通过F12抓取，你可以在我的GitHub上查看数据和本文源代码 &amp;nbsp;&amp;nbsp;台风的风圈是一种不常见但算的上规则的图形，在上面的网站可以看到最终效果，简单的解剖下其实就是四个1/4圆">
-<meta name="twitter:image" content="http://kaell.top/2017/07/31/openlayers-canvas-typhoon/goal.png">
+<meta name="twitter:image" content="http://kael.top/2017/07/31/openlayers-canvas-typhoon/goal.png">
     
         <link rel="alternate" type="application/atom+xml" title="Cyrus&#39;s Blog" href="/atom.xml">
     
     <link rel="shortcut icon" href="/favicon.ico">
     <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
     <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
 </head>
 
 <body>
@@ -70,7 +74,7 @@ ga('send', 'pageview');
         </a>
         <hgroup class="introduce">
           <h5 class="nickname">Cyrus</h5>
-          <a href="mailto:zzcyrus@outlook.com" title="zzcyrus@outlook.com" class="mail">zzcyrus@outlook.com</a>
+          <a href="mailto:zzcyrus@qq.com" title="zzcyrus@qq.com" class="mail">zzcyrus@qq.com</a>
         </hgroup>
       </div>
     </div>
@@ -92,9 +96,9 @@ ga('send', 'pageview');
             </li>
         
             <li class="waves-block waves-effect">
-              <a href="/tags"  >
-                <i class="icon icon-lg icon-tags"></i>
-                Tags
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
               </a>
             </li>
         
@@ -146,6 +150,8 @@ ga('send', 'pageview');
 </time>
 
 
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/OpenLayers/">OpenLayers</a></li></ul>
+
             
         </h5>
     </div>
@@ -174,6 +180,8 @@ ga('send', 'pageview');
             <time class="post-time" title="2017-07-31 22:31:02" datetime="2017-07-31T14:31:02.000Z"  itemprop="datePublished">2017-07-31</time>
 
             
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/OpenLayers/">OpenLayers</a></li></ul>
+
 
 
             
@@ -230,14 +238,14 @@ ga('send', 'pageview');
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2017-09-17T12:42:23.858Z" itemprop="dateUpdated">2017-09-17 20:42:23</time>
+    最后更新时间：<time datetime="2017-11-05T12:20:01.021Z" itemprop="dateUpdated">2017-11-05 20:20:01</time>
 </span><br>
 
 
         
     </div>
     <footer>
-        <a href="http://kaell.top">
+        <a href="http://kael.top">
             <img src="/img/avatar.jpg" alt="Cyrus">
             Cyrus
         </a>
@@ -263,7 +271,7 @@ ga('send', 'pageview');
 <div class="page-share" id="pageShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://kaell.top/2017/07/31/openlayers-canvas-typhoon/&title=《openlayers 从台风风圈绘制到canvas样式和图层的应用》 — Cyrus's Blog&pic=http://kaell.top/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://kael.top/2017/07/31/openlayers-canvas-typhoon/&title=《openlayers 从台风风圈绘制到canvas样式和图层的应用》 — Cyrus's Blog&pic=http://kael.top/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -273,23 +281,23 @@ ga('send', 'pageview');
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://kaell.top/2017/07/31/openlayers-canvas-typhoon/&title=《openlayers 从台风风圈绘制到canvas样式和图层的应用》 — Cyrus's Blog&source=本文中所使用的数据来源于温州台风网，通过F12抓取，你可以在我的GitHub上查看数据和本文源代码
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://kael.top/2017/07/31/openlayers-canvas-typhoon/&title=《openlayers 从台风风圈绘制到canvas样式和图层的应用》 — Cyrus's Blog&source=本文中所使用的数据来源于温州台风网，通过F12抓取，你可以在我的GitHub上查看数据和本文源代码
 &nbsp;&nbsp;台风的风圈是一种不常见但算的上..." data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
       <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://kaell.top/2017/07/31/openlayers-canvas-typhoon/" data-title=" Facebook">
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://kael.top/2017/07/31/openlayers-canvas-typhoon/" data-title=" Facebook">
           <i class="icon icon-facebook"></i>
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《openlayers 从台风风圈绘制到canvas样式和图层的应用》 — Cyrus's Blog&url=http://kaell.top/2017/07/31/openlayers-canvas-typhoon/&via=http://kaell.top" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《openlayers 从台风风圈绘制到canvas样式和图层的应用》 — Cyrus's Blog&url=http://kael.top/2017/07/31/openlayers-canvas-typhoon/&via=http://kael.top" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
       <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://kaell.top/2017/07/31/openlayers-canvas-typhoon/" data-title=" Google+">
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://kael.top/2017/07/31/openlayers-canvas-typhoon/" data-title=" Google+">
           <i class="icon icon-google-plus"></i>
         </a>
       </li>
@@ -332,9 +340,6 @@ ga('send', 'pageview');
 
 
     
-
-
-
 
 
 
@@ -408,7 +413,7 @@ ga('send', 'pageview');
 <div class="global-share" id="globalShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://kaell.top/2017/07/31/openlayers-canvas-typhoon/&title=《openlayers 从台风风圈绘制到canvas样式和图层的应用》 — Cyrus's Blog&pic=http://kaell.top/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://kael.top/2017/07/31/openlayers-canvas-typhoon/&title=《openlayers 从台风风圈绘制到canvas样式和图层的应用》 — Cyrus's Blog&pic=http://kael.top/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -418,23 +423,23 @@ ga('send', 'pageview');
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://kaell.top/2017/07/31/openlayers-canvas-typhoon/&title=《openlayers 从台风风圈绘制到canvas样式和图层的应用》 — Cyrus's Blog&source=本文中所使用的数据来源于温州台风网，通过F12抓取，你可以在我的GitHub上查看数据和本文源代码
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://kael.top/2017/07/31/openlayers-canvas-typhoon/&title=《openlayers 从台风风圈绘制到canvas样式和图层的应用》 — Cyrus's Blog&source=本文中所使用的数据来源于温州台风网，通过F12抓取，你可以在我的GitHub上查看数据和本文源代码
 &nbsp;&nbsp;台风的风圈是一种不常见但算的上..." data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
       <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://kaell.top/2017/07/31/openlayers-canvas-typhoon/" data-title=" Facebook">
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://kael.top/2017/07/31/openlayers-canvas-typhoon/" data-title=" Facebook">
           <i class="icon icon-facebook"></i>
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《openlayers 从台风风圈绘制到canvas样式和图层的应用》 — Cyrus's Blog&url=http://kaell.top/2017/07/31/openlayers-canvas-typhoon/&via=http://kaell.top" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《openlayers 从台风风圈绘制到canvas样式和图层的应用》 — Cyrus's Blog&url=http://kael.top/2017/07/31/openlayers-canvas-typhoon/&via=http://kael.top" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
       <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://kaell.top/2017/07/31/openlayers-canvas-typhoon/" data-title=" Google+">
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://kael.top/2017/07/31/openlayers-canvas-typhoon/" data-title=" Google+">
           <i class="icon icon-google-plus"></i>
         </a>
       </li>
@@ -445,7 +450,7 @@ ga('send', 'pageview');
 <div class="page-modal wx-share" id="wxShare">
     <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
-    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACI0lEQVR42u3aS46DQAxFUfa/aXoBSUr32UVLuC6jVhoVHAaWf9eFrxtcn/evT1s/5XrikiFDxmsZ5OXWv6dP4WfyDydDhowTGOuwyF/9CSoK2TJkyJARBkGS/K1DsAwZMmR0GOlrkSArQ4YMGYTxRADlrTRePG+oxWXIkPFCBi8v///vR+YbMmTIeBXjDq90AFkLxPFbyZAhYzQjLTXT1Qq+clErfWXIkHECg68+pKFzTa3d+fMDyZAh4xhGra22t92WDie+BFwZMmQMZfAhIjoUL2fwUhalhjJkyBjKSEMbeQm++MVLXF4Yy5AhYyqjX77y8ef6dx6OZciQcQ6DN/p5qCW/71q8+JnhypAhYygjTfv4PTxMF0OzDBkyRjNICcrbZ7xZljbvgkabDBkyRjP6tWEtKew/UYYMGScwgn+HQTMdLfAPgYYEMmTIGMFIS9POygVZqkgTxOJ8VYYMGa9i8DFhjcGL3nXYjZNCGTJkHMPohNpg1yMMx/HihQwZMkYwarVvOgzgIwSOR3muDBkyBjHSonTvsLOfgMqQIeMcRgdzhdeuxFGGDBmzGXd4kUYYb6uR81EIliFDxmhGJzimgZKf00oQZciQMZTRLzVrIZV8MhkyZMjgq1e1Ra5a2peGbxkyZMhIx5nkNB524+xVhgwZMtrNsl3gLyfIkCHjAEZtGECaaP1RARp/ypAhYzSj39yvJYhp2N0wyJQhQ8b7GH9u6dsZvZLrGwAAAABJRU5ErkJggg==" alt="微信分享二维码">
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACNElEQVR42u3a3WrDMAwG0L7/S2ewq8GI80lOR6ccX5UGPJ8MVOvn9YrX8b1+fj775vfT9Q7rnW9eGBgY/5ZxLNfZIc52yA/a2+eUioGB8QBGHmTXyDU7p+Znw8DAwKhunVz18qNjYGBg9AJuNRyv/0oefDEwMDCSy18SOvNAvPOCMDAwnsboNQb+5vPb+xsYGBgfzziKK2kM7Fw0ewsDA2M2Iynrr79/x4BF/jQ6HAYGxj9n5IEvuTIm6e5drQUMDIznMHZ4+8W1neIdBgbGkxl5e6Ca7u60J8svFAMDYxBjJymtFvqrAxnJ9REDA+MJjLsGKd43YFEIzRgYGEMZeWErCc07pbo8w7743cDAwBjH2DlQ71KYhOZeQMfAwJjN6CWovWJc/gowMDAwzsptvZGL3vWxN6AW/QcwMDDGMapjWNXSWPI0D+in5TYMDIyhjOpUVTXVvKvEVh1Nw8DAmMSoNhF7Tc1qElst9mFgYMxm5AntztWwmqA2U1kMDIyhjGo42xnIyHdo9jQwMDBGM/L0NQ+v+aUwOcPFUwwMjNGMXthNrol5uluoAq4LdhgYGEMZR3HdlZRWRz2i3w0MDIyhjGr7sJpq7ifDOwEdAwNjEqOarOaHq7Yz1y/i4gwYGBgPYPSCbK+18GqtwuQIBgbGgxk7T3uhNk+qMTAwMHqDX0mKWy3bXSSxGBgYoxlJEpsUv/Ij5g2AqJCHgYExmrEzqVEtliXjF3mSfEN/AwMD49MZX31+0T+KxXkVAAAAAElFTkSuQmCC" alt="微信分享二维码">
 </div>
 
 
