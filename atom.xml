@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://kael.top/"/>
-  <updated>2017-11-05T12:20:05.538Z</updated>
+  <updated>2017-11-12T04:48:05.915Z</updated>
   <id>http://kael.top/</id>
   
   <author>
@@ -16,11 +16,61 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>矢量切片的使用尝试1—openlayers应用</title>
+    <link href="http://kael.top/2017/11/12/vector-tile-openlayers-try/"/>
+    <id>http://kael.top/2017/11/12/vector-tile-openlayers-try/</id>
+    <published>2017-11-12T02:54:57.000Z</published>
+    <updated>2017-11-12T04:48:05.915Z</updated>
+    
+    <content type="html"><![CDATA[<p>&nbsp;&nbsp;对于GIS行业来说，栅格切片已经处于垄断地位很长时间了，但随着mapbox的发展，矢量切片越来越勾引起大家探究的欲望，最近我也小小的观望了下，发现现在技术还是比较成熟了，使用上却不是很广泛，遂分享下自己瞎折腾的一些路，想着帮助大家少踩点坑，本文将介绍下服务端和网页端中OpenLayers对于矢量切片的一些应用。</p>
+<a id="more"></a>
+<p>&nbsp;&nbsp;在项目实际使用中还是建议大家首先了解下矢量和栅格切片的优缺点，网上能搜到的很多，水平有限，这里不献丑了。对于我个人来说吸引我的无非三点：1.支持大数据；2.自定义渲染；3.要素交互。</p>
+<p>&nbsp;&nbsp;不多说了进入主题吧，OpenLayers中支持<code>ol.source.VectorTile</code>,对于我们来说想使用它无非就是创造这一类型的<code>source</code>，目前来说想要自定义矢量切片源我探索的有以下几种方式：</p>
+<h1 id="geoserver中的vectortiles-plugin插件"><a href="#geoserver中的vectortiles-plugin插件" class="headerlink" title="geoserver中的vectortiles-plugin插件"></a>geoserver中的vectortiles-plugin插件</h1><p>这种方式网上教程很多，是大家目前常用的，优点是支持的数据格式比较多，输出的数据格式也很多，geojson、topojson、mvt都能做到，不做过多介绍</p>
+<h1 id="mapbox开发的geojson-vt库"><a href="#mapbox开发的geojson-vt库" class="headerlink" title="mapbox开发的geojson-vt库"></a>mapbox开发的geojson-vt库</h1><p>这个库可能大家不去仔细关注都不会发现，mapbox推出，<a href="https://github.com/mapbox/geojson-vt" target="_blank" rel="external">geojson-vt</a>，作用很简单，官方说明简单明了，把geojson转换成mvt格式的矢量数据源。</p>
+<p>翻译一下使用：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="comment">// 通过geojson数据源构建切片索引</span></div><div class="line"><span class="keyword">var</span> tileIndex = geojsonvt(geoJSON);</div><div class="line"></div><div class="line"><span class="comment">// 通过z,x,y来在切片索引中请求某个具体瓦片</span></div><div class="line"><span class="keyword">var</span> features = tileIndex.getTile(z, x, y).features;</div></pre></td></tr></table></figure>
+<p>拿到features后无非就是做样式调整之类的工作了。OpenLayers官方也有一个demo，叫做<a href="https://openlayers.org/en/latest/examples/geojson-vt.html" target="_blank" rel="external">geojson-vt integration</a>，详细介绍了怎么在OpenLayers中结合使用该库。</p>
+<p>我在实际使用中发现，这个库可以说很imba了，有测试200M以上的geojson源文件，都能流畅的展示出来。mapbox官方对于这个库的说明是，把geojson切割成矢量切片在<strong>浏览器端</strong>使用，所以我觉得因为<strong>网络传输</strong>的不确定性，对于<strong>小一点</strong>的数据量，可以考虑直接在浏览器端使用这个库。</p>
+<h1 id="geojson-vt的nodejs服务端实现"><a href="#geojson-vt的nodejs服务端实现" class="headerlink" title="geojson-vt的nodejs服务端实现"></a>geojson-vt的nodejs服务端实现</h1><p>(｡･∀･)ﾉﾞ嗨，既然是js，那就意味着，我们可以用nodejs搭建服务端呀，在浏览到某个层级时候，只请求当前需要的瓦片，不就能解决大数据的传输问题了，nodejs大法好！</p>
+<p>具体的代码可以移步<a href="https://github.com/zzcyrus/openlayers-demos/tree/master/1.vector_tile" target="_blank" rel="external">github</a></p>
+<p>这里对一些主要部分做一些说明</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="comment">// 读取数据源文件，构建切片索引</span></div><div class="line"><span class="keyword">const</span> dataFile = <span class="string">"./data/world.json"</span>;</div><div class="line"><span class="keyword">const</span> dataSource = <span class="built_in">JSON</span>.parse(fs.readFileSync(dataFile));</div><div class="line"><span class="keyword">const</span> tileIndex = geojsonvt(dataSource, &#123;</div><div class="line">    <span class="attr">extent</span>: <span class="number">4096</span>,</div><div class="line">    <span class="attr">debug</span>: <span class="number">1</span></div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="comment">// 从url中解析瓦片请求位置的x，y，z</span></div><div class="line">app.use(<span class="keyword">async</span> (ctx, next) =&gt; &#123;</div><div class="line">    <span class="keyword">let</span> path = ctx.request.path.toString()</div><div class="line">    ctx.response.type = <span class="string">'application/json'</span>;</div><div class="line">    <span class="keyword">if</span> (path.indexOf(<span class="string">'.vector'</span>) !== <span class="number">-1</span>) &#123;</div><div class="line">        <span class="keyword">const</span> pathArr = path.substring(<span class="number">1</span>, path.indexOf(<span class="string">'.vector'</span>)).split(<span class="string">'/'</span>)</div><div class="line">        <span class="keyword">const</span> z = pathArr[pathArr.length - <span class="number">3</span>]</div><div class="line">        <span class="keyword">const</span> x = pathArr[pathArr.length - <span class="number">2</span>]</div><div class="line">        <span class="keyword">const</span> y = pathArr[pathArr.length - <span class="number">1</span>]</div><div class="line">        <span class="keyword">const</span> data = tileIndex.getTile(<span class="built_in">Number</span>(z), <span class="built_in">Number</span>(x), <span class="built_in">Number</span>(y));</div><div class="line">        <span class="keyword">const</span> features = <span class="built_in">JSON</span>.stringify(&#123;</div><div class="line">            <span class="attr">type</span>: <span class="string">'FeatureCollection'</span>,</div><div class="line">            <span class="attr">features</span>: data ? data.features : []</div><div class="line">        &#125;, replacer)  <span class="comment">// replacer 是geojson格式转换函数</span></div><div class="line">        ctx.response.body = features</div><div class="line">        <span class="keyword">await</span> next()</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        ctx.response.body = <span class="string">'Error'</span></div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>接下来是浏览器中的调用</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> vectorSource = <span class="keyword">new</span> ol.source.VectorTile(&#123;</div><div class="line">        <span class="comment">// 因为转换函数是geojson格式，所以这里format为geojson</span></div><div class="line">        format: <span class="keyword">new</span> ol.format.GeoJSON(&#123;</div><div class="line">            <span class="comment">// 要定义数据源的坐标系为瓦片像素</span></div><div class="line">            defaultDataProjection: <span class="keyword">new</span> ol.proj.Projection(&#123;</div><div class="line">                <span class="attr">code</span>: <span class="string">'TILE_PIXELS'</span>,</div><div class="line">                <span class="attr">units</span>: <span class="string">'tile-pixels'</span></div><div class="line">            &#125;)</div><div class="line">        &#125;),</div><div class="line">        <span class="comment">// 调用时候要注意z，x，y 的位置，实际上是与服务端相对应的</span></div><div class="line">        url: <span class="string">'http://localhost:3000/gettile/&#123;z&#125;/&#123;x&#125;/&#123;y&#125;.vector'</span>,</div><div class="line">    &#125;);</div></pre></td></tr></table></figure>
+<p>你可以在 <a href="https://github.com/zzcyrus/openlayers-demos" target="_blank" rel="external">github</a> 上看到demo，执行安装启动</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">cd ./1.vector_tile</div><div class="line">npm install</div><div class="line">npm start</div></pre></td></tr></table></figure>
+<p>打开vectortile.hmtl可以在network中看到瓦片请求了。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="network.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&amp;nbsp;&amp;nbsp;对于GIS行业来说，栅格切片已经处于垄断地位很长时间了，但随着mapbox的发展，矢量切片越来越勾引起大家探究的欲望，最近我也小小的观望了下，发现现在技术还是比较成熟了，使用上却不是很广泛，遂分享下自己瞎折腾的一些路，想着帮助大家少踩点坑，本文将介绍下服务端和网页端中OpenLayers对于矢量切片的一些应用。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="OpenLayers" scheme="http://kael.top/categories/OpenLayers/"/>
+    
+    
+      <category term="GIS" scheme="http://kael.top/tags/GIS/"/>
+    
+      <category term="OpenLayers" scheme="http://kael.top/tags/OpenLayers/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Leaflet常用的一些插件</title>
     <link href="http://kael.top/2017/09/17/plugins/"/>
     <id>http://kael.top/2017/09/17/plugins/</id>
     <published>2017-09-17T05:48:15.000Z</published>
-    <updated>2017-11-05T12:20:05.538Z</updated>
+    <updated>2017-11-05T12:20:05.000Z</updated>
     
     <content type="html"><![CDATA[<p>Leaflet中常用的gis功能可以满足一般使用，有些特殊需求，官方也有<a href="http://leafletjs.com/plugins.html" target="_blank" rel="external">插件系统</a>，本文会挑选一些常用的，经过测试可用的插件单独放出来使用方法和一些注意事项，希望能够帮助到同僚们。</p>
 <a id="more"></a>
@@ -71,7 +121,7 @@
     <link href="http://kael.top/2017/09/17/basemap/"/>
     <id>http://kael.top/2017/09/17/basemap/</id>
     <published>2017-09-17T05:46:08.000Z</published>
-    <updated>2017-11-05T12:19:51.499Z</updated>
+    <updated>2017-11-05T12:19:51.000Z</updated>
     
     <content type="html"><![CDATA[<p>&nbsp;&nbsp;最近项目中有移动端的开发需求，自然就用到了最轻量级的gis组件——Leaflet，100多k的体积，五脏俱全，丰富的第三方插件，虽然开发者数量上不及大哥级产品Arcigs，但也基本够用，对于esri的自家系统支持好，svg和canvas两种渲染方式，让数据量大的要素图层渲染也不是那么吃力。</p>
 <p>&nbsp;&nbsp;这里把自己对于Leaflet的一些探索研究记录一下，一方面便于自己后期回顾，另一方面也希望和大家一起探讨学习。</p>
@@ -105,7 +155,7 @@
     <link href="http://kael.top/2017/07/31/openlayers-canvas-typhoon/"/>
     <id>http://kael.top/2017/07/31/openlayers-canvas-typhoon/</id>
     <published>2017-07-31T14:31:02.000Z</published>
-    <updated>2017-11-05T12:20:01.021Z</updated>
+    <updated>2017-11-05T12:20:01.000Z</updated>
     
     <content type="html"><![CDATA[<p>本文中所使用的数据来源于<a href="http://www.wztf121.com/typhoon.html" target="_blank" rel="external">温州台风网</a>，通过F12抓取，你可以在我的<a href="https://github.com/zzcyrus/openlayers-demos" target="_blank" rel="external">GitHub</a>上查看数据和本文源代码</p>
 <p>&nbsp;&nbsp;台风的风圈是一种不常见但算的上规则的图形，在上面的网站可以看到最终效果，简单的解剖下其实就是四个1/4圆</p>
@@ -184,7 +234,7 @@
     <link href="http://kael.top/2017/06/23/vue-dialog-nested/"/>
     <id>http://kael.top/2017/06/23/vue-dialog-nested/</id>
     <published>2017-06-23T14:09:55.000Z</published>
-    <updated>2017-11-05T12:20:17.728Z</updated>
+    <updated>2017-11-05T12:20:17.000Z</updated>
     
     <content type="html"><![CDATA[<p>&emsp;&emsp;最近用 Vue+element 开发项目时，在dialog组件上嵌套使用dialog组件或是MessageBox这类弹框组件，发现会出现遮罩层重合之类的问题，导致很多人只能选择关闭遮罩层。GitHub上就此问题也出现过类似讨论。有几种解决方案：</p>
 <a id="more"></a> 
