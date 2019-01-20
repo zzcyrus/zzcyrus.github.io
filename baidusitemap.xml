@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://kael.top/2018/06/29/Vue-Parent-and-Child-lifecycle-hooks/</loc>
+    <lastmod>2019-01-20</lastmod>
+  </url>  <url>
     <loc>http://kael.top/2017/09/17/basemap/</loc>
     <lastmod>2019-01-20</lastmod>
   </url>  <url>
@@ -17,9 +20,6 @@
     <lastmod>2019-01-20</lastmod>
   </url>  <url>
     <loc>http://kael.top/2017/06/23/vue-dialog-nested/</loc>
-    <lastmod>2019-01-20</lastmod>
-  </url>  <url>
-    <loc>http://kael.top/2018/06/29/Vue-Parent-and-Child-lifecycle-hooks/</loc>
     <lastmod>2019-01-20</lastmod>
   </url>
 </urlset>
