@@ -1,0 +1,44 @@
+language: node_js
+node_js: stable
+
+cache:
+    apt: true
+    directories:
+        - node_modules
+
+before_install:
+    - export TZ='Asia/Shanghai'
+
+install:
+  - npm install
+
+script:
+  - hexo clean
+  - hexo g 
+
+after_script:
+  - git clone https://${GH_REF} .deploy_git 
+  - cd .deploy_git
+  - git checkout master
+  - cd ../
+  - mv .deploy_git/.git/ ./public/
+  - cd ./public
+  - git config user.name "zzcyrus" 
+  - git config user.email "zzcyrus@qq.com"  
+  - git add .
+  - git commit -m "Update Blog at `date +"%Y-%m-%d %H:%M"`"
+  - git push --force --quiet "https://${github_token}@${GH_REF}" master:master
+
+branches:
+  only:
+    - blog
+
+env:
+ global:
+   - GH_REF: github.com/zzcyrus/zzcyrus.github.io.git
+
+notifications:
+  email:
+    - zzcyrus@qq.com
+  on_success: change
+  on_failure: always
