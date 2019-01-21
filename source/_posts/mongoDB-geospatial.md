@@ -1,5 +1,5 @@
 ---
-title: mongoDB-geospatial
+title: mongoDB中地理空间查询指北
 date: 2019-01-20 17:41:24
 tags: [GIS]
 categories: Node

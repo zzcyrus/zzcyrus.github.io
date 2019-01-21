@@ -1,5 +1,5 @@
 ---
-title: Vue中父子组件的生命周期函数
+title: 【译】Vue中父子组件的生命周期函数
 date: 2018-6-29 15:42:41
 tags: [FE,Vue]
 categories: 前端
