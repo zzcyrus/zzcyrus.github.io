@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    
+<!-- Google Analytics -->
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'true', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src="https://www.google-analytics.com/analytics.js"></script>
+<!-- End Google Analytics -->
+
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    <meta name="google-site-verification" content="true">
+    
+    
+    
+    <title>使用osm数据做一个自己的PostGIS数据库 | Kaely&#39;s Blog | 迷阵</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="GIS">
+    <meta name="description" content="PostGIS是目前开源方案里面使用广泛的一种地理信息数据库，可玩性很强，实用性也很强，为了实现更多的地理信息操作，我们先来搭建一个简单的PostGIS数据库。">
+<meta name="keywords" content="GIS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用osm数据做一个自己的PostGIS数据库">
+<meta property="og:url" content="http://kael.top/2019/03/12/osm-PostGIS-setup/index.html">
+<meta property="og:site_name" content="Kaely&#39;s Blog">
+<meta property="og:description" content="PostGIS是目前开源方案里面使用广泛的一种地理信息数据库，可玩性很强，实用性也很强，为了实现更多的地理信息操作，我们先来搭建一个简单的PostGIS数据库。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://kael.top/2019/03/12/osm-PostGIS-setup/polygon.png">
+<meta property="og:image" content="http://kael.top/2019/03/12/osm-PostGIS-setup/distance.png">
+<meta property="og:image" content="http://kael.top/2019/03/12/osm-PostGIS-setup/point.png">
+<meta property="og:updated_time" content="2019-03-12T12:25:36.324Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用osm数据做一个自己的PostGIS数据库">
+<meta name="twitter:description" content="PostGIS是目前开源方案里面使用广泛的一种地理信息数据库，可玩性很强，实用性也很强，为了实现更多的地理信息操作，我们先来搭建一个简单的PostGIS数据库。">
+<meta name="twitter:image" content="http://kael.top/2019/03/12/osm-PostGIS-setup/polygon.png">
+    
+        <link rel="alternate" type="application/atom+xml" title="Kaely&#39;s Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Kaely</h5>
+          <a href="mailto:zzcyrus@qq.com" title="zzcyrus@qq.com" class="mail">zzcyrus@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/">
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives">
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories">
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/zzcyrus" target="_blank">
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">使用osm数据做一个自己的PostGIS数据库</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">使用osm数据做一个自己的PostGIS数据库</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-03-12T11:54:08.000Z" itemprop="datePublished" class="page-time">
+  2019-03-12
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/PostGIS/">PostGIS</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#安装步骤"><span class="post-toc-number">1.</span> <span class="post-toc-text">安装步骤</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#PostgreSQL-9-6"><span class="post-toc-number">2.</span> <span class="post-toc-text">PostgreSQL 9.6</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#PostGIS"><span class="post-toc-number">3.</span> <span class="post-toc-text">PostGIS</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#osm数据导入"><span class="post-toc-number">4.</span> <span class="post-toc-text">osm数据导入</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#测试"><span class="post-toc-number">5.</span> <span class="post-toc-text">测试</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#参考文档"><span class="post-toc-number">6.</span> <span class="post-toc-text">参考文档</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-osm-PostGIS-setup" class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">使用osm数据做一个自己的PostGIS数据库</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-03-12 19:54:08" datetime="2019-03-12T11:54:08.000Z" itemprop="datePublished">2019-03-12</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/PostGIS/">PostGIS</a></li></ul>
+
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>PostGIS是目前开源方案里面使用广泛的一种地理信息数据库，可玩性很强，实用性也很强，为了实现更多的地理信息操作，我们先来搭建一个简单的PostGIS数据库。</p>
+<a id="more"></a>
+<h2 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h2><ol>
+<li>准备一个 CentOS 7.x x64 环境</li>
+<li>安装数据库 PostgreSQL 9.6</li>
+<li>安装对应版本的 PostGIS 2.2.2</li>
+<li>导入openstreetmap的中国区域数据</li>
+</ol>
+<h2 id="PostgreSQL-9-6"><a href="#PostgreSQL-9-6" class="headerlink" title="PostgreSQL 9.6"></a>PostgreSQL 9.6</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 安装数据库</span></span><br><span class="line">yum install https://download.postgresql.org/pub/repos/yum/9.6/redhat/rhel-7-x86_64/pgdg-centos96-9.6-3.noarch.rpm</span><br><span class="line"></span><br><span class="line">yum install postgresql96</span><br><span class="line"></span><br><span class="line">yum install postgresql96-server</span><br><span class="line"></span><br><span class="line"><span class="comment"># 初始化数据库及服务</span></span><br><span class="line">/usr/pgsql-9.6/bin/postgresql96-setup initdb</span><br><span class="line">systemctl <span class="built_in">enable</span> postgresql-9.6</span><br><span class="line">systemctl start postgresql-9.6</span><br><span class="line"></span><br><span class="line"><span class="comment"># 配置环境变量</span></span><br><span class="line"><span class="built_in">export</span> PATH=/usr/pgsql-9.6/bin:<span class="variable">$PATH</span></span><br><span class="line"><span class="built_in">export</span> LD_LIBRARY_PATH=/usr/pgsql-9.6/lib:<span class="variable">$LD_LIBRARY_PATH</span></span><br><span class="line"><span class="built_in">export</span> PGDATA=/home/postgres/postgresql_data</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 以下可选</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 为数据库设置密码</span></span><br><span class="line">su - postgres </span><br><span class="line">psql</span><br><span class="line">postgres=<span class="comment"># ALTER USER postgres WITH PASSWORD 'postgres'; </span></span><br><span class="line">postgres=<span class="comment"># \q</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 开放防火墙端口</span></span><br><span class="line">firewall-cmd --permanent --add-port=5432/tcp  </span><br><span class="line">firewall-cmd --reload  </span><br><span class="line"></span><br><span class="line"><span class="comment"># 修改配置文件允许外部使用密码访问</span></span><br><span class="line">vim /var/lib/pgsql/9.6/data/postgresql.conf</span><br><span class="line">listen_addresses = <span class="string">'localhost'</span>  为  listen_addresses=<span class="string">'*'</span></span><br><span class="line"></span><br><span class="line">vim /var/lib/pgsql/9.6/data/pg_hba.conf</span><br><span class="line">host    all            all      0.0.0.0/0      md5</span><br></pre></td></tr></table></figure>
+<h2 id="PostGIS"><a href="#PostGIS" class="headerlink" title="PostGIS"></a>PostGIS</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 安装PostGIS</span></span><br><span class="line">sudo yum -y install epel-release</span><br><span class="line">sudo yum install postgis24_96</span><br><span class="line"></span><br><span class="line"><span class="comment"># 初始化数据库osm</span></span><br><span class="line">createdb osm</span><br><span class="line"></span><br><span class="line">psql -h 127.0.0.1 -d osm -U postgres -f /usr/pgsql-9.6/share/contrib/postgis-2.4/postgis.sql</span><br><span class="line">psql -h 127.0.0.1 -d osm -U postgres -f /usr/pgsql-9.6/share/contrib/postgis-2.4/spatial_ref_sys.sql</span><br><span class="line"></span><br><span class="line"><span class="comment"># 可以基于osm创建china数据库（把osm作为一个可重复备份的库）</span></span><br><span class="line">createdb -T osm china</span><br></pre></td></tr></table></figure>
+<h2 id="osm数据导入"><a href="#osm数据导入" class="headerlink" title="osm数据导入"></a>osm数据导入</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 安装导入工具osm2pgsql</span></span><br><span class="line">yum install osm2pgsql</span><br><span class="line"></span><br><span class="line"><span class="comment"># 下载中国区域的公开数据</span></span><br><span class="line">wget http://download.gisgraphy.com/openstreetmap/pbf/CN.tar.bz2   </span><br><span class="line"></span><br><span class="line"><span class="comment"># 解压数据通过工具导入数据到china数据库</span></span><br><span class="line">tar jxvf CN.tar.bz2</span><br><span class="line">osm2pgsql -c -d china --slim -C 2000 -p china -r pbf /home/parallels/Downloads/CN</span><br></pre></td></tr></table></figure>
+<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><p>至此，我们已经基于osm的数据有了一个地理信息库，我们可以通过以下sql做一些简单的测试</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">name</span> <span class="keyword">FROM</span> china_polygon <span class="keyword">WHERE</span> <span class="keyword">name</span> ~ <span class="string">'南京'</span>;</span><br></pre></td></tr></table></figure>
+<p>结果：<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="polygon.png" alt title>
+                </div>
+                <div class="image-caption"></div>
+            </figure></p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> p1.name,p2.name,ST_Distance(p1.way,p2.way) <span class="keyword">FROM</span>    </span><br><span class="line">(<span class="keyword">SELECT</span> * <span class="keyword">FROM</span> china_point <span class="keyword">WHERE</span> place=<span class="string">'city'</span> <span class="keyword">AND</span> <span class="keyword">name</span> = <span class="string">'南京市'</span>) p1 ,     </span><br><span class="line">(<span class="keyword">SELECT</span> * <span class="keyword">FROM</span> china_point <span class="keyword">WHERE</span> place=<span class="string">'city'</span> <span class="keyword">AND</span> <span class="keyword">name</span> = <span class="string">'北京市'</span>) p2</span><br></pre></td></tr></table></figure>
+<p>结果：<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="distance.png" alt title>
+                </div>
+                <div class="image-caption"></div>
+            </figure></p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">name</span>, ST_AsText(ST_Transform(way,<span class="number">4326</span>)) <span class="keyword">FROM</span> china_point <span class="keyword">WHERE</span> place=<span class="string">'city'</span>;</span><br></pre></td></tr></table></figure>
+<p>结果：<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="point.png" alt title>
+                </div>
+                <div class="image-caption"></div>
+            </figure></p>
+<p>当然数据库的功能不局限于此，基于此数据库我们可以做些更有趣的事情，今后我们会慢慢探讨。</p>
+<h2 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h2><p><a href="https://github.com/digoal/blog/blob/master/201609/20160906_01.md" target="_blank" rel="noopener">digoal的博客</a></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2019-03-12T12:25:36.324Z" itemprop="dateUpdated">2019-03-12 20:25:36</time>
+</span><br>
+
+
+        
+    </div>
+    <footer>
+        <a href="http://kael.top">
+            <img src="/img/avatar.jpg" alt="Kaely">
+            Kaely
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/GIS/">GIS</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://kael.top/2019/03/12/osm-PostGIS-setup/&title=《使用osm数据做一个自己的PostGIS数据库》 — Kaely's Blog&pic=http://kael.top/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://kael.top/2019/03/12/osm-PostGIS-setup/&title=《使用osm数据做一个自己的PostGIS数据库》 — Kaely's Blog&source=PostGIS是目前开源方案里面使用广泛的一种地理信息数据库，可玩性很强，实用性也很强，为了实现更多的地理信息操作，我们先来搭建一个简单的PostGIS数..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://kael.top/2019/03/12/osm-PostGIS-setup/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《使用osm数据做一个自己的PostGIS数据库》 — Kaely's Blog&url=http://kael.top/2019/03/12/osm-PostGIS-setup/&via=http://kael.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://kael.top/2019/03/12/osm-PostGIS-setup/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/01/20/mongoDB-geospatial/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">mongoDB中地理空间查询指北</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check" data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Kaely &copy; 2016 - 2019</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://kael.top/2019/03/12/osm-PostGIS-setup/&title=《使用osm数据做一个自己的PostGIS数据库》 — Kaely's Blog&pic=http://kael.top/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://kael.top/2019/03/12/osm-PostGIS-setup/&title=《使用osm数据做一个自己的PostGIS数据库》 — Kaely's Blog&source=PostGIS是目前开源方案里面使用广泛的一种地理信息数据库，可玩性很强，实用性也很强，为了实现更多的地理信息操作，我们先来搭建一个简单的PostGIS数..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://kael.top/2019/03/12/osm-PostGIS-setup/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《使用osm数据做一个自己的PostGIS数据库》 — Kaely's Blog&url=http://kael.top/2019/03/12/osm-PostGIS-setup/&via=http://kael.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://kael.top/2019/03/12/osm-PostGIS-setup/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACJUlEQVR42u3aQW6EMAwF0Ln/pafbSm3Dt81UInmsEAMlj4Vrx3694uO9PP665+f16p03HxgYGI9lVJeYX/l+fXK+XhsGBsY5jL8i2Po8D6nrMLr+fOu1YWBgYCRLr6Z6SeDGwMDAmAfcvNScIzEwMDDy0Jk8tV56Nch+pBbHwMB4ICMPmv9//pH+BgYGxqMY7+JRbRLky8qD7C+rwsDA2JpRfU1eguZtgCSVTP4CBgbGroz1Y3eF43zDrjkohoGBsTWjt6XV2/CatyrXnwYDA+M0Rv76u4L4vFGKgYFxDiMPjpP7q+2HZDQEAwNjV0ay4TV5/V0thIsPgYGBsTUjSdfWBWQ1geuNl0VBGQMDY1PGvUNaSWOy17y8KK0xMDCOYVQTx15amQMKaSIGBsYBjKQErW6fNbPU3hUMDIytGdUNtd6WXLLoefjGwMDYm1FNBHvtz+pIR7NVgIGBsR2j2nqsBtBJC7NQMGNgYGzNmBer1bJ2kiZGSSEGBsbWjE80MicBvTwCgoGBcQCjl65Vxykm4fhiCAMDA+NgRr7FP0kWy4uefAkMDIxHMXoBNN/Qvys1vGhhYmBgbM3Ijzws3tUW7Q2QYWBg7MrIC9FqclltcI4CLgYGxgGMu0rWfFm9/wAXpSwGBgbG8ql8CKy6tRf9ioGBgVGteuOiNP9AF+EbAwPjAEZvYCJ/Kh8Xa7ZIMTAwtmZMgmZ1bCIfF6sGYgwMjE0ZX6n9slCl0ZFMAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
