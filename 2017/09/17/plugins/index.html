@@ -40,7 +40,7 @@ ga('send', 'pageview');
 <meta property="og:description" content="Leaflet中常用的gis功能可以满足一般使用，有些特殊需求，官方也有插件系统，本文会挑选一些常用的，经过测试可用的插件单独放出来使用方法和一些注意事项，希望能够帮助到同僚们。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://kael.top/2017/09/17/plugins/tileWMS.png">
-<meta property="og:updated_time" content="2019-06-10T07:12:57.072Z">
+<meta property="og:updated_time" content="2019-06-11T04:23:35.733Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Leaflet常用的一些插件">
 <meta name="twitter:description" content="Leaflet中常用的gis功能可以满足一般使用，有些特殊需求，官方也有插件系统，本文会挑选一些常用的，经过测试可用的插件单独放出来使用方法和一些注意事项，希望能够帮助到同僚们。">
@@ -217,7 +217,7 @@ ga('send', 'pageview');
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2019-06-10T07:12:57.072Z" itemprop="dateUpdated">2019-06-10 15:12:57</time>
+    最后更新时间：<time datetime="2019-06-11T04:23:35.733Z" itemprop="dateUpdated">2019-06-11 12:23:35</time>
 </span><br>
 
 
@@ -376,6 +376,14 @@ ga('send', 'pageview');
             <span>
                 
                 Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+                {% if (theme.mermaid.enable)  %}
+                    <script src="https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js"></script>
+                    <script>
+                        if (window.mermaid) {
+                        mermaid.initialize({theme: 'forest'});
+                        }
+                    </script>
+                {% endif %}
             </span>
         </p>
     </div>

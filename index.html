@@ -151,6 +151,52 @@ ga('send', 'pageview');
     <ul class="post-list">
     
         <li class="post-list-item fade">
+            <article id="post-tilestrata-mapnik" class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2019-06-11 11:26:12" datetime="2019-06-11T03:26:12.000Z" itemprop="datePublished">2019-06-11</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/TileStrata/">TileStrata</a></li></ul>
+
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2019/06/11/tilestrata-mapnik/">tilestrata-mapnik插件使用及浅析</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        tilestrata-mapnik顾名思义，mapnik 作为地图数据源，tilestrata 负责瓦片化的一个插件。
+    
+
+        <a href="/2019/06/11/tilestrata-mapnik/" class="post-more waves-effect waves-button">
+            阅读全文…
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/GIS/">GIS</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
             <article id="post-osm-postgis-mvt" class="article-card article-type-post" itemprop="blogPost">
 
     <div class="post-meta">
@@ -575,55 +621,15 @@ ga('send', 'pageview');
 
         </li>
     
-        <li class="post-list-item fade">
-            <article id="post-vue-dialog-nested" class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2017-06-23 22:09:55" datetime="2017-06-23T14:09:55.000Z" itemprop="datePublished">2017-06-23</time>
-
-        
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/前端/">前端</a></li></ul>
-
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2017/06/23/vue-dialog-nested/">element dialog组件嵌套问题的临时方案</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        &emsp;&emsp;最近用 Vue+element 开发项目时，在dialog组件上嵌套使用dialog组件或是MessageBox这类弹框组件，发现会出现遮罩层重合之类的问题，导致很多人只能选择关闭遮罩层。GitHub上就此问题也出现过类似讨论。有几种解决方案：
-    
-
-        <a href="/2017/06/23/vue-dialog-nested/" class="post-more waves-effect waves-button">
-            阅读全文…
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/FE/">FE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue/">Vue</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
     </ul>
 
     
+<nav id="page-nav">
+    <div class="inner">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">下一页</a>
+    </div>
+</nav>
+
 
 </div>
 
@@ -643,6 +649,14 @@ ga('send', 'pageview');
             <span>
                 
                 Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+                {% if (theme.mermaid.enable)  %}
+                    <script src="https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js"></script>
+                    <script>
+                        if (window.mermaid) {
+                        mermaid.initialize({theme: 'forest'});
+                        }
+                    </script>
+                {% endif %}
             </span>
         </p>
     </div>

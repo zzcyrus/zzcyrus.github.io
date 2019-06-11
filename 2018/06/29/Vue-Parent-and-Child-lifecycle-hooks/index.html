@@ -41,7 +41,7 @@ ga('send', 'pageview');
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://kael.top/2018/06/29/Vue-Parent-and-Child-lifecycle-hooks/lifecircle.png">
 <meta property="og:image" content="http://kael.top/2018/06/29/Vue-Parent-and-Child-lifecycle-hooks/parent-child-hooks.png">
-<meta property="og:updated_time" content="2019-06-10T07:12:57.060Z">
+<meta property="og:updated_time" content="2019-06-11T04:23:35.721Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【译】Vue中父子组件的生命周期函数">
 <meta name="twitter:description" content="&amp;nbsp;&amp;nbsp;最近项目中遇到了地图模块挂载到DOM节点并进行初始化的问题，背后其实就是Vue中父子组件初始化的顺序问题，发现这篇文章的例子通俗易懂，遂翻译一下，如果错误还请指正。">
@@ -214,7 +214,7 @@ ga('send', 'pageview');
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2019-06-10T07:12:57.060Z" itemprop="dateUpdated">2019-06-10 15:12:57</time>
+    最后更新时间：<time datetime="2019-06-11T04:23:35.721Z" itemprop="dateUpdated">2019-06-11 12:23:35</time>
 </span><br>
 
 
@@ -373,6 +373,14 @@ ga('send', 'pageview');
             <span>
                 
                 Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+                {% if (theme.mermaid.enable)  %}
+                    <script src="https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js"></script>
+                    <script>
+                        if (window.mermaid) {
+                        mermaid.initialize({theme: 'forest'});
+                        }
+                    </script>
+                {% endif %}
             </span>
         </p>
     </div>

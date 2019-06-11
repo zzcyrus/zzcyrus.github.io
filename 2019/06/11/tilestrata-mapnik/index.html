@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    
+<!-- Google Analytics -->
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'true', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src="https://www.google-analytics.com/analytics.js"></script>
+<!-- End Google Analytics -->
+
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    <meta name="google-site-verification" content="true">
+    
+    
+    
+    <title>tilestrata-mapnik插件使用及浅析 | Kaely&#39;s Blog | 迷阵</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="GIS">
+    <meta name="description" content="tilestrata-mapnik顾名思义，mapnik 作为地图数据源，tilestrata 负责瓦片化的一个插件。">
+<meta name="keywords" content="GIS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="tilestrata-mapnik插件使用及浅析">
+<meta property="og:url" content="http://kael.top/2019/06/11/tilestrata-mapnik/index.html">
+<meta property="og:site_name" content="Kaely&#39;s Blog">
+<meta property="og:description" content="tilestrata-mapnik顾名思义，mapnik 作为地图数据源，tilestrata 负责瓦片化的一个插件。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://blog-img-1255388623.cossh.myqcloud.com/tilestrata-mapnik-result-20190606105844.png">
+<meta property="og:updated_time" content="2019-06-11T04:23:35.733Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="tilestrata-mapnik插件使用及浅析">
+<meta name="twitter:description" content="tilestrata-mapnik顾名思义，mapnik 作为地图数据源，tilestrata 负责瓦片化的一个插件。">
+<meta name="twitter:image" content="http://blog-img-1255388623.cossh.myqcloud.com/tilestrata-mapnik-result-20190606105844.png">
+    
+        <link rel="alternate" type="application/atom+xml" title="Kaely&#39;s Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Kaely</h5>
+          <a href="mailto:zzcyrus@qq.com" title="zzcyrus@qq.com" class="mail">zzcyrus@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/">
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives">
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories">
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/zzcyrus" target="_blank">
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">tilestrata-mapnik插件使用及浅析</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">tilestrata-mapnik插件使用及浅析</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-06-11T03:26:12.000Z" itemprop="datePublished" class="page-time">
+  2019-06-11
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/TileStrata/">TileStrata</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#1-安装"><span class="post-toc-text">1. 安装</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#2-使用"><span class="post-toc-text">2. 使用</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#3-效果"><span class="post-toc-text">3. 效果</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#4-代码浅析"><span class="post-toc-text">4. 代码浅析</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-tilestrata-mapnik" class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">tilestrata-mapnik插件使用及浅析</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-06-11 11:26:12" datetime="2019-06-11T03:26:12.000Z" itemprop="datePublished">2019-06-11</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/TileStrata/">TileStrata</a></li></ul>
+
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p><a href="https://github.com/naturalatlas/tilestrata-mapnik" target="_blank" rel="noopener">tilestrata-mapnik</a>顾名思义，mapnik 作为地图数据源，tilestrata 负责瓦片化的一个插件。</p>
+<a id="more"></a>
+<h1 id="1-安装"><a href="#1-安装" class="headerlink" title="1. 安装"></a>1. 安装</h1><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install mapnik --save</span><br><span class="line">npm install tilestrata-mapnik --save</span><br></pre></td></tr></table></figure>
+<p>虽然最新的 mapnik4.0 已经支持了 nodejs 10 版本，这里仍然建议采用<strong>nodejs 8</strong> 环境，更为稳定，如果安装失败可以考虑切换到<strong>nodejs 8</strong></p>
+<h1 id="2-使用"><a href="#2-使用" class="headerlink" title="2. 使用"></a>2. 使用</h1><p>准备好 mapnik 的 xml 配置文件</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> tilestrata = <span class="built_in">require</span>(<span class="string">"tilestrata"</span>);</span><br><span class="line"><span class="keyword">var</span> mapnik = <span class="built_in">require</span>(<span class="string">"tilestrata-mapnik"</span>);</span><br><span class="line"></span><br><span class="line">server = tilestrata();</span><br><span class="line"></span><br><span class="line">server</span><br><span class="line">  .layer(<span class="string">"layer_name"</span>)</span><br><span class="line">  .route(<span class="string">"tile.png"</span>)</span><br><span class="line">  .use(</span><br><span class="line">    mapnik(&#123;</span><br><span class="line">      pathname: <span class="string">"style/china.xml"</span></span><br><span class="line">    &#125;)</span><br><span class="line">  );</span><br><span class="line"></span><br><span class="line">server.listen(<span class="number">8080</span>);</span><br></pre></td></tr></table></figure>
+<p>tilestrata-mapnik 支持的<code>options</code>有</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  interactivity: <span class="literal">false</span>,</span><br><span class="line">  xml: <span class="literal">null</span>,</span><br><span class="line">  pathname: <span class="literal">null</span>,</span><br><span class="line">  metatile: <span class="number">2</span>,</span><br><span class="line">  resolution: <span class="number">4</span>,</span><br><span class="line">  bufferSize: <span class="number">128</span>,</span><br><span class="line">  tileSize: <span class="number">256</span>,</span><br><span class="line">  scale: <span class="number">1</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="3-效果"><a href="#3-效果" class="headerlink" title="3. 效果"></a>3. 效果</h1><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://blog-img-1255388623.cossh.myqcloud.com/tilestrata-mapnik-result-20190606105844.png" alt title>
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<h1 id="4-代码浅析"><a href="#4-代码浅析" class="headerlink" title="4. 代码浅析"></a>4. 代码浅析</h1><p>插件会根据传入的<code>options</code>构建一个<a href="https://github.com/mapbox/tilelive-mapnik" target="_blank" rel="noopener">tilelive-mapnik</a>对象 source</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">source = <span class="keyword">new</span> MapnikBackend(options, <span class="function"><span class="keyword">function</span>(<span class="params">err, result</span>) </span>&#123;</span><br><span class="line">  source = result;</span><br><span class="line">  callback(err);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>根据<code>options</code>里面<code>interactivity</code>的值，分别调用了下面两个函数，对数据源会做个是否满足调用条件的判断，如果满足就设置一下<code>options</code>里面数据<code>format</code>的值</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// interactivity为 false，设置 format为 png</span></span><br><span class="line">source.getTile();</span><br><span class="line"></span><br><span class="line"><span class="comment">// interactivity为 true，设置 format为 utf</span></span><br><span class="line">source.getGrid();</span><br></pre></td></tr></table></figure>
+<p>针对两种不同的<code>format</code>，分别创建 mapnik 实例</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// format为 png</span></span><br><span class="line">image = <span class="keyword">new</span> mapnik.Image();</span><br><span class="line"></span><br><span class="line"><span class="comment">// format为 utf</span></span><br><span class="line">image = <span class="keyword">new</span> mapnik.Grid();</span><br></pre></td></tr></table></figure>
+<p>在请求具体的某个 zxy 瓦片的时候，就使用 mapnik 获取指定瓦片的方法<code>view</code>就好了。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">image.view(x, y, width, height); <span class="comment">// 获取指定瓦片</span></span><br></pre></td></tr></table></figure>
+<p>流程图</p>
+<pre class="mermaid">graph TD
+A[tilestrata-mapnik] -->|options| B(tilelive-mapnik)
+B --> C{interactivity}
+C -->|true| D[getGrid]
+D --> F[mapnik.Grid]
+C -->|false| E[getTile]
+E --> G[mapnik.Image]
+F --> H[view]
+G --> H[view]</pre>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2019-06-11T04:23:35.733Z" itemprop="dateUpdated">2019-06-11 12:23:35</time>
+</span><br>
+
+
+        
+    </div>
+    <footer>
+        <a href="http://kael.top">
+            <img src="/img/avatar.jpg" alt="Kaely">
+            Kaely
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/GIS/">GIS</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://kael.top/2019/06/11/tilestrata-mapnik/&title=《tilestrata-mapnik插件使用及浅析》 — Kaely's Blog&pic=http://kael.top/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://kael.top/2019/06/11/tilestrata-mapnik/&title=《tilestrata-mapnik插件使用及浅析》 — Kaely's Blog&source=tilestrata-mapnik顾名思义，mapnik 作为地图数据源，tilestrata 负责瓦片化的一个插件。" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://kael.top/2019/06/11/tilestrata-mapnik/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《tilestrata-mapnik插件使用及浅析》 — Kaely's Blog&url=http://kael.top/2019/06/11/tilestrata-mapnik/&via=http://kael.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://kael.top/2019/06/11/tilestrata-mapnik/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/06/10/osm-postgis-mvt/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">用PostGIS生成mvt格式的矢量瓦片</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check" data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Kaely &copy; 2016 - 2019</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+                {% if (theme.mermaid.enable)  %}
+                    <script src="https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js"></script>
+                    <script>
+                        if (window.mermaid) {
+                        mermaid.initialize({theme: 'forest'});
+                        }
+                    </script>
+                {% endif %}
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://kael.top/2019/06/11/tilestrata-mapnik/&title=《tilestrata-mapnik插件使用及浅析》 — Kaely's Blog&pic=http://kael.top/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://kael.top/2019/06/11/tilestrata-mapnik/&title=《tilestrata-mapnik插件使用及浅析》 — Kaely's Blog&source=tilestrata-mapnik顾名思义，mapnik 作为地图数据源，tilestrata 负责瓦片化的一个插件。" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://kael.top/2019/06/11/tilestrata-mapnik/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《tilestrata-mapnik插件使用及浅析》 — Kaely's Blog&url=http://kael.top/2019/06/11/tilestrata-mapnik/&via=http://kael.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://kael.top/2019/06/11/tilestrata-mapnik/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACI0lEQVR42u3aQY7DIAwF0N7/0pntSDOl33ZbKfBYVQ0ivCwsG/x4xOP6M37/n8zpzXzzwMDAuC3jWo71Vtbbejaz+nu9NwwMjHMYzyLYes56nRcvLgb0F3vGwMDAKCZ21RCcBF8MDAyMecDtBdM8lcTAwMBIithe0btOGd8VxDEwMPZm5EHz+78/cr+BgYFxK8ZVHEm6ls9/264wMDC2ZlQP/fMUrfc0T/swMDAw8qauZH51TrNRDAMDY1NGcrA1qY/fe1X59NNgYGAcxkjCXx5Y8xQzX/+fpxgYGFszqgf0ydLVgjZPWF/sEAMD4xhGEhZ7LRe9IF5osMDAwNiUkZepeQo4uQzI28IKRSwGBsYBjElh2fun/FEwMDC2ZiTp2rwcnXyUdWiOviIGBsbNGclB27whLGm86KWhGBgYpzHyUjOhVjedrBY1W2BgYBzDyIPyJGRXC+BywMXAwNiCseb1StnepWbvoC1KGTEwMLZm5CE4WbRa3PYOBDEwMHZl9Boprnj00sr8aA8DA+McRu+VSdKWl6NJSYyBgYExb32YJIvVdo1ydYuBgXFDxlUcSTieB/H8ChMDA+MExuQ2sNq81StNJ2/EwMDYiVENsvnLkoSymnRiYGCczOgFvryxrFokl69XMTAwMFoF5CfawgrNFhgYGMcz5iFynRpWPwcGBsYJjKSIzY/MvrkyBgbGCYxei0Ov/at3/VlNKzEwMDZi/AAPG7wq/i5k+QAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

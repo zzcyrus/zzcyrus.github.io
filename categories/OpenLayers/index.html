@@ -146,11 +146,11 @@ ga('send', 'pageview');
             ">全部</a>
         
 
-            <a href="/categories/前端/" style="-webkit-order:3;order:3" class="tags-list-item waves-effect waves-button waves-light">前端</a>
+            <a href="/categories/前端/" style="-webkit-order:4;order:4" class="tags-list-item waves-effect waves-button waves-light">前端</a>
 
         
 
-            <a href="/categories/Leaflet/" style="-webkit-order:4;order:4" class="tags-list-item waves-effect waves-button waves-light">Leaflet</a>
+            <a href="/categories/Leaflet/" style="-webkit-order:5;order:5" class="tags-list-item waves-effect waves-button waves-light">Leaflet</a>
 
         
 
@@ -163,6 +163,10 @@ ga('send', 'pageview');
         
 
             <a href="/categories/PostGIS/" style="-webkit-order:2;order:2" class="tags-list-item waves-effect waves-button waves-light">PostGIS</a>
+
+        
+
+            <a href="/categories/TileStrata/" style="-webkit-order:3;order:3" class="tags-list-item waves-effect waves-button waves-light">TileStrata</a>
 
         
     </nav>
@@ -270,6 +274,14 @@ ga('send', 'pageview');
             <span>
                 
                 Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+                {% if (theme.mermaid.enable)  %}
+                    <script src="https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js"></script>
+                    <script>
+                        if (window.mermaid) {
+                        mermaid.initialize({theme: 'forest'});
+                        }
+                    </script>
+                {% endif %}
             </span>
         </p>
     </div>
