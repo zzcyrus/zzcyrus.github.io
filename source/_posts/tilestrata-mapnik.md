@@ -1,5 +1,5 @@
 ---
-title: tilestrata-mapnik插件使用及浅析
+title: tilestrata-mapnik 插件使用及浅析
 date: 2019-06-11 11:26:12
 tags: [GIS]
 categories: TileStrata
@@ -8,6 +8,8 @@ categories: TileStrata
 [tilestrata-mapnik](https://github.com/naturalatlas/tilestrata-mapnik)顾名思义，mapnik 作为地图数据源，tilestrata 负责瓦片化的一个插件。
 
 <!--more-->
+
+demo 项目可以参考[tilestrata-sample-code](https://github.com/zzcyrus/tilestrata-sample-code)
 
 # 1. 安装
 
@@ -56,6 +58,8 @@ tilestrata-mapnik 支持的`options`有
 ```
 
 # 3. 效果
+
+demo 项目可以参考[tilestrata-sample-code](https://github.com/zzcyrus/tilestrata-sample-code)
 
 ![](http://blog-img-1255388623.cossh.myqcloud.com/tilestrata-mapnik-result-20190606105844.png)
 
