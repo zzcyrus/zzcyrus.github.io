@@ -24,7 +24,7 @@ ga('send', 'pageview');
     
     
     
-    <title>tilestrata-mapnik插件使用及浅析 | Kaely&#39;s Blog | 迷阵</title>
+    <title>tilestrata-mapnik 插件使用及浅析 | Kaely&#39;s Blog | 迷阵</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
     <meta name="theme-color" content="#3F51B5">
@@ -34,15 +34,15 @@ ga('send', 'pageview');
     <meta name="description" content="tilestrata-mapnik顾名思义，mapnik 作为地图数据源，tilestrata 负责瓦片化的一个插件。">
 <meta name="keywords" content="GIS">
 <meta property="og:type" content="article">
-<meta property="og:title" content="tilestrata-mapnik插件使用及浅析">
+<meta property="og:title" content="tilestrata-mapnik 插件使用及浅析">
 <meta property="og:url" content="http://kael.top/2019/06/11/tilestrata-mapnik/index.html">
 <meta property="og:site_name" content="Kaely&#39;s Blog">
 <meta property="og:description" content="tilestrata-mapnik顾名思义，mapnik 作为地图数据源，tilestrata 负责瓦片化的一个插件。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://blog-img-1255388623.cossh.myqcloud.com/tilestrata-mapnik-result-20190606105844.png">
-<meta property="og:updated_time" content="2019-06-11T04:23:35.733Z">
+<meta property="og:updated_time" content="2019-06-13T08:09:09.818Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="tilestrata-mapnik插件使用及浅析">
+<meta name="twitter:title" content="tilestrata-mapnik 插件使用及浅析">
 <meta name="twitter:description" content="tilestrata-mapnik顾名思义，mapnik 作为地图数据源，tilestrata 负责瓦片化的一个插件。">
 <meta name="twitter:image" content="http://blog-img-1255388623.cossh.myqcloud.com/tilestrata-mapnik-result-20190606105844.png">
     
@@ -118,7 +118,7 @@ ga('send', 'pageview');
         <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
           <i class="icon icon-lg icon-navicon"></i>
         </a>
-        <div class="flex-col header-title ellipsis">tilestrata-mapnik插件使用及浅析</div>
+        <div class="flex-col header-title ellipsis">tilestrata-mapnik 插件使用及浅析</div>
         
         <div class="search-wrap" id="search-wrap">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
@@ -140,7 +140,7 @@ ga('send', 'pageview');
 <header class="content-header post-header">
 
     <div class="container fade-scale">
-        <h1 class="title">tilestrata-mapnik插件使用及浅析</h1>
+        <h1 class="title">tilestrata-mapnik 插件使用及浅析</h1>
         <h5 class="subtitle">
             
                 <time datetime="2019-06-11T03:26:12.000Z" itemprop="datePublished" class="page-time">
@@ -172,7 +172,7 @@ ga('send', 'pageview');
 <article id="post-tilestrata-mapnik" class="post-article article-type-post fade" itemprop="blogPost">
 
     <div class="post-card">
-        <h1 class="post-card-title">tilestrata-mapnik插件使用及浅析</h1>
+        <h1 class="post-card-title">tilestrata-mapnik 插件使用及浅析</h1>
         <div class="post-meta">
             <time class="post-time" title="2019-06-11 11:26:12" datetime="2019-06-11T03:26:12.000Z" itemprop="datePublished">2019-06-11</time>
 
@@ -187,13 +187,15 @@ ga('send', 'pageview');
         <div class="post-content" id="post-content" itemprop="postContent">
             <p><a href="https://github.com/naturalatlas/tilestrata-mapnik" target="_blank" rel="noopener">tilestrata-mapnik</a>顾名思义，mapnik 作为地图数据源，tilestrata 负责瓦片化的一个插件。</p>
 <a id="more"></a>
+<p>demo 项目可以参考<a href="https://github.com/zzcyrus/tilestrata-sample-code" target="_blank" rel="noopener">tilestrata-sample-code</a></p>
 <h1 id="1-安装"><a href="#1-安装" class="headerlink" title="1. 安装"></a>1. 安装</h1><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install mapnik --save</span><br><span class="line">npm install tilestrata-mapnik --save</span><br></pre></td></tr></table></figure>
 <p>虽然最新的 mapnik4.0 已经支持了 nodejs 10 版本，这里仍然建议采用<strong>nodejs 8</strong> 环境，更为稳定，如果安装失败可以考虑切换到<strong>nodejs 8</strong></p>
 <h1 id="2-使用"><a href="#2-使用" class="headerlink" title="2. 使用"></a>2. 使用</h1><p>准备好 mapnik 的 xml 配置文件</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> tilestrata = <span class="built_in">require</span>(<span class="string">"tilestrata"</span>);</span><br><span class="line"><span class="keyword">var</span> mapnik = <span class="built_in">require</span>(<span class="string">"tilestrata-mapnik"</span>);</span><br><span class="line"></span><br><span class="line">server = tilestrata();</span><br><span class="line"></span><br><span class="line">server</span><br><span class="line">  .layer(<span class="string">"layer_name"</span>)</span><br><span class="line">  .route(<span class="string">"tile.png"</span>)</span><br><span class="line">  .use(</span><br><span class="line">    mapnik(&#123;</span><br><span class="line">      pathname: <span class="string">"style/china.xml"</span></span><br><span class="line">    &#125;)</span><br><span class="line">  );</span><br><span class="line"></span><br><span class="line">server.listen(<span class="number">8080</span>);</span><br></pre></td></tr></table></figure>
 <p>tilestrata-mapnik 支持的<code>options</code>有</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  interactivity: <span class="literal">false</span>,</span><br><span class="line">  xml: <span class="literal">null</span>,</span><br><span class="line">  pathname: <span class="literal">null</span>,</span><br><span class="line">  metatile: <span class="number">2</span>,</span><br><span class="line">  resolution: <span class="number">4</span>,</span><br><span class="line">  bufferSize: <span class="number">128</span>,</span><br><span class="line">  tileSize: <span class="number">256</span>,</span><br><span class="line">  scale: <span class="number">1</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="3-效果"><a href="#3-效果" class="headerlink" title="3. 效果"></a>3. 效果</h1><figure class="image-bubble">
+<h1 id="3-效果"><a href="#3-效果" class="headerlink" title="3. 效果"></a>3. 效果</h1><p>demo 项目可以参考<a href="https://github.com/zzcyrus/tilestrata-sample-code" target="_blank" rel="noopener">tilestrata-sample-code</a></p>
+<figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
                     <img src="http://blog-img-1255388623.cossh.myqcloud.com/tilestrata-mapnik-result-20190606105844.png" alt title>
@@ -225,7 +227,7 @@ G --> H[view]</pre>
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2019-06-11T04:23:35.733Z" itemprop="dateUpdated">2019-06-11 12:23:35</time>
+    最后更新时间：<time datetime="2019-06-13T08:09:09.818Z" itemprop="dateUpdated">2019-06-13 16:09:09</time>
 </span><br>
 
 
@@ -258,7 +260,7 @@ G --> H[view]</pre>
 <div class="page-share" id="pageShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://kael.top/2019/06/11/tilestrata-mapnik/&title=《tilestrata-mapnik插件使用及浅析》 — Kaely's Blog&pic=http://kael.top/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://kael.top/2019/06/11/tilestrata-mapnik/&title=《tilestrata-mapnik 插件使用及浅析》 — Kaely's Blog&pic=http://kael.top/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -268,7 +270,7 @@ G --> H[view]</pre>
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://kael.top/2019/06/11/tilestrata-mapnik/&title=《tilestrata-mapnik插件使用及浅析》 — Kaely's Blog&source=tilestrata-mapnik顾名思义，mapnik 作为地图数据源，tilestrata 负责瓦片化的一个插件。" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://kael.top/2019/06/11/tilestrata-mapnik/&title=《tilestrata-mapnik 插件使用及浅析》 — Kaely's Blog&source=tilestrata-mapnik顾名思义，mapnik 作为地图数据源，tilestrata 负责瓦片化的一个插件。" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
@@ -278,7 +280,7 @@ G --> H[view]</pre>
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《tilestrata-mapnik插件使用及浅析》 — Kaely's Blog&url=http://kael.top/2019/06/11/tilestrata-mapnik/&via=http://kael.top" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《tilestrata-mapnik 插件使用及浅析》 — Kaely's Blog&url=http://kael.top/2019/06/11/tilestrata-mapnik/&via=http://kael.top" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
@@ -303,7 +305,14 @@ G --> H[view]</pre>
     </div>
 
     
-<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/06/13/tilestrata-postgismvt/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">tilestrata-postgismvt 插件使用及浅析</h4>
+      </a>
+    </div>
   
 
   
@@ -399,7 +408,7 @@ G --> H[view]</pre>
 <div class="global-share" id="globalShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://kael.top/2019/06/11/tilestrata-mapnik/&title=《tilestrata-mapnik插件使用及浅析》 — Kaely's Blog&pic=http://kael.top/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://kael.top/2019/06/11/tilestrata-mapnik/&title=《tilestrata-mapnik 插件使用及浅析》 — Kaely's Blog&pic=http://kael.top/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -409,7 +418,7 @@ G --> H[view]</pre>
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://kael.top/2019/06/11/tilestrata-mapnik/&title=《tilestrata-mapnik插件使用及浅析》 — Kaely's Blog&source=tilestrata-mapnik顾名思义，mapnik 作为地图数据源，tilestrata 负责瓦片化的一个插件。" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://kael.top/2019/06/11/tilestrata-mapnik/&title=《tilestrata-mapnik 插件使用及浅析》 — Kaely's Blog&source=tilestrata-mapnik顾名思义，mapnik 作为地图数据源，tilestrata 负责瓦片化的一个插件。" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
@@ -419,7 +428,7 @@ G --> H[view]</pre>
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《tilestrata-mapnik插件使用及浅析》 — Kaely's Blog&url=http://kael.top/2019/06/11/tilestrata-mapnik/&via=http://kael.top" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《tilestrata-mapnik 插件使用及浅析》 — Kaely's Blog&url=http://kael.top/2019/06/11/tilestrata-mapnik/&via=http://kael.top" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
