@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
     
 <!-- Google Analytics -->
 <script>
@@ -53,7 +53,7 @@ ga('send', 'pageview');
 <body>
     <div id="loading" class="active"></div>
 
-    <aside id="menu">
+    <aside id="menu"  >
   <div class="inner flex-row-vertical">
     <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
         <i class="icon icon-lg icon-close"></i>
@@ -73,28 +73,28 @@ ga('send', 'pageview');
       <ul class="nav">
         
             <li class="waves-block waves-effect">
-              <a href="/">
+              <a href="/"  >
                 <i class="icon icon-lg icon-home"></i>
                 主页
               </a>
             </li>
         
             <li class="waves-block waves-effect">
-              <a href="/archives">
+              <a href="/archives"  >
                 <i class="icon icon-lg icon-archives"></i>
                 Archives
               </a>
             </li>
         
             <li class="waves-block waves-effect">
-              <a href="/categories">
+              <a href="/categories"  >
                 <i class="icon icon-lg icon-th-list"></i>
                 Categories
               </a>
             </li>
         
             <li class="waves-block waves-effect">
-              <a href="https://github.com/zzcyrus" target="_blank">
+              <a href="https://github.com/zzcyrus" target="_blank" >
                 <i class="icon icon-lg icon-github"></i>
                 Github
               </a>
@@ -151,10 +151,59 @@ ga('send', 'pageview');
     <ul class="post-list">
     
         <li class="post-list-item fade">
-            <article id="post-openlayers-canvas-typhoon" class="article-card article-type-post" itemprop="blogPost">
+            <article id="post-basemap"
+  class="article-card article-type-post" itemprop="blogPost">
 
     <div class="post-meta">
-        <time class="post-time" title="2017-07-31 22:31:02" datetime="2017-07-31T14:31:02.000Z" itemprop="datePublished">2017-07-31</time>
+        <time class="post-time" title="2017-09-17 13:46:08" datetime="2017-09-17T05:46:08.000Z"  itemprop="datePublished">2017-09-17</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Leaflet/">Leaflet</a></li></ul>
+
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/09/17/basemap/">Leaflet多种基础图层加载</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        &nbsp;&nbsp;最近项目中有移动端的开发需求，自然就用到了最轻量级的gis组件——Leaflet，100多k的体积，五脏俱全，丰富的第三方插件，虽然开发者数量上不及大哥级产品Arcigs，但也基本够用，对于esri的自家系统支持好，svg和canvas两种渲染方式，让数据量大的要素图层渲染也不是那么吃力。
+&nbsp;&nbsp;这里把自己对于Leaflet的一些探索研究记录一下，一方面便于自己后期回顾，另一方面也希望和大家一起探讨学习。
+    
+
+        <a href="/2017/09/17/basemap/" class="post-more waves-effect waves-button">
+            阅读全文…
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/FE/">FE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/GIS/">GIS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Leaflet/">Leaflet</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-openlayers-canvas-typhoon"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2017-07-31 22:31:02" datetime="2017-07-31T14:31:02.000Z"  itemprop="datePublished">2017-07-31</time>
 
         
 	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/OpenLayers/">OpenLayers</a></li></ul>
@@ -207,10 +256,11 @@ ga('send', 'pageview');
         </li>
     
         <li class="post-list-item fade">
-            <article id="post-vue-dialog-nested" class="article-card article-type-post" itemprop="blogPost">
+            <article id="post-vue-dialog-nested"
+  class="article-card article-type-post" itemprop="blogPost">
 
     <div class="post-meta">
-        <time class="post-time" title="2017-06-23 22:09:55" datetime="2017-06-23T14:09:55.000Z" itemprop="datePublished">2017-06-23</time>
+        <time class="post-time" title="2017-06-23 22:09:55" datetime="2017-06-23T14:09:55.000Z"  itemprop="datePublished">2017-06-23</time>
 
         
 	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/前端/">前端</a></li></ul>
@@ -281,7 +331,7 @@ ga('send', 'pageview');
                 
                 Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
                 {% if (theme.mermaid.enable)  %}
-                    <script src="https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js"></script>
+                    <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
                     <script>
                         if (window.mermaid) {
                         mermaid.initialize({theme: 'forest'});
