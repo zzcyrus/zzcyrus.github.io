@@ -146,11 +146,7 @@ ga('send', 'pageview');
             ">全部</a>
         
 
-            <a href="/tags/FE/" style="-webkit-order:4;order:4" class="tags-list-item waves-effect waves-button waves-light">FE</a>
-
-        
-
-            <a href="/tags/Vue/" style="-webkit-order:0;order:0" class="tags-list-item waves-effect waves-button waves-light">Vue</a>
+            <a href="/tags/FE/" style="-webkit-order:0;order:0" class="tags-list-item waves-effect waves-button waves-light">FE</a>
 
         
 
@@ -163,6 +159,10 @@ ga('send', 'pageview');
         
 
             <a href="/tags/OpenLayers/" style="-webkit-order:3;order:3" class="tags-list-item waves-effect waves-button waves-light">OpenLayers</a>
+
+        
+
+            <a href="/tags/Vue/" style="-webkit-order:4;order:4" class="tags-list-item waves-effect waves-button waves-light">Vue</a>
 
         
     </nav>
@@ -548,14 +548,14 @@ ga('send', 'pageview');
             <span>
                 
                 Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
-                {% if (theme.mermaid.enable)  %}
-                    <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
-                    <script>
-                        if (window.mermaid) {
-                        mermaid.initialize({theme: 'forest'});
-                        }
-                    </script>
-                {% endif %}
+                
+                <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+                <script>
+                    if (window.mermaid) {
+                    mermaid.initialize({theme: 'forest'});
+                    }
+                </script>
+                
             </span>
         </p>
     </div>

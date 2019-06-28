@@ -453,14 +453,14 @@ ga('send', 'pageview');
             <span>
                 
                 Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
-                {% if (theme.mermaid.enable)  %}
-                    <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
-                    <script>
-                        if (window.mermaid) {
-                        mermaid.initialize({theme: 'forest'});
-                        }
-                    </script>
-                {% endif %}
+                
+                <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+                <script>
+                    if (window.mermaid) {
+                    mermaid.initialize({theme: 'forest'});
+                    }
+                </script>
+                
             </span>
         </p>
     </div>
