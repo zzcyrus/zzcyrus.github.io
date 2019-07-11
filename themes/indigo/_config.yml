@@ -13,8 +13,8 @@ menu:
     url: /
   archives:
     url: /archives
-  # tags:
-  #   url: /tags
+  tags:
+    url: /tags
   th-list:
     text: Categories
     url: /categories
@@ -35,13 +35,13 @@ avatar_link: /
 # 头像背景图
 brand: /img/brand.jpg
 # favicon
-favicon: /favicon.ico
+favicon: /img/favicon.ico
 
 # email
 email: zzcyrus@qq.com
 
 # 设置 Android L Chrome 浏览器状态栏颜色
-color: "#3F51B5"
+color: '#3F51B5'
 
 # 页面标题
 tags_title: Tags
@@ -149,6 +149,6 @@ ICP_license: false
 # mermaid chart
 mermaid:
   enable: true
-  version: "7.1.2"
+  version: '7.1.2'
   options:
     # find more api options from https://github.com/knsv/mermaid/blob/master/src/mermaidAPI.js
