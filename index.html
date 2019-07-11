@@ -41,7 +41,7 @@ ga('send', 'pageview');
     
         <link rel="alternate" type="application/atom+xml" title="Kaely&#39;s Blog" href="/atom.xml">
     
-    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="shortcut icon" href="/img/favicon.ico">
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-material-indigo@latest/css/style.css">
     <script>window.lazyScripts=[]</script>
 
@@ -83,6 +83,13 @@ ga('send', 'pageview');
               <a href="/archives"  >
                 <i class="icon icon-lg icon-archives"></i>
                 Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
               </a>
             </li>
         
@@ -149,6 +156,100 @@ ga('send', 'pageview');
 <div class="container body-wrap">
 
     <ul class="post-list">
+    
+        <li class="post-list-item fade">
+            <article id="post-tilestrata-lru"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2019-07-11 22:51:22" datetime="2019-07-11T14:51:22.000Z"  itemprop="datePublished">2019-07-11</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/TileStrata/">TileStrata</a></li></ul>
+
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2019/07/11/tilestrata-lru/">tilestrata-lru  插件使用及浅析</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        tilestrata-lru插件使用内存来缓存瓦片。所以使用起来需要额外的小心，如果没有仔细的配置它有可能导致内存溢出。但若果你需要在不同的图层或者路径中共享某个资源，这个插件就是为此而生的。
+    
+
+        <a href="/2019/07/11/tilestrata-lru/" class="post-more waves-effect waves-button">
+            阅读全文…
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/GIS/">GIS</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-tilestrata-underzoom"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2019-07-11 22:44:51" datetime="2019-07-11T14:44:51.000Z"  itemprop="datePublished">2019-07-11</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/TileStrata/">TileStrata</a></li></ul>
+
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2019/07/11/tilestrata-underzoom/">tilestrata-underzoom  插件使用及浅析</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        tilestrata-underzoom插件从介绍上看就是在请求高级别瓦片时，用低级别的瓦片进行拼接，而不是直接生产指定级别的瓦片。使用这个插件必须安装依赖node-mapnik。
+    
+
+        <a href="/2019/07/11/tilestrata-underzoom/" class="post-more waves-effect waves-button">
+            阅读全文…
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/GIS/">GIS</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
     
         <li class="post-list-item fade">
             <article id="post-tilestrata-blend"
@@ -526,106 +627,12 @@ ga('send', 'pageview');
 
         </li>
     
-        <li class="post-list-item fade">
-            <article id="post-tilestrata-postgismvt"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2019-06-13 16:02:44" datetime="2019-06-13T08:02:44.000Z"  itemprop="datePublished">2019-06-13</time>
-
-        
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/TileStrata/">TileStrata</a></li></ul>
-
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2019/06/13/tilestrata-postgismvt/">tilestrata-postgismvt 插件使用及浅析</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        tilestrata-postgismvt是一个用来从 PostGIS 数据库中检索出 mvt 格式矢量瓦片的插件。PostGIS 在 2.4.0 版本后支持了直接生成 mvt 数据，这让我们更方便的加工出矢量瓦片。
-    
-
-        <a href="/2019/06/13/tilestrata-postgismvt/" class="post-more waves-effect waves-button">
-            阅读全文…
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/GIS/">GIS</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-tilestrata-mapnik"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2019-06-11 11:26:12" datetime="2019-06-11T03:26:12.000Z"  itemprop="datePublished">2019-06-11</time>
-
-        
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/TileStrata/">TileStrata</a></li></ul>
-
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2019/06/11/tilestrata-mapnik/">tilestrata-mapnik 插件使用及浅析</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        tilestrata-mapnik顾名思义，mapnik 作为地图数据源，tilestrata 负责瓦片化的一个插件。
-    
-
-        <a href="/2019/06/11/tilestrata-mapnik/" class="post-more waves-effect waves-button">
-            阅读全文…
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/GIS/">GIS</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
     </ul>
 
     
 <nav id="page-nav">
     <div class="inner">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">下一页</a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">下一页</a>
     </div>
 </nav>
 

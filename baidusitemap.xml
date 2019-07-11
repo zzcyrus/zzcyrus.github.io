@@ -1,64 +1,70 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>http://kael.top/2019/06/10/osm-postgis-mvt/</loc>
-    <lastmod>2019-07-09</lastmod>
-  </url>  <url>
-    <loc>http://kael.top/2019/07/08/tilestrata-blend/</loc>
-    <lastmod>2019-07-09</lastmod>
-  </url>  <url>
-    <loc>http://kael.top/2019/07/07/tilestrata-dependency/</loc>
-    <lastmod>2019-07-09</lastmod>
-  </url>  <url>
-    <loc>http://kael.top/2019/06/26/tilestrata-headers/</loc>
-    <lastmod>2019-07-09</lastmod>
-  </url>  <url>
-    <loc>http://kael.top/2019/06/23/tilestrata-jsonp/</loc>
-    <lastmod>2019-07-09</lastmod>
-  </url>  <url>
-    <loc>http://kael.top/2019/06/11/tilestrata-mapnik/</loc>
-    <lastmod>2019-07-09</lastmod>
-  </url>  <url>
-    <loc>http://kael.top/2019/07/02/tilestrata-postgis-geojson-tiles/</loc>
-    <lastmod>2019-07-09</lastmod>
-  </url>  <url>
-    <loc>http://kael.top/2019/06/13/tilestrata-postgismvt/</loc>
-    <lastmod>2019-07-09</lastmod>
-  </url>  <url>
-    <loc>http://kael.top/2019/07/07/tilestrata-vtile-composite/</loc>
-    <lastmod>2019-07-09</lastmod>
-  </url>  <url>
     <loc>http://kael.top/2019/07/05/tilestrata-vtile-raster/</loc>
-    <lastmod>2019-07-09</lastmod>
+    <lastmod>2019-07-11</lastmod>
   </url>  <url>
     <loc>http://kael.top/2019/07/04/tilestrata-vtile/</loc>
-    <lastmod>2019-07-09</lastmod>
+    <lastmod>2019-07-11</lastmod>
   </url>  <url>
-    <loc>http://kael.top/2019/01/20/mongoDB-geospatial/</loc>
-    <lastmod>2019-07-09</lastmod>
+    <loc>http://kael.top/2019/06/10/osm-postgis-mvt/</loc>
+    <lastmod>2019-07-11</lastmod>
   </url>  <url>
-    <loc>http://kael.top/2019/06/06/openstreetmap-carto-map/</loc>
-    <lastmod>2019-07-09</lastmod>
+    <loc>http://kael.top/2019/07/08/tilestrata-blend/</loc>
+    <lastmod>2019-07-11</lastmod>
   </url>  <url>
-    <loc>http://kael.top/2019/03/12/osm-PostGIS-setup/</loc>
-    <lastmod>2019-07-09</lastmod>
+    <loc>http://kael.top/2019/07/07/tilestrata-dependency/</loc>
+    <lastmod>2019-07-11</lastmod>
   </url>  <url>
-    <loc>http://kael.top/2017/09/17/basemap/</loc>
-    <lastmod>2019-07-09</lastmod>
+    <loc>http://kael.top/2019/06/26/tilestrata-headers/</loc>
+    <lastmod>2019-07-11</lastmod>
   </url>  <url>
-    <loc>http://kael.top/2017/07/31/openlayers-canvas-typhoon/</loc>
-    <lastmod>2019-07-09</lastmod>
+    <loc>http://kael.top/2019/06/23/tilestrata-jsonp/</loc>
+    <lastmod>2019-07-11</lastmod>
+  </url>  <url>
+    <loc>http://kael.top/2019/07/11/tilestrata-lru/</loc>
+    <lastmod>2019-07-11</lastmod>
+  </url>  <url>
+    <loc>http://kael.top/2019/06/11/tilestrata-mapnik/</loc>
+    <lastmod>2019-07-11</lastmod>
+  </url>  <url>
+    <loc>http://kael.top/2019/07/02/tilestrata-postgis-geojson-tiles/</loc>
+    <lastmod>2019-07-11</lastmod>
+  </url>  <url>
+    <loc>http://kael.top/2019/06/13/tilestrata-postgismvt/</loc>
+    <lastmod>2019-07-11</lastmod>
+  </url>  <url>
+    <loc>http://kael.top/2019/07/11/tilestrata-underzoom/</loc>
+    <lastmod>2019-07-11</lastmod>
+  </url>  <url>
+    <loc>http://kael.top/2019/07/07/tilestrata-vtile-composite/</loc>
+    <lastmod>2019-07-11</lastmod>
   </url>  <url>
     <loc>http://kael.top/2017/09/17/plugins/</loc>
-    <lastmod>2019-07-09</lastmod>
+    <lastmod>2019-07-11</lastmod>
   </url>  <url>
     <loc>http://kael.top/2017/11/12/vector-tile-openlayers-try/</loc>
-    <lastmod>2019-07-09</lastmod>
+    <lastmod>2019-07-11</lastmod>
   </url>  <url>
     <loc>http://kael.top/2017/06/23/vue-dialog-nested/</loc>
-    <lastmod>2019-07-09</lastmod>
+    <lastmod>2019-07-11</lastmod>
   </url>  <url>
     <loc>http://kael.top/2018/06/29/Vue-Parent-and-Child-lifecycle-hooks/</loc>
-    <lastmod>2019-07-09</lastmod>
+    <lastmod>2019-07-11</lastmod>
+  </url>  <url>
+    <loc>http://kael.top/2019/01/20/mongoDB-geospatial/</loc>
+    <lastmod>2019-07-11</lastmod>
+  </url>  <url>
+    <loc>http://kael.top/2019/06/06/openstreetmap-carto-map/</loc>
+    <lastmod>2019-07-11</lastmod>
+  </url>  <url>
+    <loc>http://kael.top/2019/03/12/osm-PostGIS-setup/</loc>
+    <lastmod>2019-07-11</lastmod>
+  </url>  <url>
+    <loc>http://kael.top/2017/09/17/basemap/</loc>
+    <lastmod>2019-07-11</lastmod>
+  </url>  <url>
+    <loc>http://kael.top/2017/07/31/openlayers-canvas-typhoon/</loc>
+    <lastmod>2019-07-11</lastmod>
   </url>
 </urlset>
