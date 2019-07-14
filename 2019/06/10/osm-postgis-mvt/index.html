@@ -24,7 +24,7 @@ ga('send', 'pageview');
     
     
     
-    <title>用PostGIS生成mvt格式的矢量瓦片 | Kaely&#39;s Blog | 迷阵</title>
+    <title>用PostGIS生成mvt格式的矢量瓦片 | Kaely&#39;s Blog | 生活就是迷阵</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
     <meta name="theme-color" content="#3F51B5">
@@ -42,7 +42,7 @@ ga('send', 'pageview');
 <meta property="og:image" content="http://blog-img-1255388623.cossh.myqcloud.com/osm_mvt_postgis.png">
 <meta property="og:image" content="http://blog-img-1255388623.cossh.myqcloud.com/asmvtgeom_result.png">
 <meta property="og:image" content="http://blog-img-1255388623.cossh.myqcloud.com/mvt_preview.png">
-<meta property="og:updated_time" content="2019-07-11T15:20:18.136Z">
+<meta property="og:updated_time" content="2019-07-14T13:07:38.674Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="用PostGIS生成mvt格式的矢量瓦片">
 <meta name="twitter:description" content="PostGIS 从 2.4.0 版本开始支持通过 box 生成 mvt 数据，我们用尽可能简单的方法搭建一个生产 mvt 数据的测试数据库。">
@@ -74,7 +74,7 @@ ga('send', 'pageview');
         </a>
         <hgroup class="introduce">
           <h5 class="nickname">Kaely</h5>
-          <a href="mailto:zzcyrus@qq.com" title="zzcyrus@qq.com" class="mail">zzcyrus@qq.com</a>
+          <a href="mailto:zzcyrus@outlook.com" title="zzcyrus@outlook.com" class="mail">zzcyrus@outlook.com</a>
         </hgroup>
       </div>
     </div>
@@ -241,7 +241,7 @@ ga('send', 'pageview');
 <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> ST_AsMVT(q, <span class="string">'osm_mvt'</span>, <span class="number">256</span>, <span class="string">'geom'</span>) <span class="keyword">AS</span> mvt</span><br><span class="line"><span class="keyword">FROM</span> (</span><br><span class="line">  <span class="keyword">SELECT</span> ST_AsMVTGeom(</span><br><span class="line">    ST_Transform(</span><br><span class="line">	  import.osm_buildings.geometry, <span class="number">3857</span>),</span><br><span class="line">	  TileBBox(<span class="number">14</span>, <span class="number">12917</span>, <span class="number">6430</span>, <span class="number">3857</span>),</span><br><span class="line">	  <span class="number">256</span>,</span><br><span class="line">	  <span class="number">10</span>,</span><br><span class="line">      <span class="literal">true</span></span><br><span class="line">  ) geom , <span class="keyword">name</span></span><br><span class="line">  <span class="keyword">FROM</span> import.osm_buildings</span><br><span class="line">  <span class="keyword">WHERE</span> ST_Intersects(TileBBox(<span class="number">14</span>, <span class="number">12917</span>, <span class="number">6430</span>, <span class="number">3857</span>), import.osm_buildings.geometry)</span><br><span class="line">) <span class="keyword">AS</span> q</span><br></pre></td></tr></table></figure>
 <h1 id="6-数据展示"><a href="#6-数据展示" class="headerlink" title="6. 数据展示"></a>6. 数据展示</h1><p>完整的地图区域数据前端展示可以使用 tilestrata 这个服务端工具，配合 tilestrata-postgismvt 插件就可以生成供地图调用的瓦片。</p>
 <p>具体的 demo 项目可以参考<a href="https://github.com/zzcyrus/tilestrata-sample-code" target="_blank" rel="noopener">tilestrata-sample-code</a></p>
-<!-- 对应的文章可以看一下这篇[放水淀粉](www.qq.com) -->
+<p>对应的文章可以看一下这篇<a href="http://kael.top/2019/06/13/tilestrata-postgismvt/">tilestrata-postgismvt 使用</a></p>
 <p>clone 项目<a href="https://github.com/zzcyrus/tilestrata-sample-code" target="_blank" rel="noopener">tilestrata-sample-code</a>，将项目里面<code>src/mvt/</code>目录下<a href="https://github.com/zzcyrus/tilestrata-sample-code/blob/master/src/mvt/index.js" target="_blank" rel="noopener">index.js</a>的<code>pgConfig</code>改成你的设置</p>
 <p>安装依赖，启动项目</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm install</span><br><span class="line">npm start</span><br></pre></td></tr></table></figure>
@@ -262,7 +262,7 @@ ga('send', 'pageview');
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2019-07-11T15:20:18.136Z" itemprop="dateUpdated">2019-07-11 23:20:18</time>
+    最后更新时间：<time datetime="2019-07-14T13:07:38.674Z" itemprop="dateUpdated">2019-07-14 21:07:38</time>
 </span><br>
 
 
