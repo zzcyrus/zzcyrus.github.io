@@ -4,7 +4,7 @@
 
 # Site
 title: Kaely's Blog
-subtitle: 迷阵
+subtitle: 生活就是迷阵
 description:
 author: Kaely
 language: zh-CN
@@ -48,7 +48,7 @@ highlight:
 # per_page: Posts displayed per page. (0 = disable pagination)
 # order_by: Posts order. (Order by date descending by default)
 index_generator:
-  path: ""
+  path: ''
   per_page: 10
   order_by: -date
 
