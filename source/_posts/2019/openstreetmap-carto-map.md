@@ -69,7 +69,7 @@ sudo apt-get install fonts-noto-cjk fonts-noto-hinted fonts-noto-unhinted fonts-
 
 具体的 demo 项目可以参考[tilestrata-sample-code](https://github.com/zzcyrus/tilestrata-sample-code)
 
-<!-- 对应的文章可以看一下这篇[放水淀粉](www.qq.com) -->
+对应的文章可以看一下这篇[tilestrata-mapnik 使用](https://kael.top/2019/06/11/tilestrata-mapnik/)
 
 ## 6.1 准备 mapnik 配置文件
 

@@ -125,7 +125,7 @@ FROM (
 
 具体的 demo 项目可以参考[tilestrata-sample-code](https://github.com/zzcyrus/tilestrata-sample-code)
 
-<!-- 对应的文章可以看一下这篇[放水淀粉](www.qq.com) -->
+对应的文章可以看一下这篇[tilestrata-postgismvt 使用](http://kael.top/2019/06/13/tilestrata-postgismvt/)
 
 clone 项目[tilestrata-sample-code](https://github.com/zzcyrus/tilestrata-sample-code)，将项目里面`src/mvt/`目录下[index.js](https://github.com/zzcyrus/tilestrata-sample-code/blob/master/src/mvt/index.js)的`pgConfig`改成你的设置
 
