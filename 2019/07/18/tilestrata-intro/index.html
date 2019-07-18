@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    
+<!-- Google Analytics -->
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'true', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src="https://www.google-analytics.com/analytics.js"></script>
+<!-- End Google Analytics -->
+
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    <meta name="google-site-verification" content="true">
+    
+    
+    
+    <title>tilestrata 入门指南 | Kaely&#39;s Blog | 生活就是迷阵</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="GIS">
+    <meta name="description" content="简单来说Tilestrata就是一个瓦片地图服务器。根据其自身的介绍，它有如下的特点：零配置，简洁，测试覆盖率高，性能高，拓展性强。可以通过TileStrata Balancer实现负载均衡，无缝伸缩。可以通过内置控制台去调试查看渲染时间。">
+<meta name="keywords" content="GIS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="tilestrata 入门指南">
+<meta property="og:url" content="http://kael.top/2019/07/18/tilestrata-intro/index.html">
+<meta property="og:site_name" content="Kaely&#39;s Blog">
+<meta property="og:description" content="简单来说Tilestrata就是一个瓦片地图服务器。根据其自身的介绍，它有如下的特点：零配置，简洁，测试覆盖率高，性能高，拓展性强。可以通过TileStrata Balancer实现负载均衡，无缝伸缩。可以通过内置控制台去调试查看渲染时间。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://camo.githubusercontent.com/67abe0f563502d78ef12b4ce20cba57222dfcf6f/68747470733a2f2f63646e2e7261776769742e636f6d2f6e61747572616c61746c61732f74696c657374726174612f6d61737465722f6d6973632f67726170686963732f726571666c6f772e737667">
+<meta property="og:updated_time" content="2019-07-18T10:20:26.639Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="tilestrata 入门指南">
+<meta name="twitter:description" content="简单来说Tilestrata就是一个瓦片地图服务器。根据其自身的介绍，它有如下的特点：零配置，简洁，测试覆盖率高，性能高，拓展性强。可以通过TileStrata Balancer实现负载均衡，无缝伸缩。可以通过内置控制台去调试查看渲染时间。">
+<meta name="twitter:image" content="https://camo.githubusercontent.com/67abe0f563502d78ef12b4ce20cba57222dfcf6f/68747470733a2f2f63646e2e7261776769742e636f6d2f6e61747572616c61746c61732f74696c657374726174612f6d61737465722f6d6973632f67726170686963732f726571666c6f772e737667">
+    
+        <link rel="alternate" type="application/atom+xml" title="Kaely&#39;s Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu"  >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Kaely</h5>
+          <a href="mailto:zzcyrus@outlook.com" title="zzcyrus@outlook.com" class="mail">zzcyrus@outlook.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/zzcyrus" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">tilestrata 入门指南</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">tilestrata 入门指南</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-07-18T10:13:53.000Z" itemprop="datePublished" class="page-time">
+  2019-07-18
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/TileStrata/">TileStrata</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-主要结构"><span class="post-toc-text">1. 主要结构</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-常用插件"><span class="post-toc-text">2. 常用插件</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-基本使用"><span class="post-toc-text">3. 基本使用</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-1-不定义瓦片名称"><span class="post-toc-text">3.1 不定义瓦片名称</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-2-整合-Express-js-Connect"><span class="post-toc-text">3.2 整合 Express.js / Connect</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#4-使用说明"><span class="post-toc-text">4. 使用说明</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-1-支持-Metatile-的负载均衡和图层共享"><span class="post-toc-text">4.1 支持 Metatile 的负载均衡和图层共享</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-2-重建瓦片缓存"><span class="post-toc-text">4.2 重建瓦片缓存</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-1-健康检查"><span class="post-toc-text">4.1 健康检查</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-tilestrata-intro"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">tilestrata 入门指南</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-07-18 18:13:53" datetime="2019-07-18T10:13:53.000Z"  itemprop="datePublished">2019-07-18</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/TileStrata/">TileStrata</a></li></ul>
+
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>简单来说<a href="https://github.com/naturalatlas/tilestrata" target="_blank" rel="noopener"><strong>Tilestrata</strong></a>就是一个瓦片地图服务器。根据其自身的介绍，它有如下的特点：零配置，简洁，测试覆盖率高，性能高，拓展性强。可以通过<a href="https://github.com/naturalatlas/tilestrata-balancer" target="_blank" rel="noopener">TileStrata Balancer</a>实现负载均衡，无缝伸缩。可以通过内置<a href="https://github.com/naturalatlas/tilestrata#profiling--debugging-performance" target="_blank" rel="noopener">控制台</a>去调试查看渲染时间。</p>
+<a id="more"></a>
+<p>本文主要基于官方的文档介绍及部分使用心得，旨在帮助大家快速上手，进阶使用会后续说明。</p>
+<p>安装：</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">$ npm install tilestrata --save</span><br></pre></td></tr></table></figure>
+<h2 id="1-主要结构"><a href="#1-主要结构" class="headerlink" title="1. 主要结构"></a>1. 主要结构</h2><p>TileStrata 的结构上有以下五个主要组成部分，通常用来实现各种插件，我个人习惯把它们看作是生命周期流程，正是由于这些 hook 的存在，我们就可以在 TileStrata 生命周期的各个阶段去实现各种巧妙的功能：</p>
+<ul>
+<li><code>request hook</code> – 请求预处理</li>
+<li><code>cache</code> – 缓存控制</li>
+<li><code>provider</code> – 数据源，比如 mapnik</li>
+<li><code>transform</code> – 最关键的阶段，可以在瓦片输出的过程中对其做各种加工，比如旋转，染色</li>
+<li><code>response hook</code> – 响应后处理，比如 headers、jsonp 插件</li>
+</ul>
+<p>官方提供了一张很直观的流程图：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://camo.githubusercontent.com/67abe0f563502d78ef12b4ce20cba57222dfcf6f/68747470733a2f2f63646e2e7261776769742e636f6d2f6e61747572616c61746c61732f74696c657374726174612f6d61737465722f6d6973632f67726170686963732f726571666c6f772e737667" alt title>
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<h2 id="2-常用插件"><a href="#2-常用插件" class="headerlink" title="2. 常用插件"></a>2. 常用插件</h2><ul>
+<li><a href="https://github.com/naturalatlas/tilestrata-mapnik" target="_blank" rel="noopener">tilestrata-mapnik</a> – 使用 <a href="http://mapnik.org/" target="_blank" rel="noopener">mapnik</a>做数据源进行渲染</li>
+<li><a href="https://github.com/naturalatlas/tilestrata-disk" target="_blank" rel="noopener">tilestrata-disk</a> – 服务端缓存插件</li>
+<li><a href="https://github.com/naturalatlas/tilestrata-dependency" target="_blank" rel="noopener">tilestrata-dependency</a> – 直接使用其他定义好的图层来获取数据，而不是定义一个 provider</li>
+<li><a href="https://github.com/naturalatlas/tilestrata-sharp" target="_blank" rel="noopener">tilestrata-sharp</a> – 用 <a href="https://www.npmjs.com/package/sharp" target="_blank" rel="noopener">libvips</a>来做一些图片的处理，比如压缩，旋转，转换类型</li>
+<li><a href="https://github.com/naturalatlas/tilestrata-gm" target="_blank" rel="noopener">tilestrata-gm</a> – 使用 <a href="https://www.npmjs.com/package/gm" target="_blank" rel="noopener">GraphicsMagick</a>来对图片做处理，大体上和上面类似</li>
+<li><a href="https://github.com/naturalatlas/tilestrata-headers" target="_blank" rel="noopener">tilestrata-headers</a> – 设置请求的响应头，可以解决跨域问题</li>
+<li><a href="https://github.com/naturalatlas/tilestrata-blend" target="_blank" rel="noopener">tilestrata-blend</a> – 合成多个瓦片图层为一个图层，比方组合道路+建筑为一个图层</li>
+<li><a href="https://github.com/naturalatlas/tilestrata-jsonp" target="_blank" rel="noopener">tilestrata-jsonp</a> – 使 utfgrids 类的 json 数据支持 jsonp 请求方式</li>
+<li><a href="https://github.com/naturalatlas/tilestrata-datadog" target="_blank" rel="noopener">tilestrata-datadog</a> – 继承数据到<a href="https://www.datadoghq.com/" target="_blank" rel="noopener">Datadog</a>服务</li>
+<li><a href="https://github.com/naturalatlas/tilestrata-utfmerge" target="_blank" rel="noopener">tilestrata-utfmerge</a> – 合并两个 utfgrids 类图层为一个图层</li>
+<li><a href="https://github.com/naturalatlas/tilestrata-vtile" target="_blank" rel="noopener">tilestrata-vtile</a> – 输出 mapnik 数据为矢量切片 pbf 格式</li>
+<li><a href="https://github.com/naturalatlas/tilestrata-vtile-raster" target="_blank" rel="noopener">tilestrata-vtile-raster</a> – 将上面的 pbf 的是瓦片转换成栅格瓦片</li>
+<li><a href="https://github.com/naturalatlas/tilestrata-vtile-composite" target="_blank" rel="noopener">tilestrata-vtile-composite</a> – 合并多个矢量瓦片图层</li>
+<li><a href="https://github.com/naturalatlas/tilestrata-proxy" target="_blank" rel="noopener">tilestrata-proxy</a> – 为其他瓦片服务器提供代理</li>
+<li><a href="https://github.com/naturalatlas/tilestrata-lru" target="_blank" rel="noopener">tilestrata-lru</a> – 在内存中缓存瓦片数据</li>
+<li><a href="https://github.com/naturalatlas/tilestrata-etag" target="_blank" rel="noopener">tilestrata-etag</a> – 让瓦片图层支持自定义 ETag 标签，一般用来处理 http 缓存</li>
+<li><a href="https://github.com/naturalatlas/tilestrata-bing" target="_blank" rel="noopener">tilestrata-bing</a> – Bing 地图的 provider</li>
+<li><a href="https://github.com/naturalatlas/tilestrata-underzoom" target="_blank" rel="noopener">tilestrata-underzoom</a> - Build mosaics of higher-zoom tiles</li>
+<li><a href="https://github.com/Stezii/tilestrata-postgismvt" target="_blank" rel="noopener">tilestrata-postgismvt</a> – 使用 PostGIS 数据库输出 mvt 格式的瓦片</li>
+<li><a href="https://github.com/naturalatlas/tilestrata-postgis-geojson-tiles" target="_blank" rel="noopener">tilestrata-postgis-geojson-tiles</a> – 使用 PostGIS 数据库输出 GeoJSON 格式的瓦片</li>
+</ul>
+<h2 id="3-基本使用"><a href="#3-基本使用" class="headerlink" title="3. 基本使用"></a>3. 基本使用</h2><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> tilestrata = <span class="built_in">require</span>(<span class="string">'tilestrata'</span>)</span><br><span class="line"><span class="keyword">var</span> disk = <span class="built_in">require</span>(<span class="string">'tilestrata-disk'</span>)</span><br><span class="line"><span class="keyword">var</span> sharp = <span class="built_in">require</span>(<span class="string">'tilestrata-sharp'</span>)</span><br><span class="line"><span class="keyword">var</span> mapnik = <span class="built_in">require</span>(<span class="string">'tilestrata-mapnik'</span>)</span><br><span class="line"><span class="keyword">var</span> dependency = <span class="built_in">require</span>(<span class="string">'tilestrata-dependency'</span>)</span><br><span class="line"><span class="keyword">var</span> strata = tilestrata()</span><br><span class="line"></span><br><span class="line"><span class="comment">// 定义一个图层</span></span><br><span class="line">strata</span><br><span class="line">  .layer(<span class="string">'layerName'</span>)</span><br><span class="line">  <span class="comment">// 设置第一个瓦片路径</span></span><br><span class="line">  .route(<span class="string">'tileName.png'</span>)</span><br><span class="line">  <span class="comment">// 设置缓存目录</span></span><br><span class="line">  .use(disk.cache(&#123; <span class="attr">dir</span>: <span class="string">'/var/lib/tiles/basemap'</span> &#125;))</span><br><span class="line">  <span class="comment">// 设置数据源mapnik</span></span><br><span class="line">  .use(</span><br><span class="line">    mapnik(&#123;</span><br><span class="line">      pathname: <span class="string">'/path/to/map.xml'</span>,</span><br><span class="line">      tileSize: <span class="number">512</span>,</span><br><span class="line">      scale: <span class="number">2</span></span><br><span class="line">    &#125;)</span><br><span class="line">  )</span><br><span class="line">  <span class="comment">// 设置第二个瓦片路径</span></span><br><span class="line">  .route(<span class="string">'tileSharp.png'</span>)</span><br><span class="line">  .use(disk.cache(&#123; <span class="attr">dir</span>: <span class="string">'/var/lib/tiles/basemap'</span> &#125;))</span><br><span class="line">  <span class="comment">// 用dependency插件直接使用layerName的源</span></span><br><span class="line">  .use(dependency(<span class="string">'layerName'</span>, <span class="string">'tileName.png'</span>))</span><br><span class="line">  <span class="comment">// 用sharp插件resize每个瓦片的大小</span></span><br><span class="line">  .use(</span><br><span class="line">    sharp(<span class="function"><span class="keyword">function</span>(<span class="params">image, sharp</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> image.resize(<span class="number">256</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">  )</span><br><span class="line"></span><br><span class="line"><span class="comment">// 启动服务</span></span><br><span class="line">strata.listen(<span class="number">8080</span>)</span><br></pre></td></tr></table></figure>
+<p>服务启动后，可以通过下面的地址来访问瓦片数据：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">/layerName/:z/:x:/:y/tileName.png</span><br></pre></td></tr></table></figure>
+<h3 id="3-1-不定义瓦片名称"><a href="#3-1-不定义瓦片名称" class="headerlink" title="3.1 不定义瓦片名称"></a>3.1 不定义瓦片名称</h3><p>从 <a href="https://github.com/naturalatlas/tilestrata/releases/tag/v2.1.0" target="_blank" rel="noopener">2.1.0</a>版本开始, 在设置<code>route</code>名称的时候，可以直接采用下面的形式，更加符合通用的瓦片格式：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">.route(<span class="string">'*.png'</span>) <span class="comment">// /layer/0/0/0.png</span></span><br><span class="line">.route(<span class="string">'*@2x.png'</span>) <span class="comment">// /layer/0/0/0@2x.png</span></span><br></pre></td></tr></table></figure>
+<h3 id="3-2-整合-Express-js-Connect"><a href="#3-2-整合-Express-js-Connect" class="headerlink" title="3.2 整合 Express.js / Connect"></a>3.2 整合 <a href="http://expressjs.com/" target="_blank" rel="noopener">Express.js</a> / <a href="https://github.com/senchalabs/connect" target="_blank" rel="noopener">Connect</a></h3><p>TileStrata 可以定义成 Express 的一个中间件去使用，不必通过执行<code>strata.listen(8080)</code>来启动一个 server 服务，</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> tilestrata = <span class="built_in">require</span>(<span class="string">'tilestrata'</span>)</span><br><span class="line"><span class="keyword">var</span> strata = tilestrata()</span><br><span class="line">strata.layer(<span class="string">'basemap'</span>) <span class="comment">/* ... */</span></span><br><span class="line">strata.layer(<span class="string">'contours'</span>) <span class="comment">/* ... */</span></span><br><span class="line"></span><br><span class="line">app.use(</span><br><span class="line">  tilestrata.middleware(&#123;</span><br><span class="line">    server: strata,</span><br><span class="line">    prefix: <span class="string">'/maps'</span></span><br><span class="line">  &#125;)</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<h2 id="4-使用说明"><a href="#4-使用说明" class="headerlink" title="4. 使用说明"></a>4. 使用说明</h2><h3 id="4-1-支持-Metatile-的负载均衡和图层共享"><a href="#4-1-支持-Metatile-的负载均衡和图层共享" class="headerlink" title="4.1 支持 Metatile 的负载均衡和图层共享"></a>4.1 支持 Metatile 的负载均衡和图层共享</h3><p>TileStrata 从 <a href="https://github.com/naturalatlas/tilestrata/releases/tag/v2.0.0" target="_blank" rel="noopener">2.0.0</a> 版本开始支持集成<a href="https://github.com/naturalatlas/tilestrata-balancer" target="_blank" rel="noopener">TileStrata Balancer</a>, 这是一个专门针对瓦片服务中的<a href="http://wiki.openstreetmap.org/wiki/Meta_tiles" target="_blank" rel="noopener">metatiles</a>设计的弹性负载均衡器，一般的负载均衡器并没有<code>metatiles</code>这个概念，所以会简单的把瓦片请求的分散到多个服务器，这样会导致冗余的渲染，不仅速度慢还会造成服务器资源浪费。</p>
+<p>需要额外注意的是，均衡器并不会假设负载池中的所有服务器都提供了相同的图层， 它会持续追踪每个节点上提供的所有的图层，因此他知道某个图层明确的访问路径。</p>
+<ul>
+<li><strong>Fully elastic</strong> （最小化配置）</li>
+<li><strong>Consistent routing</strong> (提高本地缓存命中率)</li>
+<li><strong>Metatile-aware</strong> (防止冗余渲染)</li>
+<li><strong>Layer-aware</strong> (支持图层的异构分布)</li>
+</ul>
+<p><a href="https://github.com/naturalatlas/tilestrata-balancer" target="_blank" rel="noopener"><strong>TileStrata Balancer 详细文档 →</strong></a></p>
+<h3 id="4-2-重建瓦片缓存"><a href="#4-2-重建瓦片缓存" class="headerlink" title="4.2 重建瓦片缓存"></a>4.2 重建瓦片缓存</h3><p>在更新了图层的样式或者数据源后，你需要更新瓦片。这时候不必立刻删掉所有旧缓存，可以在请求头中设置<code>X-TileStrata-SkipCache</code>，逐步请求这些瓦片让服务器重新构建它们。<a href="https://github.com/naturalatlas/tilemantle" target="_blank" rel="noopener">TileMantle</a>工作可以让这个过程十分简单：</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">npm install -g tilemantle</span><br><span class="line">tilemantle http://myhost.com/mylayer/&#123;z&#125;/&#123;x&#125;/&#123;y&#125;/t.png \</span><br><span class="line">    -p 44.9457507,-109.5939822 -b 30mi -z 10-14 \</span><br><span class="line">    -H <span class="string">"X-TileStrata-SkipCache:mylayer/t.png"</span></span><br></pre></td></tr></table></figure>
+<p>如果你使用了 <a href="https://github.com/naturalatlas/tilestrata-dependency" target="_blank" rel="noopener">tilestrata-dependency</a> 插件, 请求头则需要设置成如下形式：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">X-TileStrata-SkipCache:*</span><br><span class="line">X-TileStrata-SkipCache:[layer]/[file],[layer]/[file],...</span><br></pre></td></tr></table></figure>
+<p>在一些高级的使用场景中，为了确保瓦片在缓存实际写入文件系统之前不要从服务器返回请求，需要额外做如下设置：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">X-TileStrata-CacheWait:1</span><br></pre></td></tr></table></figure>
+<h3 id="4-1-健康检查"><a href="#4-1-健康检查" class="headerlink" title="4.1 健康检查"></a>4.1 健康检查</h3><p>TileStrata 包含一个名为<code>/health</code>内置路径，如果服务器连接正常，你会收到<code>200 OK</code>的返回值。这可以用来自定义一些错误和成功提醒，设置想要的返回值。只要在初始化 tilestrata 时，给选项中的 healthy 设置一个回调函数即可。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 不健康状态</span></span><br><span class="line"><span class="keyword">var</span> strata = tilestrata(&#123;</span><br><span class="line">  healthy: <span class="function"><span class="keyword">function</span>(<span class="params">callback</span>) </span>&#123;</span><br><span class="line">    callback(<span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'CPU is too high'</span>), &#123; <span class="attr">loadavg</span>: <span class="number">3</span> &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 错误信息'CPU is too high'会包装在message字段中返回</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 健康状态</span></span><br><span class="line"><span class="keyword">var</span> strata = tilestrata(&#123;</span><br><span class="line">  healthy: <span class="function"><span class="keyword">function</span>(<span class="params">callback</span>) </span>&#123;</span><br><span class="line">    callback(<span class="literal">null</span>, &#123; <span class="attr">loadavg</span>: <span class="number">1</span> &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 正确的返回值中将会额外的多一个loadavg字段，这将是你自定义的内容</span></span><br></pre></td></tr></table></figure>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2019-07-18T10:20:26.639Z" itemprop="dateUpdated">2019-07-18 18:20:26</time>
+</span><br>
+
+
+        
+    </div>
+    <footer>
+        <a href="http://kael.top">
+            <img src="/img/avatar.jpg" alt="Kaely">
+            Kaely
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/GIS/">GIS</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://kael.top/2019/07/18/tilestrata-intro/&title=《tilestrata 入门指南》 — Kaely's Blog&pic=http://kael.top/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://kael.top/2019/07/18/tilestrata-intro/&title=《tilestrata 入门指南》 — Kaely's Blog&source=简单来说Tilestrata就是一个瓦片地图服务器。根据其自身的介绍，它有如下的特点：零配置，简洁，测试覆盖率高，性能高，拓展性强。可以通过TileStr..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://kael.top/2019/07/18/tilestrata-intro/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《tilestrata 入门指南》 — Kaely's Blog&url=http://kael.top/2019/07/18/tilestrata-intro/&via=http://kael.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://kael.top/2019/07/18/tilestrata-intro/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/07/15/tilestrata-disk/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">tilestrata-disk 插件使用及浅析</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="YoYo"></div>
+    <script src="https://yoyo-1255388623.cos.ap-shanghai.myqcloud.com/index.js"></script>
+</section>
+
+    
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Kaely &copy; 2016 - 2019</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+                
+                <script src='https://cdn.jsdelivr.net/npm/mermaid@7.1.2/dist/mermaid.min.js'></script>
+                <script>
+                    if (window.mermaid) {
+                    mermaid.initialize({theme: 'forest'});
+                    }
+                </script>
+                
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://kael.top/2019/07/18/tilestrata-intro/&title=《tilestrata 入门指南》 — Kaely's Blog&pic=http://kael.top/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://kael.top/2019/07/18/tilestrata-intro/&title=《tilestrata 入门指南》 — Kaely's Blog&source=简单来说Tilestrata就是一个瓦片地图服务器。根据其自身的介绍，它有如下的特点：零配置，简洁，测试覆盖率高，性能高，拓展性强。可以通过TileStr..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://kael.top/2019/07/18/tilestrata-intro/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《tilestrata 入门指南》 — Kaely's Blog&url=http://kael.top/2019/07/18/tilestrata-intro/&via=http://kael.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://kael.top/2019/07/18/tilestrata-intro/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACOklEQVR42u3ay27DMAxEUf3/T7tAVwEKCTNDuYio61WQxI/jxYASOYZ8PL/H5+fPb9b/+Xso/x9vHDBgwDiWseuW60eZXW39q/JsMGDAuIehhOz6LCUus1ezvg4MGDBguKGcRfOaBwMGDBj1wNVvli2GYcCAASMLUz1SK7BX1uIwYMA4kJE1Bv7n8+v9DRgwYHw944kOvQ2wDkflLOl5YMCA0Zqhb+jriZclpF4mbnsIGDBgNGJkW//ur9lwmBG4MGDAOJahb5O50akPZGRl5dDfBwwYMA5n7B25qGzxZ2XiK5MjMGDA+DLGOs7cYm5vHirbcENZ3cKAAeNwhtsNzG6T4UtXgAEDRiOGsuysbOtXtt70whQGDBi9GdkAhDvgpQeu+1KMChQGDBiHM/ST9YjcvChVghsGDBitGfpSU9kscws+N743dGVhwIBxFEOPPH0x6ZaGWRxP59pgwIDRjlF5xF2DXO69plEOAwaMpox6iaZHrV5W2lt7MGDAaM3Ihi3ch9D7EvoSesPMCAwYMI5i6M3FbEuu8mqMohMGDBgXMNwirzL45V7NCFwYMGA0ZVROc/8j1afyxhwMGDBuYDzmoRSX+vvLGp/TxgAMGDCaMtywyy4hjUpEzQkYMGDcw1BCNgtEd6uuMn4BAwaMGxhu8LmbZVn4GktfGDBgwIjGIJSz3EbC9JlhwIABQw7ZyqvJghgGDBj3MJSAc5e72bnGwhUGDBjXMCqNgcoi1m0PuI1VGDBgtGD8AAQVN/WCyJuCAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
