@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    
+<!-- Google Analytics -->
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'true', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src="https://www.google-analytics.com/analytics.js"></script>
+<!-- End Google Analytics -->
+
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    <meta name="google-site-verification" content="true">
+    
+    
+    
+    <title>tilestrata 插件发开指南 | Kaely&#39;s Blog | 生活就是迷阵</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="GIS">
+    <meta name="description" content="Tilestrata的插件开发基本围绕着生命周期各个阶段展开，如果要开发一个自己的插件，首先想清楚插件的功能属于生命周期的哪个阶段，依据官方规定好的该阶段代码结构，写好插件内容，在服务端利用use进行注册就好。个人觉得Tilestrata吸引人的一个地方就是在于插件机制非常的灵活和便捷，十分好上手。">
+<meta name="keywords" content="GIS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="tilestrata 插件发开指南">
+<meta property="og:url" content="http://kael.top/2019/07/22/tilestrata-plugin/index.html">
+<meta property="og:site_name" content="Kaely&#39;s Blog">
+<meta property="og:description" content="Tilestrata的插件开发基本围绕着生命周期各个阶段展开，如果要开发一个自己的插件，首先想清楚插件的功能属于生命周期的哪个阶段，依据官方规定好的该阶段代码结构，写好插件内容，在服务端利用use进行注册就好。个人觉得Tilestrata吸引人的一个地方就是在于插件机制非常的灵活和便捷，十分好上手。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-07-22T10:21:01.125Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="tilestrata 插件发开指南">
+<meta name="twitter:description" content="Tilestrata的插件开发基本围绕着生命周期各个阶段展开，如果要开发一个自己的插件，首先想清楚插件的功能属于生命周期的哪个阶段，依据官方规定好的该阶段代码结构，写好插件内容，在服务端利用use进行注册就好。个人觉得Tilestrata吸引人的一个地方就是在于插件机制非常的灵活和便捷，十分好上手。">
+    
+        <link rel="alternate" type="application/atom+xml" title="Kaely&#39;s Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu"  >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Kaely</h5>
+          <a href="mailto:zzcyrus@outlook.com" title="zzcyrus@outlook.com" class="mail">zzcyrus@outlook.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/zzcyrus" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">tilestrata 插件发开指南</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">tilestrata 插件发开指南</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-07-22T10:16:33.000Z" itemprop="datePublished" class="page-time">
+  2019-07-22
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/TileStrata/">TileStrata</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#1-插件共有部分"><span class="post-toc-text">1. 插件共有部分</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#2-request-请求插件"><span class="post-toc-text">2. request 请求插件</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#3-Caches-缓存插件"><span class="post-toc-text">3. Caches 缓存插件</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#4-Providers-数据源插件"><span class="post-toc-text">4. Providers 数据源插件</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#5-Transforms-数据处理插件"><span class="post-toc-text">5. Transforms 数据处理插件</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#6-Response-响应插件"><span class="post-toc-text">6. Response 响应插件</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#7-同时提供多个功能的插件"><span class="post-toc-text">7. 同时提供多个功能的插件</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-tilestrata-plugin"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">tilestrata 插件发开指南</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-07-22 18:16:33" datetime="2019-07-22T10:16:33.000Z"  itemprop="datePublished">2019-07-22</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/TileStrata/">TileStrata</a></li></ul>
+
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p><a href="https://github.com/naturalatlas/tilestrata" target="_blank" rel="noopener">Tilestrata</a>的插件开发基本围绕着生命周期各个阶段展开，如果要开发一个自己的插件，首先想清楚插件的功能属于生命周期的哪个阶段，依据官方规定好的该阶段代码结构，写好插件内容，在服务端利用<code>use</code>进行注册就好。个人觉得<code>Tilestrata</code>吸引人的一个地方就是在于插件机制非常的灵活和便捷，十分好上手。</p>
+<a id="more"></a>
+<p>这篇文章主要基于官方文档说明。</p>
+<p>生命周期的各个阶段如下：</p>
+<ul>
+<li><code>request hook</code> – 请求预处理</li>
+<li><code>cache</code> – 缓存控制</li>
+<li><code>provider</code> – 数据源，比如 mapnik</li>
+<li><code>transform</code> – 最关键的阶段，可以在瓦片输出的过程中对其做各种加工，比如旋转，染色</li>
+<li><code>response hook</code> – 响应后处理，比如 headers、jsonp 插件</li>
+</ul>
+<h1 id="1-插件共有部分"><a href="#1-插件共有部分" class="headerlink" title="1. 插件共有部分"></a>1. 插件共有部分</h1><p>所有的插件都可以拥有<code>init</code>和<code>destroy</code>两个生命周期方法，分别在插件的启动和结束时触发。这个两个方法的第一个参数是当前<code>tilestrata</code>实例，第二个参数是<code>callback</code>回调函数。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">init: <span class="function"><span class="keyword">function</span>(<span class="params">server, callback</span>) </span>&#123;</span><br><span class="line">    callback(err);</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+<h1 id="2-request-请求插件"><a href="#2-request-请求插件" class="headerlink" title="2. request 请求插件"></a>2. request 请求插件</h1><p>request 类型的插件必须提供<code>reqhook</code>方法，参数如下。其中<code>req</code>参数代表<a href="http://nodejs.org/api/http.html#http_http_incomingmessage" target="_blank" rel="noopener">http.IncomingMessage</a> ，<code>res</code>参数代表<a href="http://nodejs.org/api/http.html#http_class_http_serverresponse" target="_blank" rel="noopener">http.ServerResponse</a>。 如果不执行里面的<code>callback</code>回调函数，甚至这个请求都不会进入后续<code>server</code>的处理逻辑中，所以千万别忘了它。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span>(<span class="params">options</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    name: <span class="string">'myplugin'</span>,</span><br><span class="line">    init: <span class="function"><span class="keyword">function</span>(<span class="params">server, callback</span>) </span>&#123;</span><br><span class="line">      callback(err)</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">// 我是必须提供的核心方法</span></span><br><span class="line">    reqhook: <span class="function"><span class="keyword">function</span>(<span class="params">server, tile, req, res, callback</span>) </span>&#123;</span><br><span class="line">      callback()</span><br><span class="line">    &#125;,</span><br><span class="line">    destroy: <span class="function"><span class="keyword">function</span>(<span class="params">server, callback</span>) </span>&#123;</span><br><span class="line">      callback(err)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="3-Caches-缓存插件"><a href="#3-Caches-缓存插件" class="headerlink" title="3. Caches 缓存插件"></a>3. Caches 缓存插件</h1><p>Caches 类型的插件必须提供<code>get</code>和<code>set</code>方法，参数分别如下。当你的缓存过程失败出错的时候，tilestrata 会忽略错误，无视这段逻辑，尝试直接从数据源获取数据。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span>(<span class="params">options</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    name: <span class="string">'myplugin'</span>,</span><br><span class="line">    init: <span class="function"><span class="keyword">function</span>(<span class="params">server, callback</span>) </span>&#123;</span><br><span class="line">      callback(err)</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">// 我是必须提供的核心方法</span></span><br><span class="line">    <span class="keyword">get</span>: function(server, tile, callback) &#123;</span><br><span class="line">      callback(err, buffer, headers <span class="comment">/* refresh */</span>)</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">// 我是必须提供的核心方法</span></span><br><span class="line">    <span class="keyword">set</span>: function(server, tile, buffer, headers, callback) &#123;</span><br><span class="line">      callback(err)</span><br><span class="line">    &#125;,</span><br><span class="line">    destroy: <span class="function"><span class="keyword">function</span>(<span class="params">server, callback</span>) </span>&#123;</span><br><span class="line">      callback(err)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>有一种特殊的场景：虽然请求命中了缓存，仍然需要在后台生成一张新的瓦片。比方说某一张瓦片已经很久没更新了，需要重新生成，但又不是那么着急，一定要用户等着这个新瓦片渲染出来，所以其实我们需要的是返回缓存结果，同时更新瓦片缓存。这种情况下为<code>get()</code>方法的<code>callback</code>增加第四个参数<code>true</code>就好了。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">callback(<span class="literal">null</span>, buffer, headers, <span class="literal">true</span>)</span><br></pre></td></tr></table></figure>
+<h1 id="4-Providers-数据源插件"><a href="#4-Providers-数据源插件" class="headerlink" title="4. Providers 数据源插件"></a>4. Providers 数据源插件</h1><p>Providers 类型的插件必须提供<code>serve</code>方法，参数如下。主要作用就是提供<strong>数据源</strong>，数据可以来源于第本地的某个功能模块比方说 mapnik 服务，可以来源于在线的第三方服务，比如说对 bing 地图服务做了一个代理转发。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span>(<span class="params">options</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    name: <span class="string">'myplugin'</span>,</span><br><span class="line">    init: <span class="function"><span class="keyword">function</span>(<span class="params">server, callback</span>) </span>&#123;</span><br><span class="line">      callback(err)</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">// 我是必须提供的核心方法</span></span><br><span class="line">    serve: <span class="function"><span class="keyword">function</span>(<span class="params">server, tile, callback</span>) </span>&#123;</span><br><span class="line">      callback(err, buffer, headers)</span><br><span class="line">    &#125;,</span><br><span class="line">    destroy: <span class="function"><span class="keyword">function</span>(<span class="params">server, callback</span>) </span>&#123;</span><br><span class="line">      callback(err)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="5-Transforms-数据处理插件"><a href="#5-Transforms-数据处理插件" class="headerlink" title="5. Transforms 数据处理插件"></a>5. Transforms 数据处理插件</h1><p>Transforms 类型的插件必须提供<code>transform</code>方法，参数如下。它的主要作用是在数据从 provider 取出来之后，做一些额外的处理，比方说加一个水印，调整一下透明度，再把处理后的结果输出出去。要注意下这个过程是发生在<strong>缓存之前</strong>的。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span>(<span class="params">options</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    name: <span class="string">'myplugin'</span>,</span><br><span class="line">    init: <span class="function"><span class="keyword">function</span>(<span class="params">server, callback</span>) </span>&#123;</span><br><span class="line">      callback(err)</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">// 我是必须提供的核心方法</span></span><br><span class="line">    transform: <span class="function"><span class="keyword">function</span>(<span class="params">server, tile, buffer, headers, callback</span>) </span>&#123;</span><br><span class="line">      callback(err, buffer, headers)</span><br><span class="line">    &#125;,</span><br><span class="line">    destroy: <span class="function"><span class="keyword">function</span>(<span class="params">server, callback</span>) </span>&#123;</span><br><span class="line">      callback(err)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="6-Response-响应插件"><a href="#6-Response-响应插件" class="headerlink" title="6. Response 响应插件"></a>6. Response 响应插件</h1><p>Response 类型的插件必须提供<code>reshook</code>方法，参数如下，其中参数里面的<code>result</code>包含了三个属性：<code>headers</code>, <code>buffer</code>和 <code>status</code>，这三个属性在返回真正的结果之前都是可以被修改的。比方说在返回结果之前，给每一个<code>headers</code>都加上<code>&#39;Access-Control-Allow-Origin&#39;: &#39;*&#39;</code>来让请求支持跨域访问。此外<code>req</code>参数代表<a href="http://nodejs.org/api/http.html#http_http_incomingmessage" target="_blank" rel="noopener">http.IncomingMessage</a> ，<code>res</code>参数代表<a href="http://nodejs.org/api/http.html#http_class_http_serverresponse" target="_blank" rel="noopener">http.ServerResponse</a>。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span>(<span class="params">options</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    name: <span class="string">'myplugin'</span>,</span><br><span class="line">    init: <span class="function"><span class="keyword">function</span>(<span class="params">server, callback</span>) </span>&#123;</span><br><span class="line">      callback(err)</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">// 我是必须提供的核心方法</span></span><br><span class="line">    reshook: <span class="function"><span class="keyword">function</span>(<span class="params">server, tile, req, res, result, callback</span>) </span>&#123;</span><br><span class="line">      callback()</span><br><span class="line">    &#125;,</span><br><span class="line">    destroy: <span class="function"><span class="keyword">function</span>(<span class="params">server, callback</span>) </span>&#123;</span><br><span class="line">      callback(err)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="7-同时提供多个功能的插件"><a href="#7-同时提供多个功能的插件" class="headerlink" title="7. 同时提供多个功能的插件"></a>7. 同时提供多个功能的插件</h1><p>有时候一个插件由多个部分组成，所以你可以把多个功能放进一个数组传递给 TileStrata。例如我想做一个插件记录响应时间，那既要在 request 时做出记录，也要在 response 时做出记录，把它俩放进数组就 ok 了。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> [</span><br><span class="line">        <span class="comment">//  第一个插件</span></span><br><span class="line">        &#123;<span class="attr">name</span>: <span class="string">'myplugin'</span>, <span class="attr">reqhook</span>: <span class="function"><span class="keyword">function</span>(<span class="params">...</span>) </span>&#123; <span class="comment">/* ... */</span> &#125;&#125;,</span><br><span class="line">        <span class="comment">//  第一个插件</span></span><br><span class="line">        &#123;<span class="attr">name</span>: <span class="string">'myplugin'</span>, <span class="attr">reshook</span>: <span class="function"><span class="keyword">function</span>(<span class="params">...</span>) </span>&#123; <span class="comment">/* ... */</span> &#125;&#125;</span><br><span class="line">    ];</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>通观下来，整个 Tilestrata 插件开发的流程其实是非常舒畅和自由的，可以充分的发挥创造力。</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2019-07-22T10:21:01.125Z" itemprop="dateUpdated">2019-07-22 18:21:01</time>
+</span><br>
+
+
+        
+    </div>
+    <footer>
+        <a href="http://kael.top">
+            <img src="/img/avatar.jpg" alt="Kaely">
+            Kaely
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/GIS/">GIS</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://kael.top/2019/07/22/tilestrata-plugin/&title=《tilestrata 插件发开指南》 — Kaely's Blog&pic=http://kael.top/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://kael.top/2019/07/22/tilestrata-plugin/&title=《tilestrata 插件发开指南》 — Kaely's Blog&source=Tilestrata的插件开发基本围绕着生命周期各个阶段展开，如果要开发一个自己的插件，首先想清楚插件的功能属于生命周期的哪个阶段，依据官方规定好的该阶段..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://kael.top/2019/07/22/tilestrata-plugin/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《tilestrata 插件发开指南》 — Kaely's Blog&url=http://kael.top/2019/07/22/tilestrata-plugin/&via=http://kael.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://kael.top/2019/07/22/tilestrata-plugin/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/07/18/tilestrata-intro/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">tilestrata 入门指南</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="YoYo"></div>
+    <script src="https://yoyo-1255388623.cos.ap-shanghai.myqcloud.com/index.js"></script>
+</section>
+
+    
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Kaely &copy; 2016 - 2019</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+                
+                <script src='https://cdn.jsdelivr.net/npm/mermaid@7.1.2/dist/mermaid.min.js'></script>
+                <script>
+                    if (window.mermaid) {
+                    mermaid.initialize({theme: 'forest'});
+                    }
+                </script>
+                
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://kael.top/2019/07/22/tilestrata-plugin/&title=《tilestrata 插件发开指南》 — Kaely's Blog&pic=http://kael.top/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://kael.top/2019/07/22/tilestrata-plugin/&title=《tilestrata 插件发开指南》 — Kaely's Blog&source=Tilestrata的插件开发基本围绕着生命周期各个阶段展开，如果要开发一个自己的插件，首先想清楚插件的功能属于生命周期的哪个阶段，依据官方规定好的该阶段..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://kael.top/2019/07/22/tilestrata-plugin/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《tilestrata 插件发开指南》 — Kaely's Blog&url=http://kael.top/2019/07/22/tilestrata-plugin/&via=http://kael.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://kael.top/2019/07/22/tilestrata-plugin/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACI0lEQVR42u3aS27cMBAFQN//0uOtA2Pk99h0ElHFlSBIHpYMEP37+IjX68v6fufdyt999+TmhYGBcVvG2la+3m+faa+v94aBgfEcxrsT7Po6ASTH6PXnu94bBgYGxvUz7cGdHNMYGBgYuxh5wjkPNzEwMDDyJDYP45ID95/l4hgYGDdk5FX3v3/9K/0NDAyMWzFe5Wrfarf1WloYGBhnM3aV0toUd+2tH57EwMA4mrE2PJGknbv+8mKwiIGBcQSjLdZPRiImJbbr5gQGBsbZjM3jDkGguZYeFxEuBgbGcYwkEZ2kspMotRjFwMDAOJqx1rDM8UnomT+/ISPHwMA4iNFS26BwV7C4AYaBgfHfMybh1zyUzJudRRKLgYFxHGOtcZinr2st0vyjLDYyMTAwbsWYtCHzn2kP9DboxMDAOJux9nJbDks2PXkXAwPjbMakSrdW7m+LbtFRi4GB8QBGXtZvr9sWZlto++PAxcDAOJQx/8l2W3XEmv8KBgbGAxiTpPQ3xr/anWBgYDyBsTeYy1uVbQCKgYHxZMZkW+24Rn6458ktBgbGqYxXudowcVcjIfo/YGBgHMrIV4JJxr8mwxmjcTEMDIybM5JDNm8org1V5I0KDAyMJzPaaavJ1osMO98VBgYGRlnWbwtzLeyHYQsMDIzHM9rhjCStnX8ODAyMJzDykYu1oDC5kx/xGBgYT2NMJjXWBizyZkPyUTAwMI5mfAIQKEHPqIj0mgAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
