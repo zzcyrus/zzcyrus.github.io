@@ -42,7 +42,7 @@ ga('send', 'pageview');
 <meta property="og:image" content="http://blog-img-1255388623.cossh.myqcloud.com/osm_mvt_postgis.png">
 <meta property="og:image" content="http://blog-img-1255388623.cossh.myqcloud.com/asmvtgeom_result.png">
 <meta property="og:image" content="http://blog-img-1255388623.cossh.myqcloud.com/mvt_preview.png">
-<meta property="og:updated_time" content="2019-08-01T09:32:54.927Z">
+<meta property="og:updated_time" content="2019-08-01T10:10:18.543Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="用PostGIS生成mvt格式的矢量瓦片">
 <meta name="twitter:description" content="PostGIS 从 2.4.0 版本开始支持通过 box 生成 mvt 数据，我们用尽可能简单的方法搭建一个生产 mvt 数据的测试数据库。">
@@ -209,7 +209,7 @@ ga('send', 'pageview');
 <p>这个镜像可以通过<code>POSTGRES_PASSWORD</code>指定数据库密码，如果没指定的话，密码会和<code>POSTGRES_USER</code>即用户名保持一致。</p>
 <p>建议通过<code>-p 5432:5432</code>映射下端口，方便我们在宿主机上直接连接调试。</p>
 <h1 id="3-导入-osm-数据到-PostGIS"><a href="#3-导入-osm-数据到-PostGIS" class="headerlink" title="3. 导入 osm 数据到 PostGIS"></a>3. 导入 osm 数据到 PostGIS</h1><p>我们用<a href="https://github.com/omniscale/imposm3" target="_blank" rel="noopener">imposm3</a>来导入 osm 数据到库中。</p>
-<p>imposm3 主要需要配置 cache 目录（可选），connection 链接地址（必须）和 mapping 映射文件（必须）三个参数，官方仓库提供了一个<a href="https://github.com/omniscale/imposm3/blob/master/example-mapping.json" target="_blank" rel="noopener">mapping 样例</a>供参考。这里我们方便测试，就用这个<a href="mapping.json">简单版本</a>，定义了<code>admim、amenities、buildings</code>三张表。</p>
+<p>imposm3 主要需要配置 cache 目录（可选），connection 链接地址（必须）和 mapping 映射文件（必须）三个参数，官方仓库提供了一个<a href="https://github.com/omniscale/imposm3/blob/master/example-mapping.json" target="_blank" rel="noopener">mapping 样例</a>供参考。这里我们方便测试，就用这个<a href="https://blog-1255388623.cos.ap-shanghai.myqcloud.com/static/mapping.json" target="_blank" rel="noopener">简单版本</a>，定义了<code>admim、amenities、buildings</code>三张表。</p>
 <p>准备一个文件夹，把下载的 pbf 和 mapping 文件丢进去，再创建 cache 目录</p>
 <p>依然用上强大的 docker，<a href="https://hub.docker.com/r/jawg/imposm3/" target="_blank" rel="noopener">jawg/imposm3</a>可以帮助我们方便的执行 imposm3 操作。</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">docker run --network gis --rm \</span><br><span class="line">-v $(pwd)/cache:/tmp/imposm3 \</span><br><span class="line">-v $(pwd)/china-latest.osm.pbf:/opt/imposm3/china-latest.osm.pbf \</span><br><span class="line">-v $(pwd)/mapping.json:/opt/imposm3/mapping.json \</span><br><span class="line">jawg/imposm3 import \</span><br><span class="line">-mapping mapping.json \</span><br><span class="line">-read china-latest.osm.pbf \</span><br><span class="line">-overwritecache -write -connection &apos;postgis://gis:gis@postgis/gis&apos;</span><br></pre></td></tr></table></figure>
@@ -262,7 +262,7 @@ ga('send', 'pageview');
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2019-08-01T09:32:54.927Z" itemprop="dateUpdated">2019-08-01 17:32:54</time>
+    最后更新时间：<time datetime="2019-08-01T10:10:18.543Z" itemprop="dateUpdated">2019-08-01 18:10:18</time>
 </span><br>
 
 
