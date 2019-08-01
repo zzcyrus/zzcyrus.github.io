@@ -41,7 +41,7 @@ docker run -d --name postgis -e POSTGRES_USER=gis --network gis -p 6543:5432 mdi
 
 我们用[imposm3](https://github.com/omniscale/imposm3)来导入 osm 数据到库中。
 
-imposm3 主要需要配置 cache 目录（可选），connection 链接地址（必须）和 mapping 映射文件（必须）三个参数，官方仓库提供了一个[mapping 样例](https://github.com/omniscale/imposm3/blob/master/example-mapping.json)供参考。这里我们方便测试，就用这个[简单版本](mapping.json)，定义了`admim、amenities、buildings`三张表。
+imposm3 主要需要配置 cache 目录（可选），connection 链接地址（必须）和 mapping 映射文件（必须）三个参数，官方仓库提供了一个[mapping 样例](https://github.com/omniscale/imposm3/blob/master/example-mapping.json)供参考。这里我们方便测试，就用这个[简单版本](https://blog-1255388623.cos.ap-shanghai.myqcloud.com/static/mapping.json)，定义了`admim、amenities、buildings`三张表。
 
 准备一个文件夹，把下载的 pbf 和 mapping 文件丢进去，再创建 cache 目录
 
