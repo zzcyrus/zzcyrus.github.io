@@ -464,5 +464,31 @@ var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
 
 
 
+<!-- Valine Comments -->
+
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <script type="text/javascript">
+        var notify = 'false' == true ? true : false;
+        var verify = 'false' == true ? true : false;
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = '昵称,邮箱,link(http://)'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        guest_info = guest_info.length == 0 ? GUEST_INFO :guest_info;
+        new Valine({
+            el: '.vcomment',
+            notify: notify,
+            verify: verify,
+            appId: "JiVmJ5xNgTfByqBf0Q3yzn34-MdYXbMMI",
+            appKey: "JzqWx7VloHTdOoYQ2z9w6hwF",
+            avatar:"identicon",
+            placeholder: "想说点什么吗？",
+            guest_info:guest_info,
+            pageSize:"10"
+        })
+    </script>
+    
+
 </body>
 </html>

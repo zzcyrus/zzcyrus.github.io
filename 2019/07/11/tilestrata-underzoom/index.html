@@ -41,7 +41,7 @@ ga('send', 'pageview');
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://blog-img-1255388623.cossh.myqcloud.com/tilestrata-underzoom-original-20190708145711.png">
 <meta property="og:image" content="http://blog-img-1255388623.cossh.myqcloud.com/tilestrata-underzoom-result-20190708145813.png">
-<meta property="og:updated_time" content="2019-08-01T10:10:18.543Z">
+<meta property="og:updated_time" content="2019-08-22T07:39:13.620Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="tilestrata-underzoom  插件使用及浅析">
 <meta name="twitter:description" content="tilestrata-underzoom插件从介绍上看就是在请求高级别瓦片时，用低级别的瓦片进行拼接，而不是直接生产指定级别的瓦片。使用这个插件必须安装依赖node-mapnik。">
@@ -230,7 +230,7 @@ ga('send', 'pageview');
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2019-08-01T10:10:18.543Z" itemprop="dateUpdated">2019-08-01 18:10:18</time>
+    最后更新时间：<time datetime="2019-08-22T07:39:13.620Z" itemprop="dateUpdated">2019-08-22 15:39:13</time>
 </span><br>
 
 
@@ -342,12 +342,12 @@ ga('send', 'pageview');
 
 
 
-<section class="comments" id="comments">
-    <div id="YoYo"></div>
-    <script src="https://yoyo-1255388623.cos.ap-shanghai.myqcloud.com/index.js"></script>
-</section>
-
     
+
+
+<div class="comments vcomment" id="comments"></div>
+
+
 
 
 </article>
@@ -499,6 +499,32 @@ var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
 
 
 
+
+<!-- Valine Comments -->
+
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <script type="text/javascript">
+        var notify = 'false' == true ? true : false;
+        var verify = 'false' == true ? true : false;
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = '昵称,邮箱,link(http://)'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        guest_info = guest_info.length == 0 ? GUEST_INFO :guest_info;
+        new Valine({
+            el: '.vcomment',
+            notify: notify,
+            verify: verify,
+            appId: "JiVmJ5xNgTfByqBf0Q3yzn34-MdYXbMMI",
+            appKey: "JzqWx7VloHTdOoYQ2z9w6hwF",
+            avatar:"identicon",
+            placeholder: "想说点什么吗？",
+            guest_info:guest_info,
+            pageSize:"10"
+        })
+    </script>
+    
 
 </body>
 </html>

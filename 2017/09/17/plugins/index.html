@@ -40,7 +40,7 @@ ga('send', 'pageview');
 <meta property="og:description" content="Leaflet中常用的gis功能可以满足一般使用，有些特殊需求，官方也有插件系统，本文会挑选一些常用的，经过测试可用的插件单独放出来使用方法和一些注意事项，希望能够帮助到同僚们。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://kael.top/2017/09/17/plugins/tileWMS.png">
-<meta property="og:updated_time" content="2019-08-01T10:10:18.531Z">
+<meta property="og:updated_time" content="2019-08-22T07:39:13.608Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Leaflet常用的一些插件">
 <meta name="twitter:description" content="Leaflet中常用的gis功能可以满足一般使用，有些特殊需求，官方也有插件系统，本文会挑选一些常用的，经过测试可用的插件单独放出来使用方法和一些注意事项，希望能够帮助到同僚们。">
@@ -225,7 +225,7 @@ ga('send', 'pageview');
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2019-08-01T10:10:18.531Z" itemprop="dateUpdated">2019-08-01 18:10:18</time>
+    最后更新时间：<time datetime="2019-08-22T07:39:13.608Z" itemprop="dateUpdated">2019-08-22 15:39:13</time>
 </span><br>
 
 
@@ -337,12 +337,12 @@ ga('send', 'pageview');
 
 
 
-<section class="comments" id="comments">
-    <div id="YoYo"></div>
-    <script src="https://yoyo-1255388623.cos.ap-shanghai.myqcloud.com/index.js"></script>
-</section>
-
     
+
+
+<div class="comments vcomment" id="comments"></div>
+
+
 
 
 </article>
@@ -494,6 +494,32 @@ var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
 
 
 
+
+<!-- Valine Comments -->
+
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <script type="text/javascript">
+        var notify = 'false' == true ? true : false;
+        var verify = 'false' == true ? true : false;
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = '昵称,邮箱,link(http://)'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        guest_info = guest_info.length == 0 ? GUEST_INFO :guest_info;
+        new Valine({
+            el: '.vcomment',
+            notify: notify,
+            verify: verify,
+            appId: "JiVmJ5xNgTfByqBf0Q3yzn34-MdYXbMMI",
+            appKey: "JzqWx7VloHTdOoYQ2z9w6hwF",
+            avatar:"identicon",
+            placeholder: "想说点什么吗？",
+            guest_info:guest_info,
+            pageSize:"10"
+        })
+    </script>
+    
 
 </body>
 </html>

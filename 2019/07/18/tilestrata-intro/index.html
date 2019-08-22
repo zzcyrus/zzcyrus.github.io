@@ -40,7 +40,7 @@ ga('send', 'pageview');
 <meta property="og:description" content="简单来说Tilestrata就是一个瓦片地图服务器。根据其自身的介绍，它有如下的特点：零配置，简洁，测试覆盖率高，性能高，拓展性强。可以通过TileStrata Balancer实现负载均衡，无缝伸缩。可以通过内置控制台去调试查看渲染时间。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://camo.githubusercontent.com/67abe0f563502d78ef12b4ce20cba57222dfcf6f/68747470733a2f2f63646e2e7261776769742e636f6d2f6e61747572616c61746c61732f74696c657374726174612f6d61737465722f6d6973632f67726170686963732f726571666c6f772e737667">
-<meta property="og:updated_time" content="2019-08-01T10:10:18.543Z">
+<meta property="og:updated_time" content="2019-08-22T07:39:13.620Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="tilestrata 入门指南">
 <meta name="twitter:description" content="简单来说Tilestrata就是一个瓦片地图服务器。根据其自身的介绍，它有如下的特点：零配置，简洁，测试覆盖率高，性能高，拓展性强。可以通过TileStrata Balancer实现负载均衡，无缝伸缩。可以通过内置控制台去调试查看渲染时间。">
@@ -267,7 +267,7 @@ ga('send', 'pageview');
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2019-08-01T10:10:18.543Z" itemprop="dateUpdated">2019-08-01 18:10:18</time>
+    最后更新时间：<time datetime="2019-08-22T07:39:13.620Z" itemprop="dateUpdated">2019-08-22 15:39:13</time>
 </span><br>
 
 
@@ -379,12 +379,12 @@ ga('send', 'pageview');
 
 
 
-<section class="comments" id="comments">
-    <div id="YoYo"></div>
-    <script src="https://yoyo-1255388623.cos.ap-shanghai.myqcloud.com/index.js"></script>
-</section>
-
     
+
+
+<div class="comments vcomment" id="comments"></div>
+
+
 
 
 </article>
@@ -536,6 +536,32 @@ var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
 
 
 
+
+<!-- Valine Comments -->
+
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <script type="text/javascript">
+        var notify = 'false' == true ? true : false;
+        var verify = 'false' == true ? true : false;
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = '昵称,邮箱,link(http://)'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        guest_info = guest_info.length == 0 ? GUEST_INFO :guest_info;
+        new Valine({
+            el: '.vcomment',
+            notify: notify,
+            verify: verify,
+            appId: "JiVmJ5xNgTfByqBf0Q3yzn34-MdYXbMMI",
+            appKey: "JzqWx7VloHTdOoYQ2z9w6hwF",
+            avatar:"identicon",
+            placeholder: "想说点什么吗？",
+            guest_info:guest_info,
+            pageSize:"10"
+        })
+    </script>
+    
 
 </body>
 </html>

@@ -39,7 +39,7 @@ ga('send', 'pageview');
 <meta property="og:site_name" content="Kaely&#39;s Blog">
 <meta property="og:description" content="Tilestrata的插件开发基本围绕着生命周期各个阶段展开，如果要开发一个自己的插件，首先想清楚插件的功能属于生命周期的哪个阶段，依据官方规定好的该阶段代码结构，写好插件内容，在服务端利用use进行注册就好。个人觉得Tilestrata吸引人的一个地方就是在于插件机制非常的灵活和便捷，十分好上手。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-08-01T10:10:18.543Z">
+<meta property="og:updated_time" content="2019-08-22T07:39:13.620Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="tilestrata 插件发开指南">
 <meta name="twitter:description" content="Tilestrata的插件开发基本围绕着生命周期各个阶段展开，如果要开发一个自己的插件，首先想清楚插件的功能属于生命周期的哪个阶段，依据官方规定好的该阶段代码结构，写好插件内容，在服务端利用use进行注册就好。个人觉得Tilestrata吸引人的一个地方就是在于插件机制非常的灵活和便捷，十分好上手。">
@@ -226,7 +226,7 @@ ga('send', 'pageview');
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2019-08-01T10:10:18.543Z" itemprop="dateUpdated">2019-08-01 18:10:18</time>
+    最后更新时间：<time datetime="2019-08-22T07:39:13.620Z" itemprop="dateUpdated">2019-08-22 15:39:13</time>
 </span><br>
 
 
@@ -331,12 +331,12 @@ ga('send', 'pageview');
 
 
 
-<section class="comments" id="comments">
-    <div id="YoYo"></div>
-    <script src="https://yoyo-1255388623.cos.ap-shanghai.myqcloud.com/index.js"></script>
-</section>
-
     
+
+
+<div class="comments vcomment" id="comments"></div>
+
+
 
 
 </article>
@@ -488,6 +488,32 @@ var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
 
 
 
+
+<!-- Valine Comments -->
+
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <script type="text/javascript">
+        var notify = 'false' == true ? true : false;
+        var verify = 'false' == true ? true : false;
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = '昵称,邮箱,link(http://)'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        guest_info = guest_info.length == 0 ? GUEST_INFO :guest_info;
+        new Valine({
+            el: '.vcomment',
+            notify: notify,
+            verify: verify,
+            appId: "JiVmJ5xNgTfByqBf0Q3yzn34-MdYXbMMI",
+            appKey: "JzqWx7VloHTdOoYQ2z9w6hwF",
+            avatar:"identicon",
+            placeholder: "想说点什么吗？",
+            guest_info:guest_info,
+            pageSize:"10"
+        })
+    </script>
+    
 
 </body>
 </html>
