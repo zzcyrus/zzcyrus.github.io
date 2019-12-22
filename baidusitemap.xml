@@ -1,91 +1,607 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+
+    
   <url>
     <loc>http://kael.top/2019/06/10/osm-postgis-mvt/</loc>
-    <lastmod>2019-11-18</lastmod>
-  </url>  <url>
+    <lastmod>2019-12-22T15:11:05.628Z</lastmod>
+    <data>
+        <display>
+        <title>用PostGIS生成mvt格式的矢量瓦片</title>
+        <pubTime>2019-06-10T07:05:16.000Z</pubTime>
+        
+        <tag>GIS</tag>
+         
+         
+           
+             
+              <breadCrumb title="PostGIS" url="http://kael.top/categories/PostGIS/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://kael.top/2019/07/08/tilestrata-blend/</loc>
-    <lastmod>2019-11-18</lastmod>
-  </url>  <url>
+    <lastmod>2019-12-22T15:11:05.628Z</lastmod>
+    <data>
+        <display>
+        <title>tilestrata-blend 插件使用及浅析</title>
+        <pubTime>2019-07-08T07:19:26.000Z</pubTime>
+        
+        <tag>GIS</tag>
+         
+         
+           
+             
+              <breadCrumb title="TileStrata" url="http://kael.top/categories/TileStrata/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://kael.top/2019/07/07/tilestrata-dependency/</loc>
-    <lastmod>2019-11-18</lastmod>
-  </url>  <url>
+    <lastmod>2019-12-22T15:11:05.628Z</lastmod>
+    <data>
+        <display>
+        <title>tilestrata-dependency 插件使用及浅析</title>
+        <pubTime>2019-07-07T09:02:17.000Z</pubTime>
+        
+        <tag>GIS</tag>
+         
+         
+           
+             
+              <breadCrumb title="TileStrata" url="http://kael.top/categories/TileStrata/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://kael.top/2019/07/15/tilestrata-disk/</loc>
-    <lastmod>2019-11-18</lastmod>
-  </url>  <url>
+    <lastmod>2019-12-22T15:11:05.628Z</lastmod>
+    <data>
+        <display>
+        <title>tilestrata-disk 插件使用及浅析</title>
+        <pubTime>2019-07-15T13:39:59.000Z</pubTime>
+        
+        <tag>GIS</tag>
+         
+         
+           
+             
+              <breadCrumb title="TileStrata" url="http://kael.top/categories/TileStrata/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://kael.top/2019/07/15/tilestrata-etag/</loc>
-    <lastmod>2019-11-18</lastmod>
-  </url>  <url>
+    <lastmod>2019-12-22T15:11:05.628Z</lastmod>
+    <data>
+        <display>
+        <title>tilestrata-etag 插件使用及浅析</title>
+        <pubTime>2019-07-15T13:39:54.000Z</pubTime>
+        
+        <tag>GIS</tag>
+         
+         
+           
+             
+              <breadCrumb title="TileStrata" url="http://kael.top/categories/TileStrata/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://kael.top/2019/07/14/tilestrata-gm/</loc>
-    <lastmod>2019-11-18</lastmod>
-  </url>  <url>
+    <lastmod>2019-12-22T15:11:05.628Z</lastmod>
+    <data>
+        <display>
+        <title>tilestrata-gm 插件使用及浅析</title>
+        <pubTime>2019-07-14T12:54:50.000Z</pubTime>
+        
+        <tag>GIS</tag>
+         
+         
+           
+             
+              <breadCrumb title="TileStrata" url="http://kael.top/categories/TileStrata/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://kael.top/2019/06/26/tilestrata-headers/</loc>
-    <lastmod>2019-11-18</lastmod>
-  </url>  <url>
+    <lastmod>2019-12-22T15:11:05.628Z</lastmod>
+    <data>
+        <display>
+        <title>tilestrata-headers 插件使用及浅析</title>
+        <pubTime>2019-06-26T03:25:05.000Z</pubTime>
+        
+        <tag>GIS</tag>
+         
+         
+           
+             
+              <breadCrumb title="TileStrata" url="http://kael.top/categories/TileStrata/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://kael.top/2019/07/18/tilestrata-intro/</loc>
-    <lastmod>2019-11-18</lastmod>
-  </url>  <url>
+    <lastmod>2019-12-22T15:11:05.628Z</lastmod>
+    <data>
+        <display>
+        <title>tilestrata 入门指南</title>
+        <pubTime>2019-07-18T10:13:53.000Z</pubTime>
+        
+        <tag>GIS</tag>
+         
+         
+           
+             
+              <breadCrumb title="TileStrata" url="http://kael.top/categories/TileStrata/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://kael.top/2019/06/23/tilestrata-jsonp/</loc>
-    <lastmod>2019-11-18</lastmod>
-  </url>  <url>
+    <lastmod>2019-12-22T15:11:05.628Z</lastmod>
+    <data>
+        <display>
+        <title>tilestrata-jsonp 插件使用及浅析</title>
+        <pubTime>2019-06-23T12:15:44.000Z</pubTime>
+        
+        <tag>GIS</tag>
+         
+         
+           
+             
+              <breadCrumb title="TileStrata" url="http://kael.top/categories/TileStrata/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://kael.top/2019/07/11/tilestrata-lru/</loc>
-    <lastmod>2019-11-18</lastmod>
-  </url>  <url>
+    <lastmod>2019-12-22T15:11:05.628Z</lastmod>
+    <data>
+        <display>
+        <title>tilestrata-lru  插件使用及浅析</title>
+        <pubTime>2019-07-11T14:51:22.000Z</pubTime>
+        
+        <tag>GIS</tag>
+         
+         
+           
+             
+              <breadCrumb title="TileStrata" url="http://kael.top/categories/TileStrata/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://kael.top/2019/06/11/tilestrata-mapnik/</loc>
-    <lastmod>2019-11-18</lastmod>
-  </url>  <url>
+    <lastmod>2019-12-22T15:11:05.628Z</lastmod>
+    <data>
+        <display>
+        <title>tilestrata-mapnik 插件使用及浅析</title>
+        <pubTime>2019-06-11T03:26:12.000Z</pubTime>
+        
+        <tag>GIS</tag>
+         
+         
+           
+             
+              <breadCrumb title="TileStrata" url="http://kael.top/categories/TileStrata/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://kael.top/2019/07/22/tilestrata-plugin/</loc>
-    <lastmod>2019-11-18</lastmod>
-  </url>  <url>
+    <lastmod>2019-12-22T15:11:05.628Z</lastmod>
+    <data>
+        <display>
+        <title>tilestrata 插件发开指南</title>
+        <pubTime>2019-07-22T10:16:33.000Z</pubTime>
+        
+        <tag>GIS</tag>
+         
+         
+           
+             
+              <breadCrumb title="TileStrata" url="http://kael.top/categories/TileStrata/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://kael.top/2019/07/02/tilestrata-postgis-geojson-tiles/</loc>
-    <lastmod>2019-11-18</lastmod>
-  </url>  <url>
+    <lastmod>2019-12-22T15:11:05.628Z</lastmod>
+    <data>
+        <display>
+        <title>tilestrata-postgis-geojson-tiles 插件使用及浅析</title>
+        <pubTime>2019-07-02T13:42:51.000Z</pubTime>
+        
+        <tag>GIS</tag>
+         
+         
+           
+             
+              <breadCrumb title="TileStrata" url="http://kael.top/categories/TileStrata/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://kael.top/2019/06/13/tilestrata-postgismvt/</loc>
-    <lastmod>2019-11-18</lastmod>
-  </url>  <url>
+    <lastmod>2019-12-22T15:11:05.628Z</lastmod>
+    <data>
+        <display>
+        <title>tilestrata-postgismvt 插件使用及浅析</title>
+        <pubTime>2019-06-13T08:02:44.000Z</pubTime>
+        
+        <tag>GIS</tag>
+         
+         
+           
+             
+              <breadCrumb title="TileStrata" url="http://kael.top/categories/TileStrata/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://kael.top/2019/07/14/tilestrata-sharp/</loc>
-    <lastmod>2019-11-18</lastmod>
-  </url>  <url>
+    <lastmod>2019-12-22T15:11:05.628Z</lastmod>
+    <data>
+        <display>
+        <title>tilestrata-sharp 插件使用及浅析</title>
+        <pubTime>2019-07-14T12:54:55.000Z</pubTime>
+        
+        <tag>GIS</tag>
+         
+         
+           
+             
+              <breadCrumb title="TileStrata" url="http://kael.top/categories/TileStrata/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://kael.top/2019/07/11/tilestrata-underzoom/</loc>
-    <lastmod>2019-11-18</lastmod>
-  </url>  <url>
+    <lastmod>2019-12-22T15:11:05.628Z</lastmod>
+    <data>
+        <display>
+        <title>tilestrata-underzoom  插件使用及浅析</title>
+        <pubTime>2019-07-11T14:44:51.000Z</pubTime>
+        
+        <tag>GIS</tag>
+         
+         
+           
+             
+              <breadCrumb title="TileStrata" url="http://kael.top/categories/TileStrata/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://kael.top/2019/07/07/tilestrata-vtile-composite/</loc>
-    <lastmod>2019-11-18</lastmod>
-  </url>  <url>
+    <lastmod>2019-12-22T15:11:05.628Z</lastmod>
+    <data>
+        <display>
+        <title>tilestrata-vtile-composite 插件使用及浅析</title>
+        <pubTime>2019-07-07T08:56:34.000Z</pubTime>
+        
+        <tag>GIS</tag>
+         
+         
+           
+             
+              <breadCrumb title="TileStrata" url="http://kael.top/categories/TileStrata/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://kael.top/2019/07/05/tilestrata-vtile-raster/</loc>
-    <lastmod>2019-11-18</lastmod>
-  </url>  <url>
+    <lastmod>2019-12-22T15:11:05.628Z</lastmod>
+    <data>
+        <display>
+        <title>tilestrata-vtile-raster 插件使用及浅析</title>
+        <pubTime>2019-07-05T06:05:38.000Z</pubTime>
+        
+        <tag>GIS</tag>
+         
+         
+           
+             
+              <breadCrumb title="TileStrata" url="http://kael.top/categories/TileStrata/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://kael.top/2019/07/04/tilestrata-vtile/</loc>
-    <lastmod>2019-11-18</lastmod>
-  </url>  <url>
+    <lastmod>2019-12-22T15:11:05.628Z</lastmod>
+    <data>
+        <display>
+        <title>tilestrata-vtile 插件使用及浅析</title>
+        <pubTime>2019-07-04T09:39:41.000Z</pubTime>
+        
+        <tag>GIS</tag>
+         
+         
+           
+             
+              <breadCrumb title="TileStrata" url="http://kael.top/categories/TileStrata/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+    
+    
+  <url>
     <loc>http://kael.top/2017/09/17/plugins/</loc>
-    <lastmod>2019-11-18</lastmod>
-  </url>  <url>
+    <lastmod>2019-12-22T15:11:05.620Z</lastmod>
+    <data>
+        <display>
+        <title>Leaflet常用的一些插件</title>
+        <pubTime>2017-09-17T05:48:15.000Z</pubTime>
+        
+        <tag>FE</tag>
+         
+        <tag>GIS</tag>
+         
+        <tag>Leaflet</tag>
+         
+         
+           
+             
+              <breadCrumb title="Leaflet" url="http://kael.top/categories/Leaflet/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://kael.top/2017/11/12/vector-tile-openlayers-try/</loc>
-    <lastmod>2019-11-18</lastmod>
-  </url>  <url>
+    <lastmod>2019-12-22T15:11:05.620Z</lastmod>
+    <data>
+        <display>
+        <title>矢量切片的使用尝试1—openlayers应用</title>
+        <pubTime>2017-11-12T02:54:57.000Z</pubTime>
+        
+        <tag>GIS</tag>
+         
+        <tag>OpenLayers</tag>
+         
+         
+           
+             
+              <breadCrumb title="OpenLayers" url="http://kael.top/categories/OpenLayers/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://kael.top/2017/06/23/vue-dialog-nested/</loc>
-    <lastmod>2019-11-18</lastmod>
-  </url>  <url>
+    <lastmod>2019-12-22T15:11:05.620Z</lastmod>
+    <data>
+        <display>
+        <title>element dialog组件嵌套问题的临时方案</title>
+        <pubTime>2017-06-23T14:09:55.000Z</pubTime>
+        
+        <tag>FE</tag>
+         
+        <tag>Vue</tag>
+         
+         
+           
+             
+              <breadCrumb title="前端" url="http://kael.top/categories/%E5%89%8D%E7%AB%AF/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://kael.top/2018/06/29/Vue-Parent-and-Child-lifecycle-hooks/</loc>
-    <lastmod>2019-11-18</lastmod>
-  </url>  <url>
+    <lastmod>2019-12-22T15:11:05.620Z</lastmod>
+    <data>
+        <display>
+        <title>【译】Vue中父子组件的生命周期函数</title>
+        <pubTime>2018-06-29T07:42:41.000Z</pubTime>
+        
+        <tag>FE</tag>
+         
+        <tag>Vue</tag>
+         
+         
+           
+             
+              <breadCrumb title="前端" url="http://kael.top/categories/%E5%89%8D%E7%AB%AF/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://kael.top/2019/11/18/leaflet-canvas-marker/</loc>
-    <lastmod>2019-11-18</lastmod>
-  </url>  <url>
+    <lastmod>2019-12-22T15:11:05.620Z</lastmod>
+    <data>
+        <display>
+        <title>Leaflet.Canvas-Marker-Layer 图层的诞生</title>
+        <pubTime>2019-11-18T08:49:18.000Z</pubTime>
+        
+        <tag>GIS</tag>
+         
+        <tag>Leaflet</tag>
+         
+         
+           
+             
+              <breadCrumb title="Leaflet" url="http://kael.top/categories/Leaflet/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://kael.top/2019/01/20/mongoDB-geospatial/</loc>
-    <lastmod>2019-11-18</lastmod>
-  </url>  <url>
+    <lastmod>2019-12-22T15:11:05.620Z</lastmod>
+    <data>
+        <display>
+        <title>mongoDB中地理空间查询指北</title>
+        <pubTime>2019-01-20T09:41:24.000Z</pubTime>
+        
+        <tag>GIS</tag>
+         
+         
+           
+             
+              <breadCrumb title="Node" url="http://kael.top/categories/Node/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://kael.top/2019/06/06/openstreetmap-carto-map/</loc>
-    <lastmod>2019-11-18</lastmod>
-  </url>  <url>
+    <lastmod>2019-12-22T15:11:05.620Z</lastmod>
+    <data>
+        <display>
+        <title>制作openstreetmap-carto风格离线瓦片地图</title>
+        <pubTime>2019-06-06T07:13:27.000Z</pubTime>
+        
+        <tag>GIS</tag>
+         
+         
+           
+             
+              <breadCrumb title="PostGIS" url="http://kael.top/categories/PostGIS/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://kael.top/2019/03/12/osm-PostGIS-setup/</loc>
-    <lastmod>2019-11-18</lastmod>
-  </url>  <url>
+    <lastmod>2019-12-22T15:11:05.620Z</lastmod>
+    <data>
+        <display>
+        <title>使用osm数据做一个自己的PostGIS数据库</title>
+        <pubTime>2019-03-12T11:54:08.000Z</pubTime>
+        
+        <tag>GIS</tag>
+         
+         
+           
+             
+              <breadCrumb title="PostGIS" url="http://kael.top/categories/PostGIS/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://kael.top/2017/09/17/basemap/</loc>
-    <lastmod>2019-11-18</lastmod>
-  </url>  <url>
+    <lastmod>2019-12-22T15:11:05.616Z</lastmod>
+    <data>
+        <display>
+        <title>Leaflet多种基础图层加载</title>
+        <pubTime>2017-09-17T05:46:08.000Z</pubTime>
+        
+        <tag>FE</tag>
+         
+        <tag>GIS</tag>
+         
+        <tag>Leaflet</tag>
+         
+         
+           
+             
+              <breadCrumb title="Leaflet" url="http://kael.top/categories/Leaflet/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://kael.top/2017/07/31/openlayers-canvas-typhoon/</loc>
-    <lastmod>2019-11-18</lastmod>
-  </url>
+    <lastmod>2019-12-22T15:11:05.616Z</lastmod>
+    <data>
+        <display>
+        <title>openlayers 从台风风圈绘制到canvas样式和图层的应用</title>
+        <pubTime>2017-07-31T14:31:02.000Z</pubTime>
+        
+        <tag>FE</tag>
+         
+        <tag>GIS</tag>
+         
+        <tag>OpenLayers</tag>
+         
+         
+           
+             
+              <breadCrumb title="OpenLayers" url="http://kael.top/categories/OpenLayers/"/>
+          
+        </display>
+    </data>
+    </url>
+
 </urlset>
