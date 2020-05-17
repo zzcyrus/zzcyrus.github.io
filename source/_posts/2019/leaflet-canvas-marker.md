@@ -2,7 +2,7 @@
 title: Leaflet.Canvas-Marker-Layer 图层的诞生
 date: 2019-11-18 16:49:18
 tags: [GIS, Leaflet]
-categories: Leaflet
+categories: WebGIS
 ---
 
 之前写过一个基于 Leaflet 的标注点图层插件，[Leaflet.Canvas-Marker-Layer](https://github.com/zzcyrus/Leaflet.Canvas-Marker-Layer)，今天简单的说一下为什么需要用到它。在 Leaflet 中如果你需要渲染 marker，有两种方式：
@@ -57,19 +57,19 @@ _drawMarker: function (marker, pointPos) {
 
 // 你可以简单的画一个圆
 var layer = L.canvasMarkerLayer({
-  userDrawFunc: function(layer, marker, pointPos, size) {
+  userDrawFunc: function (layer, marker, pointPos, size) {
     var ctx = layer._context;
     ctx.beginPath();
     ctx.arc(pointPos.x, pointPos.y, size[0] / 2, 0, 2 * Math.PI);
     ctx.fillStyle = "rgba(255,12,0,0.4)";
     ctx.fill();
     ctx.closePath();
-  }
+  },
 }).addTo(map);
 
 // 你也可以画一个矩形里面再配上文字
 const ciLayer = L.canvasMarkerLayer({
-  userDrawFunc: function(layer, marker, pointPos, size) {
+  userDrawFunc: function (layer, marker, pointPos, size) {
     const ctx = layer._context;
     const number = marker.properties.number;
     ctx.beginPath();
@@ -85,7 +85,7 @@ const ciLayer = L.canvasMarkerLayer({
     ctx.fillText(number, pointPos.x, pointPos.y + size[1] / 4);
     ctx.textAlign = "center";
     ctx.closePath();
-  }
+  },
 }).addTo(map);
 ```
 
