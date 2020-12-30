@@ -10,19 +10,21 @@
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> (self.interactivity) &#123;</span><br><span class="line">  surface = <span class="keyword">new</span> mapnik.Grid(dim, dim)</span><br><span class="line">  <span class="comment">// ... 省略</span></span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  surface = <span class="keyword">new</span> mapnik.Image(dim, dim)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>然后使用<a href="http://mapnik.org/documentation/node-mapnik/3.6/#VectorTile.render" target="_blank" rel="noopener">VectorTile.render</a>这个方法，通过 xml 构建出来的 map 和上面的 surface 参数，就可以将矢量数据转化为栅格图片：</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line">vectorTile.render(self.map, surface, options, callback)</span><br></pre></td></tr></table></figure>
-</div><div class="tags"><a href="/tags/GIS/">GIS</a></div><div class="post-nav"><a class="pre" href="/2019/07/07/tilestrata-vtile-composite/">tilestrata-vtile-composite 插件使用及浅析</a><a class="next" href="/2019/07/04/tilestrata-vtile/">tilestrata-vtile 插件使用及浅析</a></div><div id="vcomment"></div><script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script><script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script><script>var notify = 'false' ? true : false;
+</div><div class="tags"><a href="/tags/GIS/">GIS</a></div><div class="post-nav"><a class="pre" href="/2019/07/07/tilestrata-vtile-composite/">tilestrata-vtile-composite 插件使用及浅析</a><a class="next" href="/2019/07/04/tilestrata-vtile/">tilestrata-vtile 插件使用及浅析</a></div><div id="vcomment"></div><script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script><script src="//unpkg.com/@waline/client/dist/Waline.min.js"></script><script>var notify = 'false' ? true : false;
 var verify = 'false' ? true : false;
 var GUEST_INFO = ['nick','mail','link'];
 var guest_info = '昵称,邮箱,link(http://)'.split(',').filter(function(item){
   return GUEST_INFO.indexOf(item) > -1
 });
 guest_info = guest_info.length == 0 ? GUEST_INFO :guest_info;
-window.valine = new Valine({
+//- window.valine = new Valine({
+window.valine = new Waline({
   el:'#vcomment',
   notify:notify,
   verify:verify,
-  appId:'JiVmJ5xNgTfByqBf0Q3yzn34-MdYXbMMI',
-  appKey:'JzqWx7VloHTdOoYQ2z9w6hwF',
+  //- appId:'JiVmJ5xNgTfByqBf0Q3yzn34-MdYXbMMI',
+  //- appKey:'JzqWx7VloHTdOoYQ2z9w6hwF',
+  serverURL: 'https://waline-server.vercel.app',
   placeholder:'想说点什么吗？',
   avatar:'wavatar',
   guest_info:guest_info,

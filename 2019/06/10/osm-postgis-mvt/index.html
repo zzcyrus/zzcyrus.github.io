@@ -40,19 +40,21 @@
 <p>我们导入了三张表，分别是边界数据（蓝色）、设施（红点）和建筑（紫色），全部叠加之后如下图所示：</p>
 <p><img src="http://blog-img-1255388623.cossh.myqcloud.com/mvt_preview.png" alt></p>
 <h1 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h1><p><a href="https://blog.jawg.io/how-to-make-mvt-with-postgis/" target="_blank" rel="noopener">https://blog.jawg.io/how-to-make-mvt-with-postgis/</a></p>
-</div><div class="tags"><a href="/tags/GIS/">GIS</a></div><div class="post-nav"><a class="pre" href="/2019/06/11/tilestrata-mapnik/">tilestrata-mapnik 插件使用及浅析</a><a class="next" href="/2019/06/06/openstreetmap-carto-map/">制作openstreetmap-carto风格离线瓦片地图</a></div><div id="vcomment"></div><script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script><script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script><script>var notify = 'false' ? true : false;
+</div><div class="tags"><a href="/tags/GIS/">GIS</a></div><div class="post-nav"><a class="pre" href="/2019/06/11/tilestrata-mapnik/">tilestrata-mapnik 插件使用及浅析</a><a class="next" href="/2019/06/06/openstreetmap-carto-map/">制作openstreetmap-carto风格离线瓦片地图</a></div><div id="vcomment"></div><script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script><script src="//unpkg.com/@waline/client/dist/Waline.min.js"></script><script>var notify = 'false' ? true : false;
 var verify = 'false' ? true : false;
 var GUEST_INFO = ['nick','mail','link'];
 var guest_info = '昵称,邮箱,link(http://)'.split(',').filter(function(item){
   return GUEST_INFO.indexOf(item) > -1
 });
 guest_info = guest_info.length == 0 ? GUEST_INFO :guest_info;
-window.valine = new Valine({
+//- window.valine = new Valine({
+window.valine = new Waline({
   el:'#vcomment',
   notify:notify,
   verify:verify,
-  appId:'JiVmJ5xNgTfByqBf0Q3yzn34-MdYXbMMI',
-  appKey:'JzqWx7VloHTdOoYQ2z9w6hwF',
+  //- appId:'JiVmJ5xNgTfByqBf0Q3yzn34-MdYXbMMI',
+  //- appKey:'JzqWx7VloHTdOoYQ2z9w6hwF',
+  serverURL: 'https://waline-server.vercel.app',
   placeholder:'想说点什么吗？',
   avatar:'wavatar',
   guest_info:guest_info,

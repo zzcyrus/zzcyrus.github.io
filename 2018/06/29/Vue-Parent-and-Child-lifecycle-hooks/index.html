@@ -19,19 +19,21 @@
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>如果你想深入的了解Vue的生命周期钩子，我强烈建议你读一下<a href="https://alligator.io/vuejs/component-lifecycle/" target="_blank" rel="noopener">这篇文章</a>。</p>
 <p>但通常来说，我建议如果你只在组件的<strong>Mounted</strong>钩子进行需要和DOM交互的操作，而其他的操作都放在<strong>Created</strong>钩子中</p>
 <h3 id="个人总结"><a href="#个人总结" class="headerlink" title="个人总结"></a>个人总结</h3><p>从生命周期的角度来看： 父 Created - 子 Created - 子 Mounted - 父 Mounted<br>对应过程Props的改变： 子 prop 改变 ——— 子 prop 改变 ——— 子 prop 改变  </p>
-</div><div class="tags"><a href="/tags/FE/">FE</a><a href="/tags/Vue/">Vue</a></div><div class="post-nav"><a class="pre" href="/2019/01/20/mongoDB-geospatial/">mongoDB中地理空间查询指北</a><a class="next" href="/2017/11/12/vector-tile-openlayers-try/">矢量切片的使用尝试1—openlayers应用</a></div><div id="vcomment"></div><script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script><script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script><script>var notify = 'false' ? true : false;
+</div><div class="tags"><a href="/tags/FE/">FE</a><a href="/tags/Vue/">Vue</a></div><div class="post-nav"><a class="pre" href="/2019/01/20/mongoDB-geospatial/">mongoDB中地理空间查询指北</a><a class="next" href="/2017/11/12/vector-tile-openlayers-try/">矢量切片的使用尝试1—openlayers应用</a></div><div id="vcomment"></div><script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script><script src="//unpkg.com/@waline/client/dist/Waline.min.js"></script><script>var notify = 'false' ? true : false;
 var verify = 'false' ? true : false;
 var GUEST_INFO = ['nick','mail','link'];
 var guest_info = '昵称,邮箱,link(http://)'.split(',').filter(function(item){
   return GUEST_INFO.indexOf(item) > -1
 });
 guest_info = guest_info.length == 0 ? GUEST_INFO :guest_info;
-window.valine = new Valine({
+//- window.valine = new Valine({
+window.valine = new Waline({
   el:'#vcomment',
   notify:notify,
   verify:verify,
-  appId:'JiVmJ5xNgTfByqBf0Q3yzn34-MdYXbMMI',
-  appKey:'JzqWx7VloHTdOoYQ2z9w6hwF',
+  //- appId:'JiVmJ5xNgTfByqBf0Q3yzn34-MdYXbMMI',
+  //- appKey:'JzqWx7VloHTdOoYQ2z9w6hwF',
+  serverURL: 'https://waline-server.vercel.app',
   placeholder:'想说点什么吗？',
   avatar:'wavatar',
   guest_info:guest_info,

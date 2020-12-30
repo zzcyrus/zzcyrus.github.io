@@ -11,19 +11,21 @@
 <p>接下来的代码主要逻辑就是如何利用指定的图层源创造一个<code>buffer</code>返回给新图层，以下代码就是 server 函数，有所精简：</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// req 即上面的tile参数，包含请求的瓦片地址和类型，例如tile.jpg</span></span><br><span class="line"><span class="keyword">var</span> mock = req.clone()</span><br><span class="line"><span class="comment">// source 即指定的其他图层的数据源['world_merc_png', 'tile.png']</span></span><br><span class="line"><span class="keyword">var</span> source = getSource(req)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 分别把当前tile的layer和filename替换成指定源的对应值</span></span><br><span class="line">mock.layer = source[<span class="number">0</span>]</span><br><span class="line">mock.filename = source[<span class="number">1</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment">// server 即上面的server参数，代表整个tilestrata服务</span></span><br><span class="line">server.serve(mock, <span class="literal">false</span>, <span class="function"><span class="keyword">function</span>(<span class="params">status, buffer, headers</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (status === <span class="number">200</span>) &#123;</span><br><span class="line">    <span class="comment">// 利用伪造出来的指定源的请求内容去向服务器请求数据，获取buffer后返回给当前源</span></span><br><span class="line">    callback(<span class="literal">null</span>, buffer, headers)</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    callback(err)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 <p>当前图层拿到了 buffer 内容，只要再进入自己后续的加工逻辑，处理成指定格式返回就好了。</p>
-</div><div class="tags"><a href="/tags/GIS/">GIS</a></div><div class="post-nav"><a class="pre" href="/2019/07/08/tilestrata-blend/">tilestrata-blend 插件使用及浅析</a><a class="next" href="/2019/07/07/tilestrata-vtile-composite/">tilestrata-vtile-composite 插件使用及浅析</a></div><div id="vcomment"></div><script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script><script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script><script>var notify = 'false' ? true : false;
+</div><div class="tags"><a href="/tags/GIS/">GIS</a></div><div class="post-nav"><a class="pre" href="/2019/07/08/tilestrata-blend/">tilestrata-blend 插件使用及浅析</a><a class="next" href="/2019/07/07/tilestrata-vtile-composite/">tilestrata-vtile-composite 插件使用及浅析</a></div><div id="vcomment"></div><script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script><script src="//unpkg.com/@waline/client/dist/Waline.min.js"></script><script>var notify = 'false' ? true : false;
 var verify = 'false' ? true : false;
 var GUEST_INFO = ['nick','mail','link'];
 var guest_info = '昵称,邮箱,link(http://)'.split(',').filter(function(item){
   return GUEST_INFO.indexOf(item) > -1
 });
 guest_info = guest_info.length == 0 ? GUEST_INFO :guest_info;
-window.valine = new Valine({
+//- window.valine = new Valine({
+window.valine = new Waline({
   el:'#vcomment',
   notify:notify,
   verify:verify,
-  appId:'JiVmJ5xNgTfByqBf0Q3yzn34-MdYXbMMI',
-  appKey:'JzqWx7VloHTdOoYQ2z9w6hwF',
+  //- appId:'JiVmJ5xNgTfByqBf0Q3yzn34-MdYXbMMI',
+  //- appKey:'JzqWx7VloHTdOoYQ2z9w6hwF',
+  serverURL: 'https://waline-server.vercel.app',
   placeholder:'想说点什么吗？',
   avatar:'wavatar',
   guest_info:guest_info,

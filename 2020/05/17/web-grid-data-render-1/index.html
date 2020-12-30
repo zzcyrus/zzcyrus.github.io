@@ -30,19 +30,21 @@
 
 <p><a href="https://kael.top/Leaflet.Tile.PixelLayer/demo/">在线 demo</a></p>
 <h1 id="后续"><a href="#后续" class="headerlink" title="后续"></a>后续</h1><p>这样我们已经初步在浏览器上完成了一个前端完全可控的格点数据渲染，当然对整个过程是否有更好的优化方法，我们后面会继续展开讨论。</p>
-</div><div class="tags"><a href="/tags/GIS/">GIS</a><a href="/tags/Leaflet/">Leaflet</a></div><div class="post-nav"><a class="pre" href="/2020/06/23/radar-vector-tile-try/">试着还原下墨迹mapbox合作的雷达图展示</a><a class="next" href="/2019/11/18/leaflet-canvas-marker/">Leaflet.Canvas-Marker-Layer 图层的诞生</a></div><div id="vcomment"></div><script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script><script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script><script>var notify = 'false' ? true : false;
+</div><div class="tags"><a href="/tags/GIS/">GIS</a><a href="/tags/Leaflet/">Leaflet</a></div><div class="post-nav"><a class="pre" href="/2020/06/23/radar-vector-tile-try/">试着还原下墨迹mapbox合作的雷达图展示</a><a class="next" href="/2019/11/18/leaflet-canvas-marker/">Leaflet.Canvas-Marker-Layer 图层的诞生</a></div><div id="vcomment"></div><script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script><script src="//unpkg.com/@waline/client/dist/Waline.min.js"></script><script>var notify = 'false' ? true : false;
 var verify = 'false' ? true : false;
 var GUEST_INFO = ['nick','mail','link'];
 var guest_info = '昵称,邮箱,link(http://)'.split(',').filter(function(item){
   return GUEST_INFO.indexOf(item) > -1
 });
 guest_info = guest_info.length == 0 ? GUEST_INFO :guest_info;
-window.valine = new Valine({
+//- window.valine = new Valine({
+window.valine = new Waline({
   el:'#vcomment',
   notify:notify,
   verify:verify,
-  appId:'JiVmJ5xNgTfByqBf0Q3yzn34-MdYXbMMI',
-  appKey:'JzqWx7VloHTdOoYQ2z9w6hwF',
+  //- appId:'JiVmJ5xNgTfByqBf0Q3yzn34-MdYXbMMI',
+  //- appKey:'JzqWx7VloHTdOoYQ2z9w6hwF',
+  serverURL: 'https://waline-server.vercel.app',
   placeholder:'想说点什么吗？',
   avatar:'wavatar',
   guest_info:guest_info,

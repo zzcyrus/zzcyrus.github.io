@@ -20,19 +20,21 @@
 </li>
 </ul>
 <p>具体的使用效果可以移步<a href="https://github.com/zzcyrus/Leaflet-demos/blob/master/1.plugins/plugins.html" target="_blank" rel="noopener">demo</a></p>
-</div><div class="tags"><a href="/tags/FE/">FE</a><a href="/tags/GIS/">GIS</a><a href="/tags/Leaflet/">Leaflet</a></div><div class="post-nav"><a class="pre" href="/2017/11/12/vector-tile-openlayers-try/">矢量切片的使用尝试1—openlayers应用</a><a class="next" href="/2017/09/17/basemap/">Leaflet多种基础图层加载</a></div><div id="vcomment"></div><script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script><script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script><script>var notify = 'false' ? true : false;
+</div><div class="tags"><a href="/tags/FE/">FE</a><a href="/tags/GIS/">GIS</a><a href="/tags/Leaflet/">Leaflet</a></div><div class="post-nav"><a class="pre" href="/2017/11/12/vector-tile-openlayers-try/">矢量切片的使用尝试1—openlayers应用</a><a class="next" href="/2017/09/17/basemap/">Leaflet多种基础图层加载</a></div><div id="vcomment"></div><script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script><script src="//unpkg.com/@waline/client/dist/Waline.min.js"></script><script>var notify = 'false' ? true : false;
 var verify = 'false' ? true : false;
 var GUEST_INFO = ['nick','mail','link'];
 var guest_info = '昵称,邮箱,link(http://)'.split(',').filter(function(item){
   return GUEST_INFO.indexOf(item) > -1
 });
 guest_info = guest_info.length == 0 ? GUEST_INFO :guest_info;
-window.valine = new Valine({
+//- window.valine = new Valine({
+window.valine = new Waline({
   el:'#vcomment',
   notify:notify,
   verify:verify,
-  appId:'JiVmJ5xNgTfByqBf0Q3yzn34-MdYXbMMI',
-  appKey:'JzqWx7VloHTdOoYQ2z9w6hwF',
+  //- appId:'JiVmJ5xNgTfByqBf0Q3yzn34-MdYXbMMI',
+  //- appKey:'JzqWx7VloHTdOoYQ2z9w6hwF',
+  serverURL: 'https://waline-server.vercel.app',
   placeholder:'想说点什么吗？',
   avatar:'wavatar',
   guest_info:guest_info,

@@ -13,19 +13,21 @@
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 新建VectorTile源，options也和传入的otps息息相关</span></span><br><span class="line">map.render(<span class="keyword">new</span> mapnik.VectorTile(z, x, y), options, <span class="function"><span class="keyword">function</span>(<span class="params">err, image</span>) </span>&#123;</span><br><span class="line">  self.pool.release(map)</span><br><span class="line">  <span class="keyword">if</span> (err) <span class="keyword">return</span> callback(err)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (image.empty()) &#123;</span><br><span class="line">    err = <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'No data'</span>)</span><br><span class="line">    err.statusCode = <span class="number">204</span></span><br><span class="line">    <span class="keyword">return</span> callback(err)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 通过getdata方法获取数据并返回给tilestrata</span></span><br><span class="line">  <span class="keyword">var</span> buffer = image.getData(self.dataopts)</span><br><span class="line">  buffer.metatile = self.metatile</span><br><span class="line">  buffer._vtile = image</span><br><span class="line">  buffer._vx = x</span><br><span class="line">  buffer._vy = y</span><br><span class="line">  buffer._vz = z</span><br><span class="line"></span><br><span class="line">  callback(<span class="literal">null</span>, buffer)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 <p>第二节使用中提到的<code>opts</code>的参数实际上是 mapnik 中<a href="http://mapnik.org/documentation/node-mapnik/3.6/#Map.render" target="_blank" rel="noopener">Map.render</a>方法的几个可选参数，他们会在 tilestrata-vtile 中被合并使用：</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> options = self.overrideRenderOptions(</span><br><span class="line">  &#123;</span><br><span class="line">    simplify_distance: real_z &lt; self.maxzoom ? <span class="number">8</span> : <span class="number">1</span>,</span><br><span class="line">    path_multiplier: <span class="number">16</span> * self.metatile,</span><br><span class="line">    buffer_size: self.bufferSize,</span><br><span class="line">    scale_denominator: <span class="number">559082264.028</span> / (<span class="number">1</span> &lt;&lt; real_z)</span><br><span class="line">  &#125;,</span><br><span class="line">  real_z,</span><br><span class="line">  self.maxzoom</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-</div><div class="tags"><a href="/tags/GIS/">GIS</a></div><div class="post-nav"><a class="pre" href="/2019/07/05/tilestrata-vtile-raster/">tilestrata-vtile-raster 插件使用及浅析</a><a class="next" href="/2019/07/02/tilestrata-postgis-geojson-tiles/">tilestrata-postgis-geojson-tiles 插件使用及浅析</a></div><div id="vcomment"></div><script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script><script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script><script>var notify = 'false' ? true : false;
+</div><div class="tags"><a href="/tags/GIS/">GIS</a></div><div class="post-nav"><a class="pre" href="/2019/07/05/tilestrata-vtile-raster/">tilestrata-vtile-raster 插件使用及浅析</a><a class="next" href="/2019/07/02/tilestrata-postgis-geojson-tiles/">tilestrata-postgis-geojson-tiles 插件使用及浅析</a></div><div id="vcomment"></div><script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script><script src="//unpkg.com/@waline/client/dist/Waline.min.js"></script><script>var notify = 'false' ? true : false;
 var verify = 'false' ? true : false;
 var GUEST_INFO = ['nick','mail','link'];
 var guest_info = '昵称,邮箱,link(http://)'.split(',').filter(function(item){
   return GUEST_INFO.indexOf(item) > -1
 });
 guest_info = guest_info.length == 0 ? GUEST_INFO :guest_info;
-window.valine = new Valine({
+//- window.valine = new Valine({
+window.valine = new Waline({
   el:'#vcomment',
   notify:notify,
   verify:verify,
-  appId:'JiVmJ5xNgTfByqBf0Q3yzn34-MdYXbMMI',
-  appKey:'JzqWx7VloHTdOoYQ2z9w6hwF',
+  //- appId:'JiVmJ5xNgTfByqBf0Q3yzn34-MdYXbMMI',
+  //- appKey:'JzqWx7VloHTdOoYQ2z9w6hwF',
+  serverURL: 'https://waline-server.vercel.app',
   placeholder:'想说点什么吗？',
   avatar:'wavatar',
   guest_info:guest_info,

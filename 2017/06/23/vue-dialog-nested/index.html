@@ -13,19 +13,21 @@
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line">Vue.prototype.$Modal = &#123;</span><br><span class="line">    open(element) &#123;</span><br><span class="line">        <span class="keyword">var</span> index = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">var</span> wrapper = element.querySelector(<span class="string">'.el-dialog__wrapper'</span>);</span><br><span class="line">        <span class="keyword">if</span> (wrapper) &#123;</span><br><span class="line">            index = wrapper.style.zIndex - <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">var</span> modalDom = <span class="built_in">document</span>.createElement(<span class="string">'div'</span>);</span><br><span class="line">        modalDom.className = <span class="string">'v-modal'</span>;</span><br><span class="line">        element.appendChild(modalDom);</span><br><span class="line">        modalDom.style.zIndex = index;</span><br><span class="line">    &#125;,</span><br><span class="line">    close() &#123;</span><br><span class="line">        <span class="keyword">var</span> modal = <span class="built_in">document</span>.getElementsByClassName(<span class="string">'v-modal'</span>)[<span class="number">0</span>;</span><br><span class="line">        modal.parentNode.removeChild(modal);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>&emsp;&emsp;一般调用方法<br><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">mounted: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> that = <span class="keyword">this</span>;</span><br><span class="line">    <span class="keyword">this</span>.$nextTick(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="comment">//遮罩层</span></span><br><span class="line">        that.$nextTick(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            that.$Modal.open(that.$el);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure></p>
 <p>&emsp;&emsp;主要想法就是在组件mounted完成的nextTick后，为页面中添加一个div，样式就直接采用element自己的了，因为遮罩层是添加在dialog组件下的，因此组件销毁后也会自己销毁，close方法也没用上，但也应该会遇到有用上的时候吧。</p>
-</div><div class="tags"><a href="/tags/FE/">FE</a><a href="/tags/Vue/">Vue</a></div><div class="post-nav"><a class="pre" href="/2017/07/31/openlayers-canvas-typhoon/">openlayers 从台风风圈绘制到canvas样式和图层的应用</a></div><div id="vcomment"></div><script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script><script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script><script>var notify = 'false' ? true : false;
+</div><div class="tags"><a href="/tags/FE/">FE</a><a href="/tags/Vue/">Vue</a></div><div class="post-nav"><a class="pre" href="/2017/07/31/openlayers-canvas-typhoon/">openlayers 从台风风圈绘制到canvas样式和图层的应用</a></div><div id="vcomment"></div><script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script><script src="//unpkg.com/@waline/client/dist/Waline.min.js"></script><script>var notify = 'false' ? true : false;
 var verify = 'false' ? true : false;
 var GUEST_INFO = ['nick','mail','link'];
 var guest_info = '昵称,邮箱,link(http://)'.split(',').filter(function(item){
   return GUEST_INFO.indexOf(item) > -1
 });
 guest_info = guest_info.length == 0 ? GUEST_INFO :guest_info;
-window.valine = new Valine({
+//- window.valine = new Valine({
+window.valine = new Waline({
   el:'#vcomment',
   notify:notify,
   verify:verify,
-  appId:'JiVmJ5xNgTfByqBf0Q3yzn34-MdYXbMMI',
-  appKey:'JzqWx7VloHTdOoYQ2z9w6hwF',
+  //- appId:'JiVmJ5xNgTfByqBf0Q3yzn34-MdYXbMMI',
+  //- appKey:'JzqWx7VloHTdOoYQ2z9w6hwF',
+  serverURL: 'https://waline-server.vercel.app',
   placeholder:'想说点什么吗？',
   avatar:'wavatar',
   guest_info:guest_info,

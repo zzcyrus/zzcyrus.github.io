@@ -20,19 +20,21 @@
 <p>比如说 <code>z=14,x=12917,y=6430</code>的瓦片对应的 sql 如下：</p>
 <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> ST_AsMVT(q, <span class="string">'osm_mvt'</span>, <span class="number">256</span>, <span class="string">'geom'</span>) <span class="keyword">AS</span> mvt</span><br><span class="line"><span class="keyword">FROM</span> (</span><br><span class="line">  <span class="keyword">SELECT</span> ST_AsMVTGeom(</span><br><span class="line">    ST_Transform(</span><br><span class="line">	  import.osm_buildings.geometry, <span class="number">3857</span>),</span><br><span class="line">	  TileBBox(<span class="number">14</span>, <span class="number">12917</span>, <span class="number">6430</span>, <span class="number">3857</span>),</span><br><span class="line">	  <span class="number">256</span>,</span><br><span class="line">	  <span class="number">10</span>,</span><br><span class="line">      <span class="literal">true</span></span><br><span class="line">	) geom ,<span class="keyword">name</span></span><br><span class="line">    <span class="keyword">FROM</span> import.osm_buildings</span><br><span class="line">    <span class="keyword">WHERE</span> ST_Intersects(TileBBox(<span class="number">14</span>, <span class="number">12917</span>, <span class="number">6430</span>, <span class="number">3857</span>), import.osm_buildings.geometry)</span><br><span class="line">) <span class="keyword">AS</span> q</span><br></pre></td></tr></table></figure>
 <p>此外，<code>fields</code>是可以用逗号分割传递多个想要的字段名的。</p>
-</div><div class="tags"><a href="/tags/GIS/">GIS</a></div><div class="post-nav"><a class="pre" href="/2019/06/23/tilestrata-jsonp/">tilestrata-jsonp 插件使用及浅析</a><a class="next" href="/2019/06/11/tilestrata-mapnik/">tilestrata-mapnik 插件使用及浅析</a></div><div id="vcomment"></div><script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script><script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script><script>var notify = 'false' ? true : false;
+</div><div class="tags"><a href="/tags/GIS/">GIS</a></div><div class="post-nav"><a class="pre" href="/2019/06/23/tilestrata-jsonp/">tilestrata-jsonp 插件使用及浅析</a><a class="next" href="/2019/06/11/tilestrata-mapnik/">tilestrata-mapnik 插件使用及浅析</a></div><div id="vcomment"></div><script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script><script src="//unpkg.com/@waline/client/dist/Waline.min.js"></script><script>var notify = 'false' ? true : false;
 var verify = 'false' ? true : false;
 var GUEST_INFO = ['nick','mail','link'];
 var guest_info = '昵称,邮箱,link(http://)'.split(',').filter(function(item){
   return GUEST_INFO.indexOf(item) > -1
 });
 guest_info = guest_info.length == 0 ? GUEST_INFO :guest_info;
-window.valine = new Valine({
+//- window.valine = new Valine({
+window.valine = new Waline({
   el:'#vcomment',
   notify:notify,
   verify:verify,
-  appId:'JiVmJ5xNgTfByqBf0Q3yzn34-MdYXbMMI',
-  appKey:'JzqWx7VloHTdOoYQ2z9w6hwF',
+  //- appId:'JiVmJ5xNgTfByqBf0Q3yzn34-MdYXbMMI',
+  //- appKey:'JzqWx7VloHTdOoYQ2z9w6hwF',
+  serverURL: 'https://waline-server.vercel.app',
   placeholder:'想说点什么吗？',
   avatar:'wavatar',
   guest_info:guest_info,

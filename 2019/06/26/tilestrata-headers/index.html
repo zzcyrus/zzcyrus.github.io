@@ -11,19 +11,21 @@
 <h1 id="4-代码浅析"><a href="#4-代码浅析" class="headerlink" title="4. 代码浅析"></a>4. 代码浅析</h1><p>原理比较简单，在<code>tilestrata</code>的设计中，会使用<code>use</code>去注册各种类型的插件，<code>tilestrata-headers</code>就是<code>reshook</code>类型的插件，在初始化的过程中会被注册</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line">TileRequestHandler.prototype.use = <span class="function"><span class="keyword">function</span>(<span class="params">plugin</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (!plugin) <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">  <span class="comment">// ...简化后的代码</span></span><br><span class="line">  <span class="keyword">if</span> (plugin.reshook) <span class="keyword">return</span> <span class="keyword">this</span>._registerResponseHook(plugin);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">TileRequestHandler.prototype._registerResponseHook = <span class="function"><span class="keyword">function</span>(<span class="params">plugin</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> id = <span class="string">"reshook#"</span> + <span class="keyword">this</span>.responseHooks.length;</span><br><span class="line">  <span class="keyword">if</span> (!plugin) <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">"Falsy value passed to registerResponseHook()"</span>);</span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> plugin.reshook !== <span class="string">"function"</span>)</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(</span><br><span class="line">      <span class="string">"Attempted to register a response hook with no reshook() method"</span></span><br><span class="line">    );</span><br><span class="line">  <span class="keyword">this</span>.responseHooks.push(&#123; <span class="attr">id</span>: id, <span class="attr">plugin</span>: plugin &#125;);</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <p>通过这种方式，插件劫持每个 response，给每个 response header 加上我们自定义的内容。</p>
-</div><div class="tags"><a href="/tags/GIS/">GIS</a></div><div class="post-nav"><a class="pre" href="/2019/07/02/tilestrata-postgis-geojson-tiles/">tilestrata-postgis-geojson-tiles 插件使用及浅析</a><a class="next" href="/2019/06/23/tilestrata-jsonp/">tilestrata-jsonp 插件使用及浅析</a></div><div id="vcomment"></div><script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script><script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script><script>var notify = 'false' ? true : false;
+</div><div class="tags"><a href="/tags/GIS/">GIS</a></div><div class="post-nav"><a class="pre" href="/2019/07/02/tilestrata-postgis-geojson-tiles/">tilestrata-postgis-geojson-tiles 插件使用及浅析</a><a class="next" href="/2019/06/23/tilestrata-jsonp/">tilestrata-jsonp 插件使用及浅析</a></div><div id="vcomment"></div><script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script><script src="//unpkg.com/@waline/client/dist/Waline.min.js"></script><script>var notify = 'false' ? true : false;
 var verify = 'false' ? true : false;
 var GUEST_INFO = ['nick','mail','link'];
 var guest_info = '昵称,邮箱,link(http://)'.split(',').filter(function(item){
   return GUEST_INFO.indexOf(item) > -1
 });
 guest_info = guest_info.length == 0 ? GUEST_INFO :guest_info;
-window.valine = new Valine({
+//- window.valine = new Valine({
+window.valine = new Waline({
   el:'#vcomment',
   notify:notify,
   verify:verify,
-  appId:'JiVmJ5xNgTfByqBf0Q3yzn34-MdYXbMMI',
-  appKey:'JzqWx7VloHTdOoYQ2z9w6hwF',
+  //- appId:'JiVmJ5xNgTfByqBf0Q3yzn34-MdYXbMMI',
+  //- appKey:'JzqWx7VloHTdOoYQ2z9w6hwF',
+  serverURL: 'https://waline-server.vercel.app',
   placeholder:'想说点什么吗？',
   avatar:'wavatar',
   guest_info:guest_info,

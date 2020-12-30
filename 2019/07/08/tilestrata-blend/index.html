@@ -14,19 +14,21 @@
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 对每个数据源，获取数据，预处理图片（代码有所精简）</span></span><br><span class="line"><span class="keyword">async</span>.series(</span><br><span class="line">  [</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">fetchTile</span>(<span class="params">callback</span>) </span>&#123;</span><br><span class="line">      callback(err)</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">prepareImage</span>(<span class="params">callback</span>) </span>&#123;</span><br><span class="line">      <span class="comment">// 这一步会创建new mapnik.Image</span></span><br><span class="line">      generateMatte(noop)</span><br><span class="line">    &#125;</span><br><span class="line">  ],</span><br><span class="line">  <span class="function"><span class="keyword">function</span>(<span class="params">err</span>) </span>&#123;</span><br><span class="line">    callback(err, image ? [image, options] : <span class="literal">null</span>)</span><br><span class="line">  &#125;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
 <p>完成每个数据源的单独处理后就是合并操作了，利用 mapnik 的<a href="http://mapnik.org/documentation/node-mapnik/3.6/#Image.composite" target="_blank" rel="noopener">omposite</a>方法来依次合并创建的每个<code>mapnik.Image</code>对象，最后再利用<a href="http://mapnik.org/documentation/node-mapnik/3.6/#Image.demultiply" target="_blank" rel="noopener">demultiply</a>解构为 buffer 返回给 tilestrata 就好了。</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// （代码有所精简）</span></span><br><span class="line"><span class="keyword">async</span>.eachSeries(images, <span class="function"><span class="keyword">function</span>(<span class="params">res, callback</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 依次合并图片</span></span><br><span class="line">    intermediate.composite(image, res[<span class="number">1</span>], callback);</span><br><span class="line">&#125;, <span class="function"><span class="keyword">function</span>(<span class="params">err</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 结构返回buffer</span></span><br><span class="line">    intermediate.demultiply(<span class="function"><span class="keyword">function</span>(<span class="params">err</span>) </span>&#123;</span><br><span class="line">            callback(<span class="literal">null</span>, buffer, &#123;<span class="string">'Content-Type'</span>: <span class="string">'image/png'</span>&#125;);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-</div><div class="tags"><a href="/tags/GIS/">GIS</a></div><div class="post-nav"><a class="pre" href="/2019/07/11/tilestrata-underzoom/">tilestrata-underzoom  插件使用及浅析</a><a class="next" href="/2019/07/07/tilestrata-dependency/">tilestrata-dependency 插件使用及浅析</a></div><div id="vcomment"></div><script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script><script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script><script>var notify = 'false' ? true : false;
+</div><div class="tags"><a href="/tags/GIS/">GIS</a></div><div class="post-nav"><a class="pre" href="/2019/07/11/tilestrata-underzoom/">tilestrata-underzoom  插件使用及浅析</a><a class="next" href="/2019/07/07/tilestrata-dependency/">tilestrata-dependency 插件使用及浅析</a></div><div id="vcomment"></div><script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script><script src="//unpkg.com/@waline/client/dist/Waline.min.js"></script><script>var notify = 'false' ? true : false;
 var verify = 'false' ? true : false;
 var GUEST_INFO = ['nick','mail','link'];
 var guest_info = '昵称,邮箱,link(http://)'.split(',').filter(function(item){
   return GUEST_INFO.indexOf(item) > -1
 });
 guest_info = guest_info.length == 0 ? GUEST_INFO :guest_info;
-window.valine = new Valine({
+//- window.valine = new Valine({
+window.valine = new Waline({
   el:'#vcomment',
   notify:notify,
   verify:verify,
-  appId:'JiVmJ5xNgTfByqBf0Q3yzn34-MdYXbMMI',
-  appKey:'JzqWx7VloHTdOoYQ2z9w6hwF',
+  //- appId:'JiVmJ5xNgTfByqBf0Q3yzn34-MdYXbMMI',
+  //- appKey:'JzqWx7VloHTdOoYQ2z9w6hwF',
+  serverURL: 'https://waline-server.vercel.app',
   placeholder:'想说点什么吗？',
   avatar:'wavatar',
   guest_info:guest_info,

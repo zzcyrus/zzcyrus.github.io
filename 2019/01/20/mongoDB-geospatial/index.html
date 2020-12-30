@@ -79,19 +79,21 @@
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 1度大致对应111千米，所以需要/111000,具体可以细化</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;*&#125;</span> </span>meter 米</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">const</span> m2degree = <span class="function">(<span class="params">meter</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> meter / <span class="number">111000</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> query = &#123;</span><br><span class="line">  location: &#123;</span><br><span class="line">    $geoWithin: &#123;</span><br><span class="line">      $center: [[lon, lat], m2degree(radius)]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 米转换成弧度，需要除以地球半径，大约6378100米</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;*&#125;</span> <span class="variable">meter</span></span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">const</span> m2rad = <span class="function">(<span class="params">meter</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> meter / <span class="number">6378100</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> query = &#123;</span><br><span class="line">  location: &#123;</span><br><span class="line">    $nearSphere: [lon, lat],</span><br><span class="line">    $maxDistance: m2rad(maxDistance)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="demo"><a href="#demo" class="headerlink" title="demo"></a>demo</h2><p>这里提供<a href="https://github.com/zzcyrus/mongoDB-geospatial-demos" target="_blank" rel="noopener">一个可供参考的简单的案例仓库</a><br>案例中使用了中国天气网上的749个气象站点温度数据作为数据源，分别建立两种类型的索引，对每种地理查询都做了接口化，你可以<strong>自行运行探索</strong>，或者为其增加一个WebGIS的界面，直接进行操作，体验一下mongoDB地理查询的快捷。</p>
-</div><div class="tags"><a href="/tags/GIS/">GIS</a></div><div class="post-nav"><a class="pre" href="/2019/03/12/osm-PostGIS-setup/">使用osm数据做一个自己的PostGIS数据库</a><a class="next" href="/2018/06/29/Vue-Parent-and-Child-lifecycle-hooks/">【译】Vue中父子组件的生命周期函数</a></div><div id="vcomment"></div><script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script><script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script><script>var notify = 'false' ? true : false;
+</div><div class="tags"><a href="/tags/GIS/">GIS</a></div><div class="post-nav"><a class="pre" href="/2019/03/12/osm-PostGIS-setup/">使用osm数据做一个自己的PostGIS数据库</a><a class="next" href="/2018/06/29/Vue-Parent-and-Child-lifecycle-hooks/">【译】Vue中父子组件的生命周期函数</a></div><div id="vcomment"></div><script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script><script src="//unpkg.com/@waline/client/dist/Waline.min.js"></script><script>var notify = 'false' ? true : false;
 var verify = 'false' ? true : false;
 var GUEST_INFO = ['nick','mail','link'];
 var guest_info = '昵称,邮箱,link(http://)'.split(',').filter(function(item){
   return GUEST_INFO.indexOf(item) > -1
 });
 guest_info = guest_info.length == 0 ? GUEST_INFO :guest_info;
-window.valine = new Valine({
+//- window.valine = new Valine({
+window.valine = new Waline({
   el:'#vcomment',
   notify:notify,
   verify:verify,
-  appId:'JiVmJ5xNgTfByqBf0Q3yzn34-MdYXbMMI',
-  appKey:'JzqWx7VloHTdOoYQ2z9w6hwF',
+  //- appId:'JiVmJ5xNgTfByqBf0Q3yzn34-MdYXbMMI',
+  //- appKey:'JzqWx7VloHTdOoYQ2z9w6hwF',
+  serverURL: 'https://waline-server.vercel.app',
   placeholder:'想说点什么吗？',
   avatar:'wavatar',
   guest_info:guest_info,
