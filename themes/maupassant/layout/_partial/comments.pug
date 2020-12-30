@@ -112,7 +112,8 @@ if theme.gitalk.enable == true
 if theme.valine.enable == true
     #vcomment
     script(src='//cdn1.lncld.net/static/js/3.0.4/av-min.js')
-    script(src='//unpkg.com/valine@latest/dist/Valine.min.js')
+    //- script(src='//unpkg.com/valine@latest/dist/Valine.min.js')
+    script(src='//unpkg.com/@waline/client/dist/Waline.min.js')
     script.
       var notify = '#{ theme.valine.notify }' ? true : false;
       var verify = '#{ theme.valine.verify }' ? true : false;
@@ -121,12 +122,14 @@ if theme.valine.enable == true
         return GUEST_INFO.indexOf(item) > -1
       });
       guest_info = guest_info.length == 0 ? GUEST_INFO :guest_info;
-      window.valine = new Valine({
+      //- window.valine = new Valine({
+      window.valine = new Waline({
         el:'#vcomment',
         notify:notify,
         verify:verify,
-        appId:'#{theme.valine.appid}',
-        appKey:'#{theme.valine.appkey}',
+        //- appId:'#{theme.valine.appid}',
+        //- appKey:'#{theme.valine.appkey}',
+        serverURL: 'https://waline-server.vercel.app',
         placeholder:'#{theme.valine.placeholder}',
         avatar:'#{theme.valine.avatar}',
         guest_info:guest_info,
