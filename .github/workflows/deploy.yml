@@ -8,10 +8,6 @@ on:
 env:
   GIT_USER: zzcyrus
   GIT_EMAIL: zzcyrus@outlook.com
-  THEME_REPO: zzcyrus/zzcyrus.github.io
-  THEME_BRANCH: blog
-  DEPLOY_REPO: zzcyrus/zzcyrus.github.io
-  DEPLOY_BRANCH: master
 
 jobs:
   build:
@@ -25,13 +21,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-
-      - name: Checkout deploy repo
-        uses: actions/checkout@v2
-        with:
-          repository: ${{ env.DEPLOY_REPO }}
-          ref: ${{ env.DEPLOY_BRANCH }}
-          path: .deploy_git
 
       - name: Use Node.js ${{ matrix.node_version }}
         uses: actions/setup-node@v1
