@@ -31,7 +31,7 @@ skip_render: google56eca6eee2792f06.html
 new_post_name: :year/:title.md # File name of new posts
 default_layout: post
 titlecase: false # Transform title into titlecase
-external_link: true # Open external links in new tab
+# external_link: true # Open external links in new tab
 filename_case: 0
 render_drafts: false
 post_asset_folder: true
@@ -80,6 +80,8 @@ deploy:
   type: git
   repo: git@github.com:zzcyrus/zzcyrus.github.io.git
   branch: master
+  name: zzcyrus
+  email: zzcyrus@outlook.com
 
 feed:
   type: atom
