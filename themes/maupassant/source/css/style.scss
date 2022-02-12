@@ -87,7 +87,7 @@ div {
         }
         #logo {
             font: bold 38px/1.12 "Times New Roman", Georgia, Times, sans-serif;
-            color: #555;
+            color: #1f1f1f;
             span,
             &:hover {
                 color: #777;
@@ -206,20 +206,20 @@ div {
 }
 
 .post {
-    padding: 25px 0 15px;
+    padding: 25px 0 35px;
     .post-title {
         margin: 0;
-        color: #555;
+        color: #1f1f1f;
         text-align: left;
         font: bold 25px/1.1 "ff-tisa-web-pro", Cambria, "Times New Roman", Georgia, Times, sans-serif;
         a {
-            color: #555;
+            color: #1f1f1f;
         }
     }
     .post-meta {
         padding: 0;
         margin: 15px 0 0;
-        color: #6E7173;
+        color: #bbb;
         float: left;
         display: inline;
         text-indent: .15em;
@@ -946,7 +946,7 @@ screen and (min-width: 48em) {
 
 .readmore a {
     font-size: 14px;
-    color: #444;
+    color: #bbb;
     margin: -10px 0;
     padding: 5px 10px;
     border: 1px solid #ddd;
@@ -960,6 +960,7 @@ screen and (min-width: 48em) {
     &:hover {
         background: #F8F8F8;
         border-bottom-color: #D26911;
+        color: #555;
     }
 }
 
