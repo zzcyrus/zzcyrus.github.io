@@ -5,6 +5,10 @@ head
     meta(content='black-translucent', name='apple-mobile-web-app-status-bar-style')
     meta(content='telephone=no', name='format-detection')
     meta(name='description', content=config.description)
+    if theme.google_site_verification
+      meta(name="google-site-verification" content=theme.google_site_verification)
+    if theme.bing_site_verification
+      meta(name="msvalidate.01" content=theme.bing_site_verification)
     block title
     link(rel='stylesheet', type='text/css', href=url_for(theme.css) + '/style.css' + '?v=' + theme.version)
     if theme.dark == true
