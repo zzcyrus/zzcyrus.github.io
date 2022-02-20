@@ -7,9 +7,9 @@ categories: WebGIS
 
 本文中所使用的数据来源于[温州台风网](http://www.wztf121.com/typhoon.html)，通过 F12 抓取，你可以在我的[GitHub](https://github.com/zzcyrus/openlayers-demos)上查看数据和本文源代码
 
-&nbsp;&nbsp;台风的风圈是一种不常见但算的上规则的图形，在上面的网站可以看到最终效果，简单的解剖下其实就是四个 1/4 圆
+台风的风圈是一种不常见但算的上规则的图形，在上面的网站可以看到最终效果，简单的解剖下其实就是四个 1/4 圆
 
-![](goal.png)
+![](https://blog-img-1255388623.cos.ap-shanghai.myqcloud.com/typhoon-goal-202202201211623.png)
 
 从数据结构上也可以看出来：
 
@@ -28,8 +28,8 @@ var radius_quad = {
 
 # 通过自定义 geometry 的实现
 
-&nbsp;&nbsp;最原始的思路也是最容易切入的点，就是去看 openlayers 中怎么实现圆形的画法，在 ol 中，有`createRegularPolygon`这个类，原理就是给定一些参数，用点去填充我们想要的形状，当填进去点达到一定密集度，自然就能得到一个近似的圆。
-&nbsp;&nbsp;通过这个思路我们可以计算台风风圈的每个 1/4 圆的坐标，用点去占位，最终实现绘制出想要的图形。
+最原始的思路也是最容易切入的点，就是去看 openlayers 中怎么实现圆形的画法，在 ol 中，有`createRegularPolygon`这个类，原理就是给定一些参数，用点去填充我们想要的形状，当填进去点达到一定密集度，自然就能得到一个近似的圆。
+通过这个思路我们可以计算台风风圈的每个 1/4 圆的坐标，用点去占位，最终实现绘制出想要的图形。
 
 具体代码可以去看某大牛的博客，这里只给出一个传送门，写的很详细了：
 [点我乘坐飞机](http://blog.csdn.net/gisshixisheng/article/details/76397068) **这个算法还有些不完善，就是在每个 1/4 圆结束时候少计算了一个点，导致看着有点不对劲**
@@ -38,9 +38,9 @@ var radius_quad = {
 
 # 通过 canvas 类型的 symbol 实现
 
-&nbsp;&nbsp;在点密集的情况下，用上面的方式其实效果已经很不错了，但是有些细（tiao）心（ci）的使用者，非要放大到一定程度，然后说你这个不够圆，那。。。。。
+在点密集的情况下，用上面的方式其实效果已经很不错了，但是有些细（tiao）心（ci）的使用者，非要放大到一定程度，然后说你这个不够圆，那。。。。。
 
-&nbsp;&nbsp;那我们就用 canvas 画出来，openlayers 中，要素的样式是有这么一种方式`ol.style.Icon`来实现，我们可以把绘制好的元素作为`Icon`的参数
+那我们就用 canvas 画出来，openlayers 中，要素的样式是有这么一种方式`ol.style.Icon`来实现，我们可以把绘制好的元素作为`Icon`的参数
 
 ```js
 var style = new ol.style.Style({
@@ -78,7 +78,7 @@ function createTyphoon(radius, radius_quad) {
 ```
 
 效果如下图：
-![](canvasSymbol.png)
+![](https://blog-img-1255388623.cos.ap-shanghai.myqcloud.com/typhoon-canvas-symbol-202202201211656.png)
 
 [本方法完整代码](https://github.com/zzcyrus/openlayers-demos/blob/master/0.typhoon/canvasSymbol.html)
 
@@ -95,7 +95,7 @@ map.getView().on("change:resolution", function () {
 
 # 通过 canvas 图层的方式实现
 
-&nbsp;&nbsp;再后来转念一想，既然支持 canvas 的 symbol，为何不直接使用 canvas 绘制固定元素呢，果然在 API 中找到了`ol.source.ImageCanvas`，直接把 canvas 要素当作图层来使用！
+再后来转念一想，既然支持 canvas 的 symbol，为何不直接使用 canvas 绘制固定元素呢，果然在 API 中找到了`ol.source.ImageCanvas`，直接把 canvas 要素当作图层来使用！
 
 `ol.source.ImageCanvas`的绘制有点需要特别注意的点，这里给出重要代码片段，完整 demo 可以去[GitHub](https://github.com/zzcyrus/openlayers-demos/blob/master/0.typhoon/canvasLayer.html)查看
 
@@ -139,10 +139,10 @@ var radius_quad = {
 ```
 
 最终效果如下，我在同一图层中绘制了多个：
-![](canvasLayer.png)
+![](https://blog-img-1255388623.cos.ap-shanghai.myqcloud.com/typhoon-canvas-layer-202202201212305.png)
 
 至于绘制 canvas 的方法和上面的 symbol 是一样的。具体代码还请移步[GitHub](https://github.com/zzcyrus/openlayers-demos/blob/master/0.typhoon/canvasLayer.html)(原谅我厚颜无耻的屡次打广告！)
 
 **特点：**这种方式可以在一个图层中添加多个风圈要素，同时图层支持的功能也比较多，基本满足需求，效果也还行
 
-&nbsp;&nbsp;这篇应用主要是从一个基本的需求所拓展开来的，canvas 图层的应用我想应该很强大，刚开始研究 openlyaers，相比于 arcgis，ol 很多功能可能要自己实现，但似乎效果上还是能让人满意的，欢迎大家讨论。
+这篇应用主要是从一个基本的需求所拓展开来的，canvas 图层的应用我想应该很强大，刚开始研究 openlyaers，相比于 arcgis，ol 很多功能可能要自己实现，但似乎效果上还是能让人满意的，欢迎大家讨论。

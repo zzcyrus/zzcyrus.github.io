@@ -14,11 +14,11 @@ Leaflet 中常用的 gis 功能可以满足一般使用，有些特殊需求，�
 
 # ImageWMS
 
-&nbsp;&nbsp;在 openlayers 中，wms 图层的调用了提供了 IamgeWMS 和 tileWMS 两种方式，通常情况下，如果 wms 服务作为底图，由于数据量大，我们采用瓦片的方式加载十分有利，如果数据量小，我们采用单张 image 的方式无论从请求发送上和显示的效果上都更好。
-![](tileWMS.png)
-&nbsp;&nbsp;~~可以发现，瓦片会发出多次请求，每次请求都会包含该瓦片上涉及到的信息，数据量小十分没必要~~
+在 openlayers 中，wms 图层的调用了提供了 IamgeWMS 和 tileWMS 两种方式，通常情况下，如果 wms 服务作为底图，由于数据量大，我们采用瓦片的方式加载十分有利，如果数据量小，我们采用单张 image 的方式无论从请求发送上和显示的效果上都更好。
+![](https://blog-img-1255388623.cos.ap-shanghai.myqcloud.com/none-tile-wms-202202201209390.png)
+~~可以发现，瓦片会发出多次请求，每次请求都会包含该瓦片上涉及到的信息，数据量小十分没必要~~
 
-&nbsp;&nbsp;Leaflet 中只提供了 tile 瓦片的方式加载 WMS 图层，在使用了很多第三方解决方案后，我发现了这款插件[nonTiledLayer](https://github.com/ptv-logistics/Leaflet.NonTiledLayer)，使用之后的效果基本上可以达到 openlaysers 中的要求，更多情况可以点击链接进去了解。
+Leaflet 中只提供了 tile 瓦片的方式加载 WMS 图层，在使用了很多第三方解决方案后，我发现了这款插件[nonTiledLayer](https://github.com/ptv-logistics/Leaflet.NonTiledLayer)，使用之后的效果基本上可以达到 openlaysers 中的要求，更多情况可以点击链接进去了解。
 
 调用方式
 
@@ -57,7 +57,7 @@ var layer = L.nonTiledLayer
 
 # WKT 数据插件
 
-&nbsp;&nbsp;wkt 作为 GIS 常用的一种地理数据格式，因为通用性需求度也很高,Leaflet 官方插件中提供了许多支持 wkt 的第三方解决方案，使用下来，发现 mapbox 出品的[leaflet-omnivore](https://github.com/mapbox/leaflet-omnivore)效果可以说是目前最满足要求的了。
+wkt 作为 GIS 常用的一种地理数据格式，因为通用性需求度也很高,Leaflet 官方插件中提供了许多支持 wkt 的第三方解决方案，使用下来，发现 mapbox 出品的[leaflet-omnivore](https://github.com/mapbox/leaflet-omnivore)效果可以说是目前最满足要求的了。
 
 `omnivore`支持的功能比较强大
 

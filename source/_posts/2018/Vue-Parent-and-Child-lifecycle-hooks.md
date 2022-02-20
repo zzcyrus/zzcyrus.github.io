@@ -5,7 +5,7 @@ tags: [FE,Vue]
 categories: 前端
 ---
 
-&nbsp;&nbsp;最近项目中遇到了地图模块挂载到DOM节点并进行初始化的问题，背后其实就是Vue中父子组件初始化的顺序问题，发现这篇文章的例子通俗易懂，遂翻译一下，如果错误还请指正。
+最近项目中遇到了地图模块挂载到DOM节点并进行初始化的问题，背后其实就是Vue中父子组件初始化的顺序问题，发现这篇文章的例子通俗易懂，遂翻译一下，如果错误还请指正。
 
 <!-- more -->
 
@@ -14,7 +14,7 @@ categories: 前端
 
 如果你在项目中使用Vue，那么我肯定你很熟悉组件生命周期内的钩子函数，但是你未必清楚父子组件内生命周期钩子触发的顺序和对属性（props）的影响
 
-<p style="text-align:center;"><img src="lifecircle.png" width="50%" height="50%"></p>
+<p style="text-align:center;"><img src="https://blog-img-1255388623.cos.ap-shanghai.myqcloud.com/vue-lifecircle-202202201213018.png" width="50%" height="50%"></p>
 
 ## 父/子组件内的生命周期钩子
 
@@ -25,7 +25,7 @@ categories: 前端
 一开始这可能很难很难理解，但如果我们通过逻辑的角度去遵循组件初始化工作流程，就能理解这种顺序。我们只要记住，父组件在其挂载template到DOM之前必须等待所有的子组件都完成挂载（mounted）操作。
 
 
-<p style="text-align:center;"><img src="parent-child-hooks.png" width="50%" height="50%"></p>
+<p style="text-align:center;"><img src="https://blog-img-1255388623.cos.ap-shanghai.myqcloud.com/vue-parent-child-hooks-202202201213815.png" width="50%" height="50%"></p>
 
 若果你的组件通过属性（props）来通讯，以上钩子的执行顺序会很重要。
 

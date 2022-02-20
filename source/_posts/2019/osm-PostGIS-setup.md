@@ -102,7 +102,7 @@ SELECT name FROM china_polygon WHERE name ~ '南京';
 ```
 
 结果：
-![](polygon.png)
+![](https://blog-img-1255388623.cos.ap-shanghai.myqcloud.com/osm-postgis-polygon-202202201215836.png)
 
 ```sql
 SELECT p1.name,p2.name,ST_Distance(p1.way,p2.way) FROM
@@ -111,14 +111,14 @@ SELECT p1.name,p2.name,ST_Distance(p1.way,p2.way) FROM
 ```
 
 结果：
-![](distance.png)
+![](https://blog-img-1255388623.cos.ap-shanghai.myqcloud.com/osm-postgis-distance-202202201214562.png)
 
 ```sql
 SELECT name, ST_AsText(ST_Transform(way,4326)) FROM china_point WHERE place='city';
 ```
 
 结果：
-![](point.png)
+![](https://blog-img-1255388623.cos.ap-shanghai.myqcloud.com/osm-postgis-point-202202201215470.png)
 
 当然数据库的功能不局限于此，基于此数据库我们可以做些更有趣的事情，今后我们会慢慢探讨。
 
