@@ -5,7 +5,7 @@ tags: [FE, GIS, OpenLayers]
 categories: WebGIS
 ---
 
-本文中所使用的数据来源于[温州台风网](http://www.wztf121.com/typhoon.html)，通过 F12 抓取，你可以在我的[GitHub](https://github.com/zzcyrus/openlayers-demos)上查看数据和本文源代码
+本文中所使用的数据来源于[温州台风网](http://www.wztf121.com/)，通过 F12 抓取，你可以在我的[GitHub](https://github.com/zzcyrus/WebGIS-demos/tree/main/openlayers/0.typhoon)上查看数据和本文源代码
 
 台风的风圈是一种不常见但算的上规则的图形，在上面的网站可以看到最终效果，简单的解剖下其实就是四个 1/4 圆
 
@@ -80,7 +80,8 @@ function createTyphoon(radius, radius_quad) {
 效果如下图：
 ![](https://blog-img-1255388623.cos.ap-shanghai.myqcloud.com/typhoon-canvas-symbol-202202201211656.png)
 
-[本方法完整代码](https://github.com/zzcyrus/openlayers-demos/blob/master/0.typhoon/canvasSymbol.html)
+[demo](https://kael.top/WebGIS-demos/openlayers/0.typhoon/canvasSymbol.html)
+[完整代码](https://github.com/zzcyrus/WebGIS-demos/blob/main/openlayers/0.typhoon/canvasSymbol.html)
 
 **特点：** 这种方式，绘制出来的台风风圈其实只是一个 symbol 符号，需要把这个符号赋给一个具体的要素，比如一个点，一个圆之类的，而且根据分辨率还要去调整样式的缩放
 
@@ -97,7 +98,7 @@ map.getView().on("change:resolution", function () {
 
 再后来转念一想，既然支持 canvas 的 symbol，为何不直接使用 canvas 绘制固定元素呢，果然在 API 中找到了`ol.source.ImageCanvas`，直接把 canvas 要素当作图层来使用！
 
-`ol.source.ImageCanvas`的绘制有点需要特别注意的点，这里给出重要代码片段，完整 demo 可以去[GitHub](https://github.com/zzcyrus/openlayers-demos/blob/master/0.typhoon/canvasLayer.html)查看
+`ol.source.ImageCanvas`的绘制有点需要特别注意的点，这里给出重要代码片段
 
 ## 创建图层，在 canvasFunction 中写具体的绘图方法
 
@@ -141,7 +142,10 @@ var radius_quad = {
 最终效果如下，我在同一图层中绘制了多个：
 ![](https://blog-img-1255388623.cos.ap-shanghai.myqcloud.com/typhoon-canvas-layer-202202201212305.png)
 
-至于绘制 canvas 的方法和上面的 symbol 是一样的。具体代码还请移步[GitHub](https://github.com/zzcyrus/openlayers-demos/blob/master/0.typhoon/canvasLayer.html)(原谅我厚颜无耻的屡次打广告！)
+至于绘制 canvas 的方法和上面的 symbol 是一样的。
+[demo](https://kael.top/WebGIS-demos/openlayers/0.typhoon/canvasLayer.html)
+[完整代码](https://github.com/zzcyrus/WebGIS-demos/blob/main/openlayers/0.typhoon/canvasLayer.html)
+
 
 **特点：**这种方式可以在一个图层中添加多个风圈要素，同时图层支持的功能也比较多，基本满足需求，效果也还行
 

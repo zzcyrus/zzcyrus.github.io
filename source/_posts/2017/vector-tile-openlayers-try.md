@@ -39,7 +39,7 @@ var features = tileIndex.getTile(z, x, y).features;
 
 (｡･∀･)ﾉﾞ嗨，既然是 js，那就意味着，我们可以用 nodejs 搭建服务端呀，在浏览到某个层级时候，只请求当前需要的瓦片，不就能解决大数据的传输问题了，nodejs 大法好！
 
-具体的代码可以移步[github](https://github.com/zzcyrus/openlayers-demos/tree/master/1.vector_tile)
+[本文具体代码](https://github.com/zzcyrus/WebGIS-demos/blob/main/openlayers/1.vector_tile)
 
 这里对一些主要部分做一些说明
 
@@ -96,7 +96,7 @@ var vectorSource = new ol.source.VectorTile({
 });
 ```
 
-你可以在 [github](https://github.com/zzcyrus/openlayers-demos) 上看到 demo，执行安装启动
+你可以在 [github](https://github.com/zzcyrus/WebGIS-demos/tree/main/openlayers/1.vector_tile) 上看到 demo，执行安装启动
 
 ```cl
 cd ./1.vector_tile

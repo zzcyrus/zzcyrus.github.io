@@ -9,8 +9,8 @@ Leaflet 中常用的 gis 功能可以满足一般使用，有些特殊需求，�
 
 <!-- more -->
 
-[Leaflet 系列地址](https://github.com/zzcyrus/Leaflet-demos)
-[本文 demo 地址](https://github.com/zzcyrus/Leaflet-demos/blob/master/1.plugins/plugins.html)
+[Leaflet 系列地址](https://github.com/zzcyrus/WebGIS-demos/tree/main/leaflet)
+[demo 地址](https://kael.top/WebGIS-demos/leaflet/1.plugins/plugins.html)
 
 # ImageWMS
 
@@ -86,4 +86,4 @@ let customLayer = L.geoJson(null, {
 
 - `omnivore.wkt.parse(wktString，parser_options?, customLayer?)`: 通过转换 wkt 字符串加载
 
-具体的使用效果可以移步[demo](https://github.com/zzcyrus/Leaflet-demos/blob/master/1.plugins/plugins.html)
+具体的使用可以移步[demo源代码](https://github.com/zzcyrus/WebGIS-demos/blob/main/leaflet/1.plugins/plugins.html)。

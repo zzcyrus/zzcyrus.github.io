@@ -11,8 +11,8 @@ categories: WebGIS
 
 <!-- more -->
 
-[Leaflet 系列地址](https://github.com/zzcyrus/Leaflet-demos)
-[本文 demo 地址](https://github.com/zzcyrus/Leaflet-demos/blob/master/0.basemap/basemap.html)
+[Leaflet 系列地址](https://github.com/zzcyrus/WebGIS-demos/tree/main/leaflet)
+[demo 地址](https://kael.top/WebGIS-demos/leaflet/0.basemap/basemap.html)
 
 # 基础图层的加载
 
@@ -68,4 +68,4 @@ mapRadios: [
 ];
 ```
 
-更多的瓦片地址可以在 demo 中找到，具体的使用效果也可以移步[demo](https://github.com/zzcyrus/Leaflet-demos/blob/master/0.basemap/basemap.html)
+更多的瓦片地址可以在[demo代码](https://github.com/zzcyrus/WebGIS-demos/blob/main/leaflet/0.basemap/basemap.html)中找到。
