@@ -10,7 +10,7 @@ Leaflet 中常用的 gis 功能可以满足一般使用，有些特殊需求，�
 <!-- more -->
 
 [Leaflet 系列地址](https://github.com/zzcyrus/WebGIS-demos/tree/main/leaflet)
-[demo 地址](https://kael.top/WebGIS-demos/leaflet/1.plugins/plugins.html)
+[demo 地址](https://kaely.net/WebGIS-demos/leaflet/1.plugins/plugins.html)
 
 # ImageWMS
 

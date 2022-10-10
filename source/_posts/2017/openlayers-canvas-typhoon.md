@@ -80,7 +80,7 @@ function createTyphoon(radius, radius_quad) {
 效果如下图：
 ![](https://blog-img-1255388623.cos.ap-shanghai.myqcloud.com/typhoon-canvas-symbol-202202201211656.png)
 
-[demo](https://kael.top/WebGIS-demos/openlayers/0.typhoon/canvasSymbol.html)
+[demo](https://kaely.net/WebGIS-demos/openlayers/0.typhoon/canvasSymbol.html)
 [完整代码](https://github.com/zzcyrus/WebGIS-demos/blob/main/openlayers/0.typhoon/canvasSymbol.html)
 
 **特点：** 这种方式，绘制出来的台风风圈其实只是一个 symbol 符号，需要把这个符号赋给一个具体的要素，比如一个点，一个圆之类的，而且根据分辨率还要去调整样式的缩放
@@ -143,7 +143,7 @@ var radius_quad = {
 ![](https://blog-img-1255388623.cos.ap-shanghai.myqcloud.com/typhoon-canvas-layer-202202201212305.png)
 
 至于绘制 canvas 的方法和上面的 symbol 是一样的。
-[demo](https://kael.top/WebGIS-demos/openlayers/0.typhoon/canvasLayer.html)
+[demo](https://kaely.net/WebGIS-demos/openlayers/0.typhoon/canvasLayer.html)
 [完整代码](https://github.com/zzcyrus/WebGIS-demos/blob/main/openlayers/0.typhoon/canvasLayer.html)
 
 

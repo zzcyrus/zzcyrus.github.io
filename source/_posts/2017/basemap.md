@@ -12,7 +12,7 @@ categories: WebGIS
 <!-- more -->
 
 [Leaflet 系列地址](https://github.com/zzcyrus/WebGIS-demos/tree/main/leaflet)
-[demo 地址](https://kael.top/WebGIS-demos/leaflet/0.basemap/basemap.html)
+[demo 地址](https://kaely.net/WebGIS-demos/leaflet/0.basemap/basemap.html)
 
 # 基础图层的加载
 

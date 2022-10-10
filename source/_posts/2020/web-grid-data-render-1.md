@@ -125,12 +125,12 @@ map.addLayer(tilePixelLayer); // 添加到地图上
  <iframe  
  height=400 
  width=100% 
- src="https://kael.top/Leaflet.Tile.PixelLayer/demo/"  
+ src="https://kaely.net/Leaflet.Tile.PixelLayer/demo/"  
  frameborder=0  
  allowfullscreen>
  </iframe>
 
-[在线 demo](https://kael.top/Leaflet.Tile.PixelLayer/demo/)
+[在线 demo](https://kaely.net/Leaflet.Tile.PixelLayer/demo/)
 
 # 后续
 

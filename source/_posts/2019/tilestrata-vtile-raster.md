@@ -65,7 +65,7 @@ server.listen(9527)
 
 demo 项目可以参考[tilestrata-sample-code](https://github.com/zzcyrus/tilestrata-sample-code)
 
-可以直接使用常规的栅格瓦片加载方式来加载`tile.png`图层，无须使用矢量瓦片的加载方式。可以和[tilestrata-vtile 插件浅析](https://kael.top/2019/07/04/tilestrata-vtile/)对比观看。
+可以直接使用常规的栅格瓦片加载方式来加载`tile.png`图层，无须使用矢量瓦片的加载方式。可以和[tilestrata-vtile 插件浅析](https://kaely.net/2019/07/04/tilestrata-vtile/)对比观看。
 
 ![](http://blog-img-1255388623.cossh.myqcloud.com/v-tile-raster-result-20190704172822.png)
 

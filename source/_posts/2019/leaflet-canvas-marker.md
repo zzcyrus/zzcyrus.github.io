@@ -89,7 +89,7 @@ const ciLayer = L.canvasMarkerLayer({
 }).addTo(map);
 ```
 
-[demo](https://kael.top/Leaflet.Canvas-Marker-Layer/example/text.html)
+[demo](https://kaely.net/Leaflet.Canvas-Marker-Layer/example/text.html)
 
 通过这样在 canvas 上绘制大量 marker 的效果就大大改善了。
 

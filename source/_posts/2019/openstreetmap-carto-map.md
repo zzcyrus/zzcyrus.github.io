@@ -9,7 +9,7 @@ categories: PostGIS
 
 <!-- more -->
 
-搭建的主要步骤基本围绕[使用 osm 数据做一个自己的 PostGIS 数据库](https://kael.top/2019/03/12/osm-PostGIS-setup/)这篇文章展开。
+搭建的主要步骤基本围绕[使用 osm 数据做一个自己的 PostGIS 数据库](https://kaely.net/2019/03/12/osm-PostGIS-setup/)这篇文章展开。
 
 我们完成**1、2、3**步骤后，再导入 osm 数据前要做一些修改
 
@@ -69,7 +69,7 @@ sudo apt-get install fonts-noto-cjk fonts-noto-hinted fonts-noto-unhinted fonts-
 
 具体的 demo 项目可以参考[tilestrata-sample-code](https://github.com/zzcyrus/tilestrata-sample-code)
 
-对应的文章可以看一下这篇[tilestrata-mapnik 使用](https://kael.top/2019/06/11/tilestrata-mapnik/)
+对应的文章可以看一下这篇[tilestrata-mapnik 使用](https://kaely.net/2019/06/11/tilestrata-mapnik/)
 
 ## 6.1 准备 mapnik 配置文件
 
