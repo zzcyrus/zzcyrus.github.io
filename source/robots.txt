@@ -10,4 +10,4 @@ Disallow: /fonts/
 Disallow: /vendors/
 Disallow: /fancybox/
 
-Sitemap: http://kaely.net/sitemap.xml
+Sitemap: https://kaely.net/sitemap.xml
